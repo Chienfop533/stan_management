@@ -1,7 +1,5 @@
+import { lato, nunito } from '@/assets/fonts/fonts'
 import Head from 'next/head'
-import { Lato } from 'next/font/google'
-
-const lato = Lato({ subsets: ['latin'], weight: ['400'] })
 
 export default function Home() {
   return (
@@ -12,8 +10,10 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={lato.className}>
+      <main className={`${lato.variable} ${nunito.variable}`}>
         <h1>ok</h1>
+        <h4>tt</h4>
+        <p>ok</p>
       </main>
     </>
   )
