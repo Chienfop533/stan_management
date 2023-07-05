@@ -1,4 +1,5 @@
 import { lato, nunito } from '@/assets/fonts/fonts'
+import { CssBaseline } from '@mui/material'
 import Head from 'next/head'
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={`${lato.variable} ${nunito.variable}`}>
-        <h1>ok</h1>
+        <h1 style={{ color: 'red' }}>ok</h1>
         <h4>tt</h4>
         <p>ok</p>
       </main>

@@ -1,6 +1,10 @@
 html,
 body {
   min-height: 100%;
+}
+
+#__next {
+  height: 100%;
   font-family: var(--font-lato);
 }
 
@@ -8,8 +12,4 @@ h1,
 h2,
 h3 {
   font-family: var(--font-nunito);
-}
-
-#__next {
-  height: 100%;
 }
