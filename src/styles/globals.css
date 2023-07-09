@@ -6,6 +6,7 @@ body {
 #__next {
   height: 100%;
   font-family: var(--font-lato);
+  font-size: 15px;
 }
 
 h1,

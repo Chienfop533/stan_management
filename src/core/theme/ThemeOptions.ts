@@ -10,7 +10,7 @@ const themeOptions = (mode: PaletteMode): ThemeOptions => {
   return deepmerge(defaultTheme, {
     breakpoints: breakpoints(),
     ...spacing,
-    typography,
+    typography: typography,
     palette: palette(mode)
   })
 }

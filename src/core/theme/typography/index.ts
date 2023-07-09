@@ -1,14 +1,25 @@
+import { lato } from '@/assets/fonts/fonts'
+
 const typography = {
-  fontFamily: 'var(--font-lato)',
-  fontSize: '14px',
+  fontFamily: lato.style.fontFamily,
+  fontSize: 15,
   h1: {
-    fontWeight: 700
+    fontFamily: 'var(--font-nunito)',
+    fontWeight: 700,
+    fontSize: 32
   },
   h2: {
-    fontWeight: 600
+    fontFamily: 'var(--font-nunito)',
+    fontWeight: 600,
+    fontSize: 24
   },
   h3: {
-    fontWeight: 500
+    fontFamily: 'var(--font-nunito)',
+    fontWeight: 500,
+    fontSize: 18
+  },
+  body1: {
+    fontSize: 15
   }
 }
 

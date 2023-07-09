@@ -1,11 +1,6 @@
 declare module '@mui/material/styles' {
   interface Palette {
-    lightBackground: {
-      primary: string
-      secondary: string
-      transparent: string
-    }
-    darkBackground: {
+    backgroundColor: {
       primary: string
       secondary: string
       transparent: string
@@ -53,12 +48,7 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    lightBackground?: {
-      primary?: string
-      secondary?: string
-      transparent?: string
-    }
-    darkBackground?: {
+    backgroundColor?: {
       primary?: string
       secondary?: string
       transparent?: string
