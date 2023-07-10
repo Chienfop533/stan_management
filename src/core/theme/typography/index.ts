@@ -19,7 +19,11 @@ const typography = {
     fontSize: 18
   },
   body1: {
+    fontFamily: lato.style.fontFamily,
     fontSize: 15
+  },
+  body2: {
+    fontFamily: 'var(--font-nunito)'
   }
 }
 

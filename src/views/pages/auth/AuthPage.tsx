@@ -1,10 +1,24 @@
-import { Box, Theme, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Theme, styled, useMediaQuery, useTheme } from '@mui/material'
 import AuthWrapper from './AuthWrapper'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { ReactNode } from 'react'
 interface AuthPageProps {
   children: ReactNode
 }
+const BoxWrapper = styled(Box)(({ theme }) => ({
+  padding: '2rem',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: '20px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  width: 600,
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    padding: '0.5rem'
+  }
+}))
 const AuthPage = ({ children }: AuthPageProps) => {
   const theme = useTheme()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
@@ -29,7 +43,7 @@ const AuthPage = ({ children }: AuthPageProps) => {
     >
       {' '}
       {!hidden ? <AuthWrapper /> : null}
-      <Box sx={{ width: 600, p: 8, backgroundColor: 'background.paper', borderRadius: '20px' }}>{children}</Box>
+      <BoxWrapper>{children}</BoxWrapper>
     </Box>
   )
 }

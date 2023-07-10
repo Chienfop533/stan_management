@@ -3,8 +3,14 @@ const GlobalStyles = () => {
     'p.MuiTypography-root': {
       fontFamily: 'var(--font-lato)'
     },
-    'span.MuiTypography-root': {
-      fontFamily: 'var(--font-nunito)'
+    'div.MuiInputBase-root': {
+      fontFamily: 'var(--font-lato)'
+    },
+    'label.MuiFormLabel-root': {
+      fontFamily: 'var(--font-lato)'
+    },
+    'button.MuiButtonBase-root': {
+      fontFamily: 'var(--font-lato)'
     }
   }
 }

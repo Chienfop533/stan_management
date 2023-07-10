@@ -69,15 +69,15 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       dark: '#926644'
     },
     primary: {
-      light: '#76FF7A',
-      main: '#0BDA51',
-      dark: '#00A86B',
+      light: '#E0FFFF',
+      main: '#3AA8C1',
+      dark: '#3AA8C1',
       contrastText: whiteColor
     },
     secondary: {
-      light: '#73C2FB',
-      main: '#00B9E8',
-      dark: '#0095B6',
+      light: '#90EE90',
+      main: '#3EB489',
+      dark: '#3EB489',
       contrastText: whiteColor
     },
     error: {
