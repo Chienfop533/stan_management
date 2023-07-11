@@ -10,6 +10,7 @@ const AuthWrapper = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        width: '60%',
         maxWidth: 600,
         m: 4
       }}

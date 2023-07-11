@@ -15,10 +15,7 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
-  TextField,
-  Typography,
-  useMediaQuery,
-  useTheme
+  Typography
 } from '@mui/material'
 import { ReactNode, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -47,8 +44,6 @@ const LoginPage = () => {
     const { email, password } = formData
     console.log(email, password, rememberMe)
   }
-  const theme = useTheme()
-  const responsive = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <AuthPage>
       <Typography variant='h1'>Đăng nhập</Typography>
@@ -60,7 +55,8 @@ const LoginPage = () => {
           padding: '0.5rem 0',
           paddingLeft: '3rem',
           m: 2,
-          width: !responsive ? 350 : '100%',
+          width: '100%',
+          maxWidth: 350,
           backgroundColor: theme => `${hexToRGBA(theme.palette.backgroundColor.primary, 0.2)}`,
           borderRadius: '50px',
           border: '1px solid',
@@ -78,7 +74,8 @@ const LoginPage = () => {
           padding: '0.5rem 0',
           paddingLeft: '3rem',
           m: 2,
-          width: !responsive ? 350 : '100%',
+          width: '100%',
+          maxWidth: 350,
           backgroundColor: theme => `${hexToRGBA(theme.palette.backgroundColor.secondary, 0.2)}`,
           borderRadius: '50px',
           border: '1px solid',
@@ -96,7 +93,8 @@ const LoginPage = () => {
           padding: '0.5rem 0',
           paddingLeft: '3rem',
           m: 2,
-          width: !responsive ? 350 : '100%',
+          width: '100%',
+          maxWidth: 350,
           backgroundColor: theme => `${hexToRGBA(theme.palette.backgroundColor.transparent, 0.2)}`,
           borderRadius: '50px',
           border: '1px solid',
@@ -107,8 +105,8 @@ const LoginPage = () => {
         <IconifyIcon icon='devicon:github' />
         <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>Đăng nhập với Github</Typography>
       </Box>
-      <Divider sx={{ fontSize: 16, width: !responsive ? 450 : '100%', fontWeight: 500 }}>Hoặc với email</Divider>
-      <Box sx={{ width: !responsive ? 400 : '100%' }}>
+      <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>Hoặc với email</Divider>
+      <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='email' error={Boolean(errors.email)}>
@@ -144,7 +142,7 @@ const LoginPage = () => {
               control={control}
               rules={{
                 required: { value: true, message: 'Vui lòng nhập password' },
-                minLength: { value: 8, message: 'Tối thiểu 6 ký tự' }
+                minLength: { value: 8, message: 'Tối thiểu 8 ký tự' }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -152,7 +150,7 @@ const LoginPage = () => {
                   onBlur={onBlur}
                   onChange={onChange}
                   id='password'
-                  label='Password'
+                  label='Mật khẩu'
                   type={showPassword ? 'text' : 'password'}
                   error={Boolean(errors.password)}
                   endAdornment={
