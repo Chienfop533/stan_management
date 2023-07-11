@@ -14,6 +14,7 @@ const BoxWrapper = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   flexDirection: 'column',
   width: 600,
+  minHeight: '80vh',
   [theme.breakpoints.down('sm')]: {
     width: '100%',
     padding: '0.5rem'
