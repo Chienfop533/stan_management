@@ -1,5 +1,5 @@
 import ThemeComponent from '@/core/theme/ThemeComponent'
-import BlankLayout from '@/layouts/BlankLayout'
+import UserLayout from '@/layouts/UserLayout'
 import '@/styles/globals.css'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -12,7 +12,7 @@ type ExtendedAppProps = AppProps & {
 
 export default function App(props: ExtendedAppProps) {
   const { Component, pageProps } = props
-  const getLayout = Component.getLayout ?? ((page: ReactElement) => <BlankLayout>{page}</BlankLayout>)
+  const getLayout = Component.getLayout ?? ((page: ReactElement) => <UserLayout>{page}</UserLayout>)
 
   return (
     <>

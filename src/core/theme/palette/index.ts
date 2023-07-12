@@ -131,7 +131,7 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       default: defaultBgColor()
     },
     action: {
-      active: `rgba(${mainColor}, 0.54)`,
+      active: `rgba(${mainColor}, 0.65)`,
       hover: `rgba(${mainColor}, 0.04)`,
       selected: `rgba(${mainColor}, 0.08)`,
       disabled: `rgba(${mainColor}, 0.26)`,
