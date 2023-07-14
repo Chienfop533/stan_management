@@ -1,7 +1,9 @@
-import { Box, Theme, styled, useMediaQuery, useTheme } from '@mui/material'
+'use client'
+import { Box, Theme, styled } from '@mui/material'
 import AuthWrapper from './AuthWrapper'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { ReactNode } from 'react'
+import QueryBreakpoints from '@/core/utils/query-breakpoints'
 interface AuthPageProps {
   children: ReactNode
 }
@@ -21,9 +23,6 @@ const BoxWrapper = styled(Box)(({ theme }) => ({
   }
 }))
 const AuthPage = ({ children }: AuthPageProps) => {
-  const theme = useTheme()
-  const hidden = useMediaQuery(theme.breakpoints.down('md'))
-
   return (
     <Box
       sx={{
@@ -43,7 +42,7 @@ const AuthPage = ({ children }: AuthPageProps) => {
       }}
     >
       {' '}
-      {!hidden ? <AuthWrapper /> : null}
+      {!QueryBreakpoints().hidden ? <AuthWrapper /> : null}
       <BoxWrapper>{children}</BoxWrapper>
     </Box>
   )
