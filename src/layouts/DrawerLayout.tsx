@@ -13,10 +13,13 @@ import {
   ListItemText,
   ListSubheader,
   Typography,
-  styled
+  styled,
+  useMediaQuery,
+  useTheme
 } from '@mui/material'
 import Image from 'next/image'
 import { Dispatch, SetStateAction } from 'react'
+import { OpenDrawerProps } from './UserLayout'
 
 const DrawerHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -37,12 +40,21 @@ const DrawerLayout = ({
   openDrawer,
   setOpenDrawer
 }: {
-  openDrawer: boolean
-  setOpenDrawer: Dispatch<SetStateAction<boolean>>
+  openDrawer: OpenDrawerProps
+  setOpenDrawer: Dispatch<SetStateAction<OpenDrawerProps>>
 }) => {
+  const theme = useTheme()
+  const drawer = useMediaQuery(theme.breakpoints.down('lg'))
+  const handleOpen = () => {
+    if (!drawer) {
+      setOpenDrawer(prev => ({ ...prev, default: false }))
+    } else {
+      setOpenDrawer(prev => ({ ...prev, responsive: false }))
+    }
+  }
   return (
     <Drawer
-      sx={{
+      sx={theme => ({
         width: 280,
         minHeight: '100vh',
         flexShrink: 0,
@@ -52,11 +64,17 @@ const DrawerLayout = ({
         },
         zIndex: 1200,
         position: 'absolute',
-        marginLeft: !openDrawer ? '-280px' : 0
-      }}
+        marginLeft: !openDrawer.default ? '-280px' : 0,
+        [theme.breakpoints.down('lg')]: {
+          marginLeft: !openDrawer.responsive ? '-280px' : 0,
+          div: {
+            marginLeft: !openDrawer.responsive ? '-280px' : 0
+          }
+        }
+      })}
       variant='persistent'
       anchor='left'
-      open={openDrawer}
+      open={!drawer ? openDrawer.default : openDrawer.responsive}
       elevation={0}
       className='drawer_navigation'
     >
@@ -69,7 +87,7 @@ const DrawerLayout = ({
             Stan
           </Typography>
         </Box>
-        <IconButton color='inherit' onClick={() => setOpenDrawer(false)}>
+        <IconButton color='inherit' onClick={handleOpen}>
           <IconifyIcon icon='line-md:menu-fold-left' />
         </IconButton>
       </DrawerHeader>

@@ -1,20 +1,23 @@
 import { bungee } from '@/assets/fonts/fonts'
 import { Box, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import Image from 'next/image'
 
+const BoxWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  width: '60%',
+  maxWidth: 600,
+  m: 4,
+  [theme.breakpoints.down('md')]: {
+    display: 'none'
+  }
+}))
 const AuthWrapper = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        width: '60%',
-        maxWidth: 600,
-        m: 4
-      }}
-    >
+    <BoxWrapper>
       <Image src='/images/stan_logo.svg' width={200} height={200} priority={true} alt='Stan logo' />
       <Typography variant='h1' sx={{ fontFamily: `${bungee.style.fontFamily} !important`, color: 'turquoise.dark' }}>
         Stan Management
@@ -50,7 +53,7 @@ const AuthWrapper = () => {
           Quản lý ghi chú, lưu trữ nội dung, lưu trữ tài liệu, đường dẫn và tạo thông báo nhắc nhở.
         </Typography>
       </Box>
-    </Box>
+    </BoxWrapper>
   )
 }
 

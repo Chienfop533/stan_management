@@ -4,7 +4,6 @@ import { Box, BoxProps, Fab, styled } from '@mui/material'
 import DrawerLayout from './DrawerLayout'
 import ScrollToTop from '@/core/components/scroll-to-top'
 import IconifyIcon from '@/core/components/icon'
-import QueryBreakpoints from '@/core/utils/query-breakpoints'
 
 interface UserLayoutProps {
   children: ReactNode
@@ -38,26 +37,30 @@ const ContentWrapper = styled('main')(({ theme }) => ({
   }
 }))
 
+export interface OpenDrawerProps {
+  default: boolean
+  responsive: boolean
+}
 const UserLayout = ({ children }: UserLayoutProps) => {
-  const drawResponsive = QueryBreakpoints().drawResponsive
-  const [openDrawer, setOpenDrawer] = useState<boolean>(!drawResponsive)
-  useEffect(() => {
-    if (drawResponsive) {
-      setOpenDrawer(false)
-    } else {
-      setOpenDrawer(true)
-    }
-  }, [drawResponsive])
+  const [openDrawer, setOpenDrawer] = useState<OpenDrawerProps>({
+    default: true,
+    responsive: false
+  })
+
   return (
     <UserLayoutWrapper>
       <DrawerLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
       <MainContentWrapper>
         <AppBarLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <ContentWrapper
-          sx={{
-            width: openDrawer && !drawResponsive ? `calc(100% - 280px)` : '100%',
-            marginLeft: openDrawer && !drawResponsive ? '280px' : 0
-          }}
+          sx={theme => ({
+            width: openDrawer.default ? `calc(100% - 280px)` : '100%',
+            marginLeft: openDrawer.default ? '280px' : 0,
+            [theme.breakpoints.down('lg')]: {
+              width: '100%',
+              marginLeft: 0
+            }
+          })}
         >
           {children}
         </ContentWrapper>
