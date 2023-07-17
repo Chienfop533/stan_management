@@ -20,7 +20,7 @@ import {
   useTheme
 } from '@mui/material'
 import Image from 'next/image'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { OpenDrawerProps } from './UserLayout'
 import navigation from '@/navigation/navigation'
 import React from 'react'
@@ -74,6 +74,8 @@ const DrawerLayout = ({
 }) => {
   const theme = useTheme()
   const drawer = useMediaQuery(theme.breakpoints.down('lg'))
+  const router = useRouter()
+
   const handleOpen = () => {
     if (!drawer) {
       setOpenDrawer(prev => ({ ...prev, default: false }))
@@ -81,9 +83,60 @@ const DrawerLayout = ({
       setOpenDrawer(prev => ({ ...prev, responsive: false }))
     }
   }
-  const [openNav, setOpenNav] = useState(true)
-  const handleOpenNav = () => {
-    setOpenNav(!openNav)
+  const [openNav, setOpenNav] = useState([router.asPath])
+  const [activeBtn, setActiveBtn] = useState(router.asPath)
+  const handleOpenNav = (item: ChildrenType) => {
+    const collapseListPath: string[] = []
+    item.children?.forEach(collapse => {
+      collapseListPath.push(collapse.path)
+    })
+
+    const checkNavIncludePath = collapseListPath.some(path => {
+      return openNav.some(nav => {
+        if (nav.includes(path)) {
+          const newOpenNav = openNav.filter(item => item !== nav)
+          setOpenNav(newOpenNav)
+        }
+        return nav.includes(path)
+      })
+    })
+    if (!checkNavIncludePath) {
+      setOpenNav([...openNav, collapseListPath[0]])
+    }
+  }
+
+  useEffect(() => {
+    setOpenNav([router.asPath])
+    setActiveBtn(router.asPath)
+  }, [router.asPath])
+  const selectedCollapse = (item: ChildrenType) => {
+    const collapseListPath: string[] = []
+    item.children?.forEach(collapse => {
+      collapseListPath.push(collapse.path)
+    })
+    const selected = openNav.some(nav => {
+      return collapseListPath.some(item => {
+        return nav.includes(item)
+      })
+    })
+    const closeAllCollapse = collapseListPath.some(item => {
+      return router.asPath.includes(item)
+    })
+
+    return selected || closeAllCollapse
+  }
+  const openCollapse = (item: ChildrenType) => {
+    const collapseListPath: string[] = []
+    item.children?.forEach(collapse => {
+      collapseListPath.push(collapse.path)
+    })
+    const open = openNav.some(nav => {
+      return collapseListPath.some(item => {
+        return nav.includes(item)
+      })
+    })
+
+    return open
   }
   return (
     <DrawerWrapper
@@ -149,8 +202,26 @@ const DrawerLayout = ({
                       <ListItemButton
                         key={`item-${item.title}`}
                         id={`item-${item.title}`}
-                        selected={false}
-                        sx={{ mx: '0.75rem !important', my: '0.5rem !important', borderRadius: '10px' }}
+                        selected={activeBtn.includes(item.path ?? '')}
+                        sx={{
+                          mx: '0.75rem !important',
+                          my: '0.5rem !important',
+                          borderRadius: '10px',
+                          color: activeBtn.includes(item.path ?? '')
+                            ? `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
+                            : '',
+                          svg: {
+                            color: activeBtn.includes(item.path ?? '')
+                              ? `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
+                              : ''
+                          },
+                          background: activeBtn.includes(item.path ?? '')
+                            ? `linear-gradient(145deg, ${hexToRGBA(theme.palette.primary.dark, 0.6)} 0%, ${hexToRGBA(
+                                theme.palette.secondary.dark,
+                                0.6
+                              )} 100%)`
+                            : 'transparent'
+                        }}
                       >
                         <ListItemIcon
                           sx={{
@@ -172,9 +243,13 @@ const DrawerLayout = ({
                     <React.Fragment key={`group-${item.title}`}>
                       <ListItemButton
                         key={`item-${item.title}`}
-                        onClick={handleOpenNav}
-                        selected={true}
-                        sx={{ mx: '0.75rem !important', my: '0.5rem !important', borderRadius: '10px' }}
+                        onClick={() => handleOpenNav(item)}
+                        selected={selectedCollapse(item)}
+                        sx={{
+                          mx: '0.75rem !important',
+                          my: '0.5rem !important',
+                          borderRadius: '10px'
+                        }}
                       >
                         <ListItemIcon
                           sx={{
@@ -188,13 +263,13 @@ const DrawerLayout = ({
                           <IconifyIcon icon={item.icon} fontSize={24} />
                         </ListItemIcon>
                         <ListItemText primary={item.title} />
-                        {openNav ? (
+                        {openCollapse(item) ? (
                           <IconifyIcon icon='icon-park-outline:down' fontSize={24} />
                         ) : (
                           <IconifyIcon icon='ic:round-navigate-next' fontSize={24} />
                         )}
                       </ListItemButton>
-                      <Collapse in={openNav} timeout='auto' unmountOnExit>
+                      <Collapse in={openCollapse(item)} timeout='auto' unmountOnExit>
                         <List component='div' disablePadding sx={{ paddingLeft: '1rem' }}>
                           {item.children?.map((collapse: ChildrenType) => (
                             <LinkStyled
@@ -204,19 +279,25 @@ const DrawerLayout = ({
                             >
                               <ListItemButton
                                 key={`item-${collapse.title}`}
-                                selected={true}
+                                selected={activeBtn.includes(collapse.path ?? '')}
                                 sx={theme => ({
                                   mx: '0.75rem !important',
                                   my: '0.5rem !important',
                                   borderRadius: '10px',
-                                  color: `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`,
+                                  color: activeBtn.includes(collapse.path ?? '')
+                                    ? `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
+                                    : '',
                                   svg: {
-                                    color: `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
+                                    color: activeBtn.includes(collapse.path ?? '')
+                                      ? `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
+                                      : ''
                                   },
-                                  background: `linear-gradient(145deg, ${hexToRGBA(
-                                    theme.palette.primary.dark,
-                                    0.6
-                                  )} 0%, ${hexToRGBA(theme.palette.secondary.dark, 0.6)} 100%)`
+                                  background: activeBtn.includes(collapse.path ?? '')
+                                    ? `linear-gradient(145deg, ${hexToRGBA(
+                                        theme.palette.primary.dark,
+                                        0.6
+                                      )} 0%, ${hexToRGBA(theme.palette.secondary.dark, 0.6)} 100%)`
+                                    : 'transparent'
                                 })}
                               >
                                 <ListItemIcon
