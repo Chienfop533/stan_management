@@ -24,9 +24,9 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       white: whiteColor
     },
     backgroundColor: {
-      primary: mode === 'light' ? '#7FFFD4' : '#242124',
-      secondary: mode === 'light' ? '#B2FFFF' : '#2A3439',
-      transparent: mode === 'light' ? '#FFE4E1' : '#E4E4E4'
+      primary: mode === 'light' ? '#7FFFD4' : '#114232',
+      secondary: mode === 'light' ? '#B2FFFF' : '#124646',
+      transparent: mode === 'light' ? '#FFE4E1' : '#3E1510'
     },
     red: {
       light: '#FFC0CB',
