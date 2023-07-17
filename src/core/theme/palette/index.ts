@@ -8,13 +8,13 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
   const lightColor = '32, 32, 32'
   const darkColor = '242, 242, 242'
   const lightPaperColor = '#fefefe'
-  const darkPaperBgColor = '#202020'
+  const darkPaperBgColor = '#1B2430'
   const mainColor = mode === 'light' ? lightColor : darkColor
 
   const defaultBgColor = () => {
     if (mode === 'light') {
       return '#F5F5F5'
-    } else return '#252525'
+    } else return '#001C30'
   }
 
   return {
@@ -24,9 +24,9 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       white: whiteColor
     },
     backgroundColor: {
-      primary: mode === 'light' ? '#7FFFD4' : '#114232',
-      secondary: mode === 'light' ? '#B2FFFF' : '#124646',
-      transparent: mode === 'light' ? '#FFE4E1' : '#3E1510'
+      primary: mode === 'light' ? '#CCFFEE' : '#092D21',
+      secondary: mode === 'light' ? '#D0FFFF' : '#0A3232',
+      transparent: mode === 'light' ? '#FFEFED' : '#2E0D09'
     },
     red: {
       light: '#FFC0CB',

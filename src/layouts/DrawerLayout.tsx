@@ -54,6 +54,7 @@ const DrawerWrapper = styled(Drawer)(({ theme }) => ({
   zIndex: 1200,
   position: 'absolute',
   '.MuiPaper-root': {
+    border: 'none',
     background: `linear-gradient(160deg, ${hexToRGBA(theme.palette.backgroundColor.primary, 1)} 0%, ${hexToRGBA(
       theme.palette.backgroundColor.secondary,
       1
@@ -208,14 +209,14 @@ const DrawerLayout = ({
                                   mx: '0.75rem !important',
                                   my: '0.5rem !important',
                                   borderRadius: '10px',
-                                  color: `${hexToRGBA(theme.palette.primary.contrastText, 0.85)}`,
+                                  color: `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`,
                                   svg: {
-                                    color: `${hexToRGBA(theme.palette.primary.contrastText, 0.85)}`
+                                    color: `${hexToRGBA(theme.palette.primary.contrastText, 0.9)}`
                                   },
                                   background: `linear-gradient(145deg, ${hexToRGBA(
                                     theme.palette.primary.dark,
-                                    0.5
-                                  )} 0%, ${hexToRGBA(theme.palette.secondary.dark, 0.5)} 100%)`
+                                    0.6
+                                  )} 0%, ${hexToRGBA(theme.palette.secondary.dark, 0.6)} 100%)`
                                 })}
                               >
                                 <ListItemIcon
@@ -243,6 +244,11 @@ const DrawerLayout = ({
           </li>
         ))}
       </List>
+      <Divider sx={{ margin: '0 1rem' }}></Divider>
+      <Typography sx={{ fontSize: 12, marginTop: '0.5rem', textAlign: 'center' }}>
+        ❤️Stan Management with Chienfop533❤️
+      </Typography>
+      <Typography sx={{ fontSize: 12, marginBottom: '0.5rem', textAlign: 'center' }}>Version 0.1.0</Typography>
     </DrawerWrapper>
   )
 }

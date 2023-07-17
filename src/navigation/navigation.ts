@@ -8,31 +8,31 @@ const navigation: NavigationType[] = [
       {
         title: 'Bảng điều khiển',
         type: 'item',
-        path: '/dashboard',
+        path: '/personal/dashboard',
         icon: 'carbon:dashboard'
       },
       {
         title: 'Hồ sơ',
         type: 'item',
-        path: '/profile',
+        path: '/personal/profile',
         icon: 'radix-icons:avatar'
       },
       {
         title: 'Thông báo',
         type: 'item',
-        path: '/notification',
+        path: '/personal/notification',
         icon: 'tabler:bell'
       },
       {
         title: 'Sự kiện',
         type: 'item',
-        path: '/event',
+        path: '/personal/event',
         icon: 'majesticons:bookmark-line'
       },
       {
         title: 'Tóm tắt hoạt động',
         type: 'item',
-        path: '/history',
+        path: '/personal/history',
         icon: 'material-symbols:work-history-outline'
       }
     ]
@@ -49,13 +49,13 @@ const navigation: NavigationType[] = [
           {
             title: 'Lên kế hoạch',
             type: 'item',
-            path: '/schedule',
+            path: '/manage/schedule',
             icon: 'grommet-icons:plan'
           },
           {
             title: 'Hoạt động thực hiện',
             type: 'item',
-            path: '/activity',
+            path: '/manage/activity',
             icon: 'fontisto:checkbox-active'
           }
         ]
@@ -68,13 +68,13 @@ const navigation: NavigationType[] = [
           {
             title: 'Bảng công việc',
             type: 'item',
-            path: '/scrumboard',
+            path: '/manage/scrumboard',
             icon: 'mingcute:trello-board-line'
           },
           {
             title: 'Trò chuyện',
             type: 'item',
-            path: '/chat',
+            path: '/manage/chat',
             icon: 'quill:chat'
           }
         ]
@@ -87,13 +87,13 @@ const navigation: NavigationType[] = [
           {
             title: 'Ghi chú',
             type: 'item',
-            path: '/note',
+            path: '/manage/note',
             icon: 'fluent:note-pin-16-regular'
           },
           {
             title: 'Lưu trữ thông tin',
             type: 'item',
-            path: '/storage',
+            path: '/manage/storage',
             icon: 'lucide:folder-down'
           }
         ]
