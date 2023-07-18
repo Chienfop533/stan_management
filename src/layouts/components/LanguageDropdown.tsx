@@ -7,10 +7,7 @@ import { Box, Divider, IconButton, Menu, MenuItem, MenuItemProps, Typography, st
 
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   margin: '0 0.5rem',
-  borderRadius: '5px',
-  '&:hover': {
-    backgroundColor: theme.palette.primary.light
-  }
+  borderRadius: '5px'
 }))
 
 const LanguageDropdown = () => {

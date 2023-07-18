@@ -5,10 +5,7 @@ import { useState } from 'react'
 
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   margin: '0 0.5rem',
-  borderRadius: '5px',
-  '&:hover': {
-    backgroundColor: theme.palette.primary.light
-  }
+  borderRadius: '5px'
 }))
 
 const UserDropdown = () => {
