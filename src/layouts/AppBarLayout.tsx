@@ -7,6 +7,9 @@ import HistoryDropdown from './components/HistoryDropdown'
 import ModeToggle from './components/ModeToggle'
 import { Dispatch, SetStateAction } from 'react'
 import { OpenDrawerProps } from './UserLayout'
+import dynamic from 'next/dynamic'
+
+const LanguageDropdown = dynamic(() => import('./components/LanguageDropdown'), { ssr: false })
 
 const AppBarWrapper = styled(AppBar)(({ theme }) => ({
   paddingInline: '1rem',
@@ -77,6 +80,7 @@ const AppBarLayout = ({
           </IconButton>
         ) : null}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <LanguageDropdown />
           <ModeToggle />
           <HistoryDropdown />
           <EventDropdown />

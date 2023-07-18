@@ -19,6 +19,7 @@ import {
 } from '@mui/material'
 import { ReactNode, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 interface FormData {
   email: string
@@ -33,6 +34,7 @@ const defaultValues: FormData = {
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const { t } = useTranslation()
 
   const {
     control,
@@ -46,7 +48,7 @@ const LoginPage = () => {
   }
   return (
     <AuthPage>
-      <Typography variant='h1'>Đăng nhập</Typography>
+      <Typography variant='h1'>{t('login')}</Typography>
       <Typography fontSize={18}>Ứng dụng quản lý của bạn</Typography>
       <Box
         sx={{

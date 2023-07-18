@@ -6,6 +6,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ReactElement } from 'react'
+import '@/configs/i18n'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
