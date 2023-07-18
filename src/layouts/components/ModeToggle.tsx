@@ -1,19 +1,14 @@
+import { ThemeContext } from '@/context/ModeThemeContext'
 import IconifyIcon from '@/core/components/icon'
 import { IconButton } from '@mui/material'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 const ModeToggle = () => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light')
-  const handleModeToggle = () => {
-    if (mode === 'light') {
-      setMode('dark')
-    } else {
-      setMode('light')
-    }
-  }
+  const modeContext = useContext(ThemeContext)
+
   return (
-    <IconButton color='inherit' onClick={handleModeToggle}>
-      <IconifyIcon icon={mode == 'light' ? 'ph:sun-light' : 'circum:dark'} />
+    <IconButton color='inherit' onClick={modeContext.handleModeToggle}>
+      <IconifyIcon icon={modeContext.mode == 'light' ? 'ph:sun-light' : 'circum:dark'} />
     </IconButton>
   )
 }

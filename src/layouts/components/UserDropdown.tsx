@@ -1,5 +1,6 @@
 import IconifyIcon from '@/core/components/icon'
 import { Avatar, Box, Divider, IconButton, Menu, MenuItem, MenuItemProps, Typography, styled } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
@@ -13,6 +14,7 @@ const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
 const UserDropdown = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+  const router = useRouter()
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -57,12 +59,12 @@ const UserDropdown = () => {
           }
         }}
       >
-        <MenuItemStyled>
+        <MenuItemStyled onClick={() => router.push('/personal/profile')}>
           <IconifyIcon icon='radix-icons:avatar' />
           <Typography sx={{ ml: 4 }}>Hồ sơ</Typography>
         </MenuItemStyled>
         <Divider />
-        <MenuItemStyled>
+        <MenuItemStyled onClick={() => router.push('/login')}>
           <IconifyIcon icon='ic:round-logout' color='red' />
           <Typography sx={{ ml: 4, color: 'red.dark' }}>Đăng xuất</Typography>
         </MenuItemStyled>

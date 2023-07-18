@@ -1,7 +1,8 @@
 import { CssBaseline, GlobalStyles, ThemeProvider, createTheme } from '@mui/material'
-import { ReactNode } from 'react'
+import { ReactNode, useContext } from 'react'
 import themeOptions from './ThemeOptions'
 import GlobalStyling from './globalStyles'
+import { ThemeContext } from '@/context/ModeThemeContext'
 
 interface Props {
   children: ReactNode
@@ -9,7 +10,9 @@ interface Props {
 
 const ThemeComponent = (props: Props) => {
   const { children } = props
-  const theme = createTheme(themeOptions('light'))
+  const modeContext = useContext(ThemeContext)
+
+  const theme = createTheme(themeOptions(modeContext.mode))
 
   return (
     <ThemeProvider theme={theme}>

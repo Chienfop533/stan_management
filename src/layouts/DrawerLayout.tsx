@@ -108,6 +108,8 @@ const DrawerLayout = ({
   useEffect(() => {
     setOpenNav([router.asPath])
     setActiveBtn(router.asPath)
+    setOpenDrawer(prev => ({ ...prev, responsive: false }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath])
   const selectedCollapse = (item: ChildrenType) => {
     const collapseListPath: string[] = []

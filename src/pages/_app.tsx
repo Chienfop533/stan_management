@@ -1,3 +1,4 @@
+import ModeThemeProvider from '@/context/ModeThemeContext'
 import ThemeComponent from '@/core/theme/ThemeComponent'
 import UserLayout from '@/layouts/UserLayout'
 import '@/styles/globals.css'
@@ -21,7 +22,9 @@ export default function App(props: ExtendedAppProps) {
         <meta name='description' content='Schedule, Task and Note Management' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      <ThemeComponent>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+      <ModeThemeProvider>
+        <ThemeComponent>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+      </ModeThemeProvider>
     </>
   )
 }
