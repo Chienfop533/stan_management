@@ -12,15 +12,7 @@ const defaultThemeContext = {
 
 export const ThemeContext = createContext(defaultThemeContext)
 const ModeThemeProvider = ({ children }: Props) => {
-  let initMode = 'light' as PaletteMode
-  const [mode, setMode] = useState<PaletteMode>(initMode)
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    initMode = (localStorage.getItem('mode') as PaletteMode) || 'light'
-    window.localStorage.setItem('mode', initMode)
-    setMode(initMode)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const [mode, setMode] = useState<PaletteMode>((localStorage.getItem('mode') as PaletteMode) || 'light')
 
   const handleModeToggle = () => {
     if (mode === 'light') {

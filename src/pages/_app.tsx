@@ -1,4 +1,3 @@
-import ModeThemeProvider from '@/context/ModeThemeContext'
 import ThemeComponent from '@/core/theme/ThemeComponent'
 import UserLayout from '@/layouts/UserLayout'
 import '@/styles/globals.css'
@@ -7,11 +6,16 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ReactElement } from 'react'
 import '@/configs/i18n'
+import dynamic from 'next/dynamic'
+import Spinner from '@/core/components/spinner'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
 }
-
+const ModeThemeProvider = dynamic(() => import('@/context/ModeThemeContext'), {
+  ssr: false,
+  loading: () => <Spinner />
+})
 export default function App(props: ExtendedAppProps) {
   const { Component, pageProps } = props
   const getLayout = Component.getLayout ?? ((page: ReactElement) => <UserLayout>{page}</UserLayout>)

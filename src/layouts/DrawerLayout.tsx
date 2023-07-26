@@ -21,7 +21,6 @@ import {
 } from '@mui/material'
 import Image from 'next/image'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { OpenDrawerProps } from './UserLayout'
 import navigation from '@/navigation/navigation'
 import React from 'react'
 import { ChildrenType, NavigationType } from '@/navigation/type'
@@ -69,20 +68,11 @@ const DrawerLayout = ({
   openDrawer,
   setOpenDrawer
 }: {
-  openDrawer: OpenDrawerProps
-  setOpenDrawer: Dispatch<SetStateAction<OpenDrawerProps>>
+  openDrawer: boolean
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>
 }) => {
-  const theme = useTheme()
-  const drawer = useMediaQuery(theme.breakpoints.down('lg'))
   const router = useRouter()
 
-  const handleOpen = () => {
-    if (!drawer) {
-      setOpenDrawer(prev => ({ ...prev, default: false }))
-    } else {
-      setOpenDrawer(prev => ({ ...prev, responsive: false }))
-    }
-  }
   const [openNav, setOpenNav] = useState([router.asPath])
   const [activeBtn, setActiveBtn] = useState(router.asPath)
   const handleOpenNav = (item: ChildrenType) => {
@@ -108,7 +98,6 @@ const DrawerLayout = ({
   useEffect(() => {
     setOpenNav([router.asPath])
     setActiveBtn(router.asPath)
-    setOpenDrawer(prev => ({ ...prev, responsive: false }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath])
   const selectedCollapse = (item: ChildrenType) => {
@@ -142,18 +131,12 @@ const DrawerLayout = ({
   }
   return (
     <DrawerWrapper
-      sx={theme => ({
-        marginLeft: !openDrawer.default ? '-280px' : 0,
-        [theme.breakpoints.down('lg')]: {
-          marginLeft: !openDrawer.responsive ? '-280px' : 0,
-          div: {
-            marginLeft: !openDrawer.responsive ? '-280px' : 0
-          }
-        }
-      })}
+      sx={{
+        marginLeft: !openDrawer ? '-280px' : 0
+      }}
       variant='persistent'
       anchor='left'
-      open={!drawer ? openDrawer.default : openDrawer.responsive}
+      open={openDrawer}
       elevation={0}
       className='drawer_navigation'
     >
@@ -166,7 +149,7 @@ const DrawerLayout = ({
             Stan
           </Typography>
         </Box>
-        <IconButton color='inherit' onClick={handleOpen}>
+        <IconButton color='inherit' onClick={() => setOpenDrawer(false)}>
           <IconifyIcon icon='line-md:menu-fold-left' />
         </IconButton>
       </DrawerHeader>
@@ -205,7 +188,7 @@ const DrawerLayout = ({
                         key={`item-${item.title}`}
                         id={`item-${item.title}`}
                         selected={activeBtn.includes(item.path ?? '')}
-                        sx={{
+                        sx={theme => ({
                           mx: '0.75rem !important',
                           my: '0.5rem !important',
                           borderRadius: '10px',
@@ -223,7 +206,7 @@ const DrawerLayout = ({
                                 0.6
                               )} 100%)`
                             : 'transparent'
-                        }}
+                        })}
                       >
                         <ListItemIcon
                           sx={{

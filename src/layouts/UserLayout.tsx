@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react'
 import AppBarLayout from './AppBarLayout'
-import { Box, BoxProps, Fab, styled } from '@mui/material'
+import { Box, BoxProps, Fab, styled, useMediaQuery, useTheme } from '@mui/material'
 import DrawerLayout from './DrawerLayout'
 import ScrollToTop from '@/core/components/scroll-to-top'
 import IconifyIcon from '@/core/components/icon'
@@ -37,15 +37,13 @@ const ContentWrapper = styled('main')(({ theme }) => ({
   }
 }))
 
-export interface OpenDrawerProps {
-  default: boolean
-  responsive: boolean
-}
 const UserLayout = ({ children }: UserLayoutProps) => {
-  const [openDrawer, setOpenDrawer] = useState<OpenDrawerProps>({
-    default: true,
-    responsive: false
-  })
+  const theme = useTheme()
+  const drawer = useMediaQuery(theme.breakpoints.down('lg'))
+  const [openDrawer, setOpenDrawer] = useState<boolean>(!drawer)
+  useEffect(() => {
+    setOpenDrawer(!drawer)
+  }, [drawer])
 
   return (
     <UserLayoutWrapper>
@@ -54,8 +52,8 @@ const UserLayout = ({ children }: UserLayoutProps) => {
         <AppBarLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <ContentWrapper
           sx={theme => ({
-            width: openDrawer.default ? `calc(100% - 280px)` : '100%',
-            marginLeft: openDrawer.default ? '280px' : 0,
+            width: openDrawer ? `calc(100% - 280px)` : '100%',
+            marginLeft: openDrawer ? '280px' : 0,
             [theme.breakpoints.down('lg')]: {
               width: '100%',
               marginLeft: 0

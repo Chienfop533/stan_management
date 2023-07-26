@@ -6,10 +6,8 @@ import EventDropdown from './components/EventDropdown'
 import HistoryDropdown from './components/HistoryDropdown'
 import ModeToggle from './components/ModeToggle'
 import { Dispatch, SetStateAction } from 'react'
-import { OpenDrawerProps } from './UserLayout'
 import dynamic from 'next/dynamic'
-
-const LanguageDropdown = dynamic(() => import('./components/LanguageDropdown'), { ssr: false })
+import LanguageDropdown from './components/LanguageDropdown'
 
 const AppBarWrapper = styled(AppBar)(({ theme }) => ({
   paddingInline: '1rem',
@@ -48,34 +46,25 @@ const AppBarLayout = ({
   openDrawer,
   setOpenDrawer
 }: {
-  openDrawer: OpenDrawerProps
-  setOpenDrawer: Dispatch<SetStateAction<OpenDrawerProps>>
+  openDrawer: boolean
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>
 }) => {
-  const theme = useTheme()
-  const drawer = useMediaQuery(theme.breakpoints.down('lg'))
-  const handleOpen = () => {
-    if (!drawer) {
-      setOpenDrawer(prev => ({ ...prev, default: true }))
-    } else {
-      setOpenDrawer(prev => ({ ...prev, responsive: true }))
-    }
-  }
   return (
     <AppBarWrapper
       elevation={0}
       color='default'
       sx={theme => ({
-        width: openDrawer.default ? `calc(100% - 280px)` : '100%',
-        marginLeft: openDrawer.default ? '280px' : 0,
+        width: openDrawer ? `calc(100% - 280px)` : '100%',
+        marginLeft: openDrawer ? '280px' : 0,
         [theme.breakpoints.down('lg')]: {
           width: '100%',
           marginLeft: 0
         }
       })}
     >
-      <ToolbarStyled sx={{ justifyContent: !openDrawer.default || drawer ? 'space-between' : 'flex-end' }}>
-        {!openDrawer.default || drawer ? (
-          <IconButton color='inherit' onClick={handleOpen}>
+      <ToolbarStyled sx={{ justifyContent: !openDrawer ? 'space-between' : 'flex-end' }}>
+        {!openDrawer ? (
+          <IconButton color='inherit' onClick={() => setOpenDrawer(true)}>
             <IconifyIcon icon='line-md:menu-fold-right' />
           </IconButton>
         ) : null}
