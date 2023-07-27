@@ -26,6 +26,7 @@ import React from 'react'
 import { ChildrenType, NavigationType } from '@/navigation/type'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 const DrawerHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -72,6 +73,7 @@ const DrawerLayout = ({
   setOpenDrawer: Dispatch<SetStateAction<boolean>>
 }) => {
   const router = useRouter()
+  const { t } = useTranslation()
 
   const [openNav, setOpenNav] = useState([router.asPath])
   const [activeBtn, setActiveBtn] = useState(router.asPath)
@@ -178,7 +180,7 @@ const DrawerLayout = ({
                   background: 'transparent'
                 }}
               >
-                {section.title}
+                {t(`${section.title}`)}
               </ListSubheader>
               {section.children.map((item: ChildrenType) => {
                 if (item.type === 'item') {
@@ -219,7 +221,7 @@ const DrawerLayout = ({
                         >
                           <IconifyIcon icon={item.icon} fontSize={24} />
                         </ListItemIcon>
-                        <ListItemText primary={item.title} />
+                        <ListItemText primary={t(`${item.title}`)} />
                       </ListItemButton>
                     </LinkStyled>
                   )
@@ -247,7 +249,7 @@ const DrawerLayout = ({
                         >
                           <IconifyIcon icon={item.icon} fontSize={24} />
                         </ListItemIcon>
-                        <ListItemText primary={item.title} />
+                        <ListItemText primary={t(`${item.title}`)} />
                         {openCollapse(item) ? (
                           <IconifyIcon icon='icon-park-outline:down' fontSize={24} />
                         ) : (
@@ -296,7 +298,7 @@ const DrawerLayout = ({
                                 >
                                   <IconifyIcon icon={collapse.icon} width={24} height={24} />
                                 </ListItemIcon>
-                                <ListItemText primary={collapse.title} />
+                                <ListItemText primary={t(`${collapse.title}`)} />
                               </ListItemButton>
                             </LinkStyled>
                           ))}

@@ -2,35 +2,35 @@ import { NavigationType } from './type'
 
 const navigation: NavigationType[] = [
   {
-    title: 'Cá nhân',
+    title: 'personal',
     type: 'section',
     children: [
       {
-        title: 'Bảng điều khiển',
+        title: 'dashboard',
         type: 'item',
         path: '/personal/dashboard',
         icon: 'carbon:dashboard'
       },
       {
-        title: 'Hồ sơ',
+        title: 'profile',
         type: 'item',
         path: '/personal/profile',
         icon: 'radix-icons:avatar'
       },
       {
-        title: 'Thông báo',
+        title: 'notification',
         type: 'item',
         path: '/personal/notification',
         icon: 'tabler:bell'
       },
       {
-        title: 'Sự kiện',
+        title: 'event',
         type: 'item',
         path: '/personal/event',
         icon: 'majesticons:bookmark-line'
       },
       {
-        title: 'Tóm tắt hoạt động',
+        title: 'activity',
         type: 'item',
         path: '/personal/history',
         icon: 'material-symbols:work-history-outline'
@@ -38,22 +38,22 @@ const navigation: NavigationType[] = [
     ]
   },
   {
-    title: 'Quản lý',
+    title: 'manage',
     type: 'section',
     children: [
       {
-        title: 'Quản lý lịch trình',
+        title: 'schedule_management',
         type: 'group',
         icon: 'solar:calendar-outline',
         children: [
           {
-            title: 'Lên kế hoạch',
+            title: 'calender',
             type: 'item',
             path: '/manage/schedule',
             icon: 'grommet-icons:plan'
           },
           {
-            title: 'Hoạt động thực hiện',
+            title: 'tasks',
             type: 'item',
             path: '/manage/activity',
             icon: 'fontisto:checkbox-active'
@@ -61,18 +61,18 @@ const navigation: NavigationType[] = [
         ]
       },
       {
-        title: 'Quản lý công việc',
+        title: 'task_management',
         type: 'group',
         icon: 'carbon:task-tools',
         children: [
           {
-            title: 'Bảng công việc',
+            title: 'scrumboard',
             type: 'item',
             path: '/manage/scrumboard',
             icon: 'mingcute:trello-board-line'
           },
           {
-            title: 'Trò chuyện',
+            title: 'chat',
             type: 'item',
             path: '/manage/chat',
             icon: 'quill:chat'
@@ -80,18 +80,18 @@ const navigation: NavigationType[] = [
         ]
       },
       {
-        title: 'Quản lý ghi chú',
+        title: 'note_management',
         type: 'group',
         icon: 'ci:note-edit',
         children: [
           {
-            title: 'Ghi chú',
+            title: 'notes',
             type: 'item',
             path: '/manage/note',
             icon: 'fluent:note-pin-16-regular'
           },
           {
-            title: 'Lưu trữ thông tin',
+            title: 'storage',
             type: 'item',
             path: '/manage/storage',
             icon: 'lucide:folder-down'
