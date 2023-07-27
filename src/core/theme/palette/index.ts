@@ -24,9 +24,9 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       white: whiteColor
     },
     backgroundColor: {
-      primary: mode === 'light' ? '#CCFFEE' : '#092D21',
-      secondary: mode === 'light' ? '#D0FFFF' : '#0A3232',
-      transparent: mode === 'light' ? '#FFEFED' : '#2E0D09'
+      primary: mode === 'light' ? '#ECFFF9' : '#01140E',
+      secondary: mode === 'light' ? '#EAFFFF' : '#011414',
+      transparent: mode === 'light' ? '#FFF4F3' : '#190402'
     },
     red: {
       light: '#FFC0CB',
@@ -71,13 +71,13 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
     primary: {
       light: '#E0FFFF',
       main: '#3AA8C1',
-      dark: '#3AA8C1',
+      dark: '#2999B3',
       contrastText: whiteColor
     },
     secondary: {
       light: '#90EE90',
       main: '#3EB489',
-      dark: '#3EB489',
+      dark: '#2CA579',
       contrastText: whiteColor
     },
     error: {
