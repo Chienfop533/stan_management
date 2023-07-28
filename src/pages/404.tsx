@@ -5,9 +5,11 @@ import AuthPage from '@/views/pages/auth/AuthPage'
 import { Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Error404 = () => {
   const route = useRouter()
+  const { t } = useTranslation()
   return (
     <AuthPage>
       <Typography
@@ -18,11 +20,9 @@ const Error404 = () => {
         404
       </Typography>
       <Typography variant='h2' sx={{ fontSize: 32, color: 'red.dark', margin: '1rem', textAlign: 'center' }}>
-        Không tìm thấy trang!
+        {t('not_found') + '!'}
       </Typography>
-      <Typography sx={{ fontSize: 16, textAlign: 'center' }}>
-        Vui lòng quay lại trang chủ để tiếp tục sử dụng Stan management
-      </Typography>
+      <Typography sx={{ fontSize: 16, textAlign: 'center' }}>{t('back_home_description')}</Typography>
       <Button
         fullWidth
         size='large'
@@ -32,7 +32,7 @@ const Error404 = () => {
       >
         <IconifyIcon icon='ion:arrow-back' />
         <Typography component='span' sx={{ ml: 4, fontWeight: 600, fontSize: 16 }}>
-          Về trang chủ
+          {t('back_home')}
         </Typography>
       </Button>
     </AuthPage>

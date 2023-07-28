@@ -27,5 +27,10 @@
   "note_management": "Quản lý ghi chú",
   "notes": "Ghi chú",
   "storage": "Lưu trữ",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "not_authorized": "Không được phép",
+  "back_home_description": "Vui lòng quay lại trang chủ để tiếp tục sử dụng Stan Management",
+  "back_home": "Về trang chủ",
+  "not_found": "Không tìm thấy",
+  "server_err": "Lỗi hệ thống"
 }

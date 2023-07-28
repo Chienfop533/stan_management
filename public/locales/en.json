@@ -27,5 +27,10 @@
   "note_management": "Note Management",
   "notes": "Notes",
   "storage": "Storage",
-  "logout": "Logout"
+  "logout": "Logout",
+  "not_authorized": "Not Authorized",
+  "back_home_description": "Please back to home to continue using Stan Management",
+  "back_home": "Back home",
+  "not_found": "Not Found",
+  "server_err": "Server error"
 }
