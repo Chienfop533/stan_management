@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Toolbar, styled, useMediaQuery, useTheme } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar, styled } from '@mui/material'
 import UserDropdown from './components/UserDropdown'
 import IconifyIcon from '@/core/components/icon'
 import NotificationDropdown from './components/NotificationDropdown'
@@ -6,7 +6,6 @@ import EventDropdown from './components/EventDropdown'
 import HistoryDropdown from './components/HistoryDropdown'
 import ModeToggle from './components/ModeToggle'
 import { Dispatch, SetStateAction } from 'react'
-import dynamic from 'next/dynamic'
 import LanguageDropdown from './components/LanguageDropdown'
 
 const AppBarWrapper = styled(AppBar)(({ theme }) => ({

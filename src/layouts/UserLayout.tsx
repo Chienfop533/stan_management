@@ -1,9 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react'
 import AppBarLayout from './AppBarLayout'
-import { Box, BoxProps, Fab, styled, useMediaQuery, useTheme } from '@mui/material'
+import { Box, BoxProps, Fab, styled } from '@mui/material'
 import DrawerLayout from './DrawerLayout'
 import ScrollToTop from '@/core/components/scroll-to-top'
 import IconifyIcon from '@/core/components/icon'
+import MediaQuery from '@/core/utils/media-query'
 
 interface UserLayoutProps {
   children: ReactNode
@@ -38,12 +39,12 @@ const ContentWrapper = styled('main')(({ theme }) => ({
 }))
 
 const UserLayout = ({ children }: UserLayoutProps) => {
-  const theme = useTheme()
-  const drawer = useMediaQuery(theme.breakpoints.down('lg'))
-  const [openDrawer, setOpenDrawer] = useState<boolean>(!drawer)
+  const laptop = MediaQuery().laptop
+  const [openDrawer, setOpenDrawer] = useState<boolean>(!laptop)
   useEffect(() => {
-    setOpenDrawer(!drawer)
-  }, [drawer])
+    setOpenDrawer(!laptop)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [laptop])
 
   return (
     <UserLayoutWrapper>

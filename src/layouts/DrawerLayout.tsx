@@ -15,9 +15,7 @@ import {
   ListItemText,
   ListSubheader,
   Typography,
-  styled,
-  useMediaQuery,
-  useTheme
+  styled
 } from '@mui/material'
 import Image from 'next/image'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
