@@ -10,7 +10,7 @@ const ButtonWithIcon = (props: ButtonWithIconType & ButtonProps) => {
     <Button
       size='large'
       variant='contained'
-      sx={{ borderRadius: '10px', height: '45px', px: 4, minWidth: 'unset', ...sx }}
+      sx={{ borderRadius: '10px', height: '45px', px: 2.5, minWidth: 'unset', ...sx }}
       {...rest}
     >
       <IconifyIcon icon={icon} width={24} height={24} />
