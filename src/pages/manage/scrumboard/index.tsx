@@ -6,7 +6,7 @@ import { Grid } from '@mui/material'
 const ScrumboardPage = () => {
   return (
     <div>
-      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle='Bảng điều khiển'>
+      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle='Bảng điều khiển' type='mainPage'>
         <Grid
           item
           xs={12}
