@@ -1,14 +1,19 @@
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
-import { Card, CardContent, Divider, Typography, styled } from '@mui/material'
+import { Box, Card, CardContent, Divider, Typography, styled } from '@mui/material'
 import Image from 'next/image'
 import ScrumboardCardContent from './ScrumboardCardContent'
+import StatusColor from '@/services/common/statusColor'
 const CustomCard = styled(Card)(({ theme }) => ({
-  width: '100%',
-  maxWidth: 275,
-  minHeight: 325,
+  width: 275,
+  height: 325,
   borderRadius: '10px',
   padding: '0.75rem',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  margin: '1rem 1.5rem',
+  position: 'relative',
+  [theme.breakpoints.down('lg')]: {
+    margin: '1rem'
+  }
 }))
 const TypographyStyled = styled(Typography)({
   overflow: 'hidden',
@@ -16,11 +21,13 @@ const TypographyStyled = styled(Typography)({
   WebkitLineClamp: '2',
   WebkitBoxOrient: 'vertical'
 })
-const ScrumboardCard = () => {
+
+const ScrumboardCard = ({ data }: any) => {
+  const color = StatusColor(data.status)
   return (
-    <CustomCard sx={theme => ({ boxShadow: `0px 0px 5px ${hexToRGBA(theme.palette.red.dark, 0.2)}` })}>
+    <CustomCard sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}>
       <Image
-        src='/images/scrumboard/1.jpg'
+        src={data.img}
         alt='project_name'
         width={250}
         height={60}
@@ -37,13 +44,13 @@ const ScrumboardCard = () => {
             mx: 1
           }}
         >
-          Dự án xây dựng website Dự án xây dựng website website Dự án xây dựng website
+          {data.title}
         </TypographyStyled>
         <TypographyStyled sx={{ fontSize: '12px', color: 'text.secondary', mb: 2, mx: 1 }}>
-          Xậy dựng website quản lý công việc, quản lý lịch trình và quản lý ghi chú
+          {data.description}
         </TypographyStyled>
         <Divider />
-        <ScrumboardCardContent />
+        <ScrumboardCardContent data={data} />
       </CardContent>
     </CustomCard>
   )
