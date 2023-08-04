@@ -1,11 +1,12 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
 import Search from '@/core/components/search'
+import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Grid } from '@mui/material'
 
 const ScrumboardPage = () => {
   return (
-    <div>
+    <Grid container>
       <CustomPageHeader icon='mingcute:trello-board-line' pageTitle='Bảng điều khiển' type='mainPage'>
         <Grid
           item
@@ -33,7 +34,10 @@ const ScrumboardPage = () => {
           <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name='Thêm' />
         </Grid>
       </CustomPageHeader>
-    </div>
+      <Grid item container sx={{ m: 4 }}>
+        <ScrumboardCard />
+      </Grid>
+    </Grid>
   )
 }
 

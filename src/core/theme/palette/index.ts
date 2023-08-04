@@ -28,6 +28,13 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
       secondary: mode === 'light' ? '#EAFFFF' : '#011414',
       transparent: mode === 'light' ? '#FFF4F3' : '#190402'
     },
+    status: {
+      init: '#3AA8C1',
+      active: '#0087BD',
+      complete: '#3EB489',
+      late: '#ED2939',
+      pause: '#FF7538'
+    },
     red: {
       light: '#FFC0CB',
       dark: '#ED2939'

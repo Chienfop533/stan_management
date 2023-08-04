@@ -5,6 +5,13 @@ declare module '@mui/material/styles' {
       secondary: string
       transparent: string
     }
+    status: {
+      init: string
+      active: string
+      complete: string
+      late: string
+      pause: string
+    }
     red: {
       light: string
       dark: string
@@ -52,6 +59,13 @@ declare module '@mui/material/styles' {
       primary?: string
       secondary?: string
       transparent?: string
+    }
+    status?: {
+      init?: string
+      active?: string
+      complete?: string
+      late?: string
+      pause?: string
     }
     red?: {
       light?: string
