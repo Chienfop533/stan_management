@@ -6,8 +6,8 @@ import { Avatar, AvatarGroup, Box, Typography, useTheme } from '@mui/material'
 const ScrumboardCardContent = () => {
   const theme = useTheme()
   return (
-    <Box>
-      <Box sx={{ my: 4, display: 'flex', justifyContent: 'space-between' }}>
+    <Box sx={{ mx: 1 }}>
+      <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
         <Typography
           sx={theme => ({
             backgroundColor: theme.palette.turquoise.dark,
