@@ -4,6 +4,7 @@ import { LinkStyled } from '@/core/components/link'
 import { Progress } from '@/core/components/progress'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import BlankLayout from '@/layouts/BlankLayout'
+import Translate from '@/services/common/translate'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -19,7 +20,6 @@ import {
 } from '@mui/material'
 import { ReactNode, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 interface FormData {
   email: string
   password: string
@@ -36,7 +36,6 @@ const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showPassword2, setShowPassword2] = useState<boolean>(false)
   const [countProgress, setCountProgress] = useState<number>(0)
-  const { t } = useTranslation()
 
   const {
     control,
@@ -64,8 +63,8 @@ const RegisterPage = () => {
 
   return (
     <AuthPage>
-      <Typography variant='h1'>{t('sign_up')}</Typography>
-      <Typography fontSize={18}>{t('your_app')}</Typography>
+      <Typography variant='h1'>{Translate('sign_up')}</Typography>
+      <Typography fontSize={18}>{Translate('your_app')}</Typography>
       <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
@@ -95,7 +94,7 @@ const RegisterPage = () => {
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='password' error={Boolean(errors.password)}>
-              {t('password')}
+              {Translate('password')}
             </InputLabel>
             <Controller
               name='password'
@@ -151,10 +150,10 @@ const RegisterPage = () => {
               sx={{ height: 5, width: '24%' }}
             ></Progress>
           </Box>
-          <Typography sx={{ mt: 4, color: 'text.disabled', fontSize: 14 }}>{t('rule_password')}</Typography>
+          <Typography sx={{ mt: 4, color: 'text.disabled', fontSize: 14 }}>{Translate('rule_password')}</Typography>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='verifyPassword' error={Boolean(errors.verifyPassword)}>
-              {t('confirm_password')}
+              {Translate('confirm_password')}
             </InputLabel>
             <Controller
               name='verifyPassword'
@@ -198,13 +197,13 @@ const RegisterPage = () => {
             variant='contained'
             sx={{ mb: 4, mt: 6, borderRadius: '10px', height: '45px' }}
           >
-            {t('sign_up')}
+            {Translate('sign_up')}
           </Button>
         </form>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <Typography sx={{ color: 'text.secondary', mr: 2 }}>{t('have_account') + '?'}</Typography>
-        <LinkStyled href='/login'>{t('login')}</LinkStyled>
+        <Typography sx={{ color: 'text.secondary', mr: 2 }}>{Translate('have_account') + '?'}</Typography>
+        <LinkStyled href='/login'>{Translate('login')}</LinkStyled>
       </Box>
     </AuthPage>
   )

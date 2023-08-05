@@ -3,6 +3,7 @@ import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import BlankLayout from '@/layouts/BlankLayout'
+import Translate from '@/services/common/translate'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -19,7 +20,6 @@ import {
 } from '@mui/material'
 import { ReactNode, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 interface FormData {
   email: string
@@ -34,7 +34,6 @@ const defaultValues: FormData = {
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const { t } = useTranslation()
 
   const {
     control,
@@ -48,8 +47,8 @@ const LoginPage = () => {
   }
   return (
     <AuthPage>
-      <Typography variant='h1'>{t('login')}</Typography>
-      <Typography fontSize={18}>{t('your_app')}</Typography>
+      <Typography variant='h1'>{Translate('login')}</Typography>
+      <Typography fontSize={18}>{Translate('your_app')}</Typography>
       <Box
         sx={{
           display: 'flex',
@@ -67,7 +66,7 @@ const LoginPage = () => {
         }}
       >
         <IconifyIcon icon='flat-color-icons:google' />
-        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{t('login_with') + ' Google'}</Typography>
+        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{Translate('login_with') + ' Google'}</Typography>
       </Box>
       <Box
         sx={{
@@ -86,7 +85,7 @@ const LoginPage = () => {
         }}
       >
         <IconifyIcon icon='logos:facebook' />
-        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{t('login_with') + ' Facebook'}</Typography>
+        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{Translate('login_with') + ' Facebook'}</Typography>
       </Box>
       <Box
         sx={{
@@ -105,9 +104,11 @@ const LoginPage = () => {
         }}
       >
         <IconifyIcon icon='devicon:github' />
-        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{t('login_with') + ' Github'}</Typography>
+        <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{Translate('login_with') + ' Github'}</Typography>
       </Box>
-      <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>{t('or_with') + ' Email'}</Divider>
+      <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>
+        {Translate('or_with') + ' Email'}
+      </Divider>
       <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
@@ -137,7 +138,7 @@ const LoginPage = () => {
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='password' error={Boolean(errors.password)}>
-              {t('password')}
+              {Translate('password')}
             </InputLabel>
             <Controller
               name='password'
@@ -181,11 +182,11 @@ const LoginPage = () => {
             }}
           >
             <FormControlLabel
-              label={t('remember_me')}
+              label={Translate('remember_me')}
               control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />}
             />
             <Typography sx={{ color: 'turquoise.dark', fontWeight: 600, cursor: 'pointer' }}>
-              {t('forgot_password') + '?'}
+              {Translate('forgot_password') + '?'}
             </Typography>
           </Box>
           <Button
@@ -195,13 +196,13 @@ const LoginPage = () => {
             variant='contained'
             sx={{ mb: 4, borderRadius: '10px', height: '45px' }}
           >
-            {t('login')}
+            {Translate('login')}
           </Button>
         </form>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <Typography sx={{ color: 'text.secondary', mr: 2 }}>{t('not_account') + '?'}</Typography>
-        <LinkStyled href='/register'>{t('sign_up')}</LinkStyled>
+        <Typography sx={{ color: 'text.secondary', mr: 2 }}>{Translate('not_account') + '?'}</Typography>
+        <LinkStyled href='/register'>{Translate('sign_up')}</LinkStyled>
       </Box>
     </AuthPage>
   )

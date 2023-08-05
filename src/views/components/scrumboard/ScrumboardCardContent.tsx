@@ -2,6 +2,7 @@ import IconifyIcon from '@/core/components/icon'
 import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import StatusColor from '@/services/common/statusColor'
+import Translate from '@/services/common/translate'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
 
 const ScrumboardCardContent = ({ data }: any) => {
@@ -22,29 +23,36 @@ const ScrumboardCardContent = ({ data }: any) => {
             borderRadius: '50px'
           })}
         >
-          {data.status}
+          {`${Translate(data.status)}`}
         </Typography>
         <Box>
           <CustomToolTip
-            title='Cài đặt'
+            title={`${Translate('setting')}`}
             icon='dashicons:admin-tools'
             statusColor={data.status}
             sx={{ mr: 2 }}
             onClick={() => console.log('ok')}
           />
           <CustomToolTip
-            title='Thành viên'
+            title={`${Translate('member')}`}
             icon='fluent-mdl2:group'
             statusColor={data.status}
             sx={{ mr: 2 }}
             onClick={() => console.log('ok')}
           />
-          <CustomToolTip title='Sửa' icon='mdi:edit' statusColor={data.status} onClick={() => console.log('ok')} />
+          <CustomToolTip
+            title={`${Translate('edit')}`}
+            icon='mdi:edit'
+            statusColor={data.status}
+            onClick={() => console.log('ok')}
+          />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
         <IconifyIcon icon='ic:round-date-range' fontSize={24} color={color} />
-        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${data.begin_time} - ${data.end_time}`}</Typography>
+        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${data.begin_time} - ${
+          data.end_time ? data.end_time : Translate('unknown')
+        }`}</Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
         <IconifyIcon icon='entypo:progress-one' fontSize={24} color={color} />
@@ -81,11 +89,13 @@ const ScrumboardCardContent = ({ data }: any) => {
           <Avatar alt='avatar_4' src='/images/default_avatar.png' />
           <Avatar alt='avatar_5' src='/images/default_avatar.png' />
         </AvatarGroup>
-        <IconifyIcon
-          icon='solar:star-bold-duotone'
-          color={theme.palette.yellow.dark}
-          style={{ position: 'absolute', right: 0 }}
-        />
+        {data.priority && (
+          <IconifyIcon
+            icon='solar:star-bold-duotone'
+            color={theme.palette.yellow.dark}
+            style={{ position: 'absolute', right: 0 }}
+          />
+        )}
       </Box>
     </Box>
   )

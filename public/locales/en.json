@@ -32,5 +32,18 @@
   "back_home_description": "Please back to home to continue using Stan Management",
   "back_home": "Back home",
   "not_found": "Not Found",
-  "server_err": "Server error"
+  "server_err": "Server error",
+  "search": "Search",
+  "all": "All",
+  "add": "Add",
+  "scrumboard_no_data": "No data scrumboard, please add new to use",
+  "init": "Init",
+  "active": "Active",
+  "complete": "Complete",
+  "late": "Late",
+  "pause": "Pause",
+  "edit": "Edit",
+  "member": "Member",
+  "setting": "Setting",
+  "unknown": "Unknown"
 }

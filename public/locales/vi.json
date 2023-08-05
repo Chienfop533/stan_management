@@ -32,5 +32,18 @@
   "back_home_description": "Vui lòng quay lại trang chủ để tiếp tục sử dụng Stan Management",
   "back_home": "Về trang chủ",
   "not_found": "Không tìm thấy",
-  "server_err": "Lỗi hệ thống"
+  "server_err": "Lỗi hệ thống",
+  "search": "Tìm kiếm",
+  "all": "Tất cả",
+  "add": "Thêm",
+  "scrumboard_no_data": "Chưa có bảng dự án, vui lòng thêm mới để sử dụng",
+  "init": "Khởi tạo",
+  "active": "Hoạt động",
+  "complete": "Hoàn thành",
+  "late": "Trên hạn",
+  "pause": "Tạm dừng",
+  "edit": "Sửa",
+  "member": "Thành viên",
+  "setting": "Cài đặt",
+  "unknown": "Chưa xác định"
 }

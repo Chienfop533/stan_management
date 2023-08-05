@@ -1,6 +1,7 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
 import Search from '@/core/components/search'
 import { scrumboardData } from '@/data/ScrumboardData'
+import Translate from '@/services/common/translate'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, Typography } from '@mui/material'
@@ -9,7 +10,7 @@ const ScrumboardPage = () => {
   const data = scrumboardData
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
-      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle='Bảng điều khiển' type='mainPage'>
+      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${Translate('dashboard')}`} type='mainPage'>
         <Grid
           item
           xs={12}
@@ -30,10 +31,10 @@ const ScrumboardPage = () => {
           <ButtonWithIcon
             sx={{ mr: 2 }}
             icon='clarity:filter-grid-circle-line'
-            name='Tất cả'
+            name={`${Translate('all')}`}
             onClick={() => console.log('ok')}
           />
-          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name='Thêm' />
+          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${Translate('add')}`} />
         </Grid>
       </CustomPageHeader>
       <Box
@@ -45,7 +46,7 @@ const ScrumboardPage = () => {
       >
         {data.length == 0 ? (
           <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-            Chưa có bảng dự án, vui lòng tạo để sử dụng.
+            {`${Translate('scrumboard_no_data')}`}
           </Typography>
         ) : (
           data.map(data => <ScrumboardCard key={data.id} data={data} />)

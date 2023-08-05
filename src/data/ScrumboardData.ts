@@ -27,7 +27,6 @@ export const scrumboardData = [
     title: 'Luyện tiếng anh',
     description: 'Luyện tiếng anh',
     begin_time: '10/05/2023',
-    end_time: null,
     progress: 25,
     status: 'pause',
     priority: false
@@ -49,7 +48,6 @@ export const scrumboardData = [
     title: 'Xây dưng website thương mại điện tử',
     description: 'Xậy dựng website thương mại điện tử ',
     begin_time: '10/05/2023',
-    end_time: '10/06/2023',
     progress: 80,
     status: 'late',
     priority: false
