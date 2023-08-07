@@ -45,5 +45,7 @@
   "edit": "Edit",
   "member": "Member",
   "setting": "Setting",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "star_scrumboard": "Starred boards",
+  "all_scrumboard": "All boards"
 }

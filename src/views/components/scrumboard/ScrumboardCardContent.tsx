@@ -89,7 +89,7 @@ const ScrumboardCardContent = ({ data }: any) => {
           <Avatar alt='avatar_4' src='/images/default_avatar.png' />
           <Avatar alt='avatar_5' src='/images/default_avatar.png' />
         </AvatarGroup>
-        {data.priority && (
+        {data.star && (
           <IconifyIcon
             icon='solar:star-bold-duotone'
             color={theme.palette.yellow.dark}

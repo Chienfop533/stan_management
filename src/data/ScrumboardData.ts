@@ -8,7 +8,7 @@ export const scrumboardData = [
     end_time: '5/5/2023',
     progress: 100,
     status: 'complete',
-    priority: true
+    star: true
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const scrumboardData = [
     end_time: '10/10/2023',
     progress: 20,
     status: 'active',
-    priority: true
+    star: true
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const scrumboardData = [
     begin_time: '10/05/2023',
     progress: 25,
     status: 'pause',
-    priority: false
+    star: false
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ export const scrumboardData = [
     end_time: '10/10/2023',
     progress: 0,
     status: 'init',
-    priority: false
+    star: false
   },
   {
     id: 5,
@@ -50,6 +50,6 @@ export const scrumboardData = [
     begin_time: '10/05/2023',
     progress: 80,
     status: 'late',
-    priority: false
+    star: false
   }
 ]
