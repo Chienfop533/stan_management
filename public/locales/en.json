@@ -47,5 +47,7 @@
   "setting": "Setting",
   "unknown": "Unknown",
   "star_scrumboard": "Starred boards",
-  "all_scrumboard": "All boards"
+  "all_scrumboard": "All boards",
+  "pin": "Pin",
+  "delete": "Delete"
 }

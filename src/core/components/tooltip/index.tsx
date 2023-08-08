@@ -1,7 +1,7 @@
-import { IconButton, Tooltip, TooltipProps } from '@mui/material'
+import { IconButton, IconButtonProps, Tooltip, TooltipProps } from '@mui/material'
 import IconifyIcon from '../icon'
 import { MouseEventHandler } from 'react'
-type CustomTooltipProps = {
+type CustomTooltipProps = IconButtonProps & {
   title: string
   icon: string
   statusColor: string
@@ -9,7 +9,7 @@ type CustomTooltipProps = {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined
 }
 const CustomToolTip = (props: CustomTooltipProps) => {
-  const { title, icon, sx, statusColor, onClick } = props
+  const { title, icon, sx, statusColor, onClick, ...rest } = props
   return (
     <Tooltip
       title={title}
@@ -21,7 +21,7 @@ const CustomToolTip = (props: CustomTooltipProps) => {
       }}
       onClick={onClick}
     >
-      <IconButton>
+      <IconButton {...rest}>
         <IconifyIcon icon={icon} fontSize={20} color='white' />
       </IconButton>
     </Tooltip>

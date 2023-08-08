@@ -40,12 +40,14 @@
   "init": "Khởi tạo",
   "active": "Hoạt động",
   "complete": "Hoàn thành",
-  "late": "Trên hạn",
+  "late": "Trễ hạn",
   "pause": "Tạm dừng",
   "edit": "Sửa",
   "member": "Thành viên",
   "setting": "Cài đặt",
   "unknown": "Chưa xác định",
   "star_scrumboard": "Bảng đánh dấu sao",
-  "all_scrumboard": "Tất cả bảng dự án"
+  "all_scrumboard": "Tất cả bảng dự án",
+  "pin": "Ghim",
+  "delete": "Xóa"
 }

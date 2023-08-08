@@ -1,14 +1,27 @@
 import IconifyIcon from '@/core/components/icon'
+import OptionsMenu from '@/core/components/option-menu'
 import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import StatusColor from '@/services/common/statusColor'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ScrumboardCardContent = ({ data }: any) => {
   const theme = useTheme()
-  const {t} = useTranslation()
+  const { t } = useTranslation()
+  const router = useRouter()
   const color = StatusColor(data.status)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const listItem = [
+    { icon: 'solar:star-bold-duotone', iconColor: 'yellow', text: `${t('pin')}` },
+    { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('delete')}` }
+  ]
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation()
+    setAnchorEl(event.currentTarget)
+  }
   return (
     <Box sx={{ mx: 1 }}>
       <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
@@ -32,20 +45,26 @@ const ScrumboardCardContent = ({ data }: any) => {
             icon='dashicons:admin-tools'
             statusColor={data.status}
             sx={{ mr: 2 }}
-            onClick={() => console.log('ok')}
+            onClick={handleClick}
+            aria-haspopup={true}
+            aria-controls={Boolean(anchorEl) ? 'setting' : undefined}
           />
+          <OptionsMenu id='setting' anchorEl={anchorEl} setAnchorEl={setAnchorEl} listItem={listItem} />
           <CustomToolTip
             title={`${t('member')}`}
             icon='fluent-mdl2:group'
             statusColor={data.status}
             sx={{ mr: 2 }}
-            onClick={() => console.log('ok')}
+            onClick={e => {
+              e.stopPropagation()
+              router.push('/manage/scrumboard/123/member')
+            }}
           />
           <CustomToolTip
             title={`${t('edit')}`}
             icon='mdi:edit'
             statusColor={data.status}
-            onClick={() => console.log('ok')}
+            onClick={e => e.stopPropagation()}
           />
         </Box>
       </Box>
