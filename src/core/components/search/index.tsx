@@ -1,15 +1,16 @@
 import { IconButton, InputAdornment, OutlinedInput, OutlinedInputProps } from '@mui/material'
 import IconifyIcon from '../icon'
 import { MouseEventHandler } from 'react'
-import Translate from '@/services/common/translate'
+import { useTranslation } from 'react-i18next'
 interface SearchProps {
   handleClickSearch: MouseEventHandler<HTMLButtonElement> | undefined
 }
 const Search = (props: OutlinedInputProps & SearchProps) => {
   const { sx, handleClickSearch, ...rest } = props
+  const {t} = useTranslation()
   return (
     <OutlinedInput
-      placeholder={`${Translate('search')}...`}
+      placeholder={`${t('search')}...`}
       sx={{
         width: '100%',
         maxWidth: 350,

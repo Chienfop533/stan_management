@@ -2,11 +2,12 @@ import IconifyIcon from '@/core/components/icon'
 import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import StatusColor from '@/services/common/statusColor'
-import Translate from '@/services/common/translate'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const ScrumboardCardContent = ({ data }: any) => {
   const theme = useTheme()
+  const {t} = useTranslation()
   const color = StatusColor(data.status)
   return (
     <Box sx={{ mx: 1 }}>
@@ -23,25 +24,25 @@ const ScrumboardCardContent = ({ data }: any) => {
             borderRadius: '50px'
           })}
         >
-          {`${Translate(data.status)}`}
+          {`${t(data.status)}`}
         </Typography>
         <Box>
           <CustomToolTip
-            title={`${Translate('setting')}`}
+            title={`${t('setting')}`}
             icon='dashicons:admin-tools'
             statusColor={data.status}
             sx={{ mr: 2 }}
             onClick={() => console.log('ok')}
           />
           <CustomToolTip
-            title={`${Translate('member')}`}
+            title={`${t('member')}`}
             icon='fluent-mdl2:group'
             statusColor={data.status}
             sx={{ mr: 2 }}
             onClick={() => console.log('ok')}
           />
           <CustomToolTip
-            title={`${Translate('edit')}`}
+            title={`${t('edit')}`}
             icon='mdi:edit'
             statusColor={data.status}
             onClick={() => console.log('ok')}
@@ -51,7 +52,7 @@ const ScrumboardCardContent = ({ data }: any) => {
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
         <IconifyIcon icon='ic:round-date-range' fontSize={24} color={color} />
         <Typography sx={{ fontSize: 12, ml: 2 }}>{`${data.begin_time} - ${
-          data.end_time ? data.end_time : Translate('unknown')
+          data.end_time ? data.end_time : t('unknown')
         }`}</Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>

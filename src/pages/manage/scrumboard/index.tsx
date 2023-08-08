@@ -2,17 +2,18 @@ import ButtonWithIcon from '@/core/components/button-with-icon'
 import IconifyIcon from '@/core/components/icon'
 import Search from '@/core/components/search'
 import { scrumboardData } from '@/data/ScrumboardData'
-import Translate from '@/services/common/translate'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const ScrumboardPage = () => {
   const data = scrumboardData
   const starData = scrumboardData.filter(item => item.star == true)
+  const {t} = useTranslation()
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${Translate('dashboard')}`} type='mainPage'>
+      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('dashboard')}`} type='mainPage'>
         <Grid
           item
           xs={12}
@@ -33,19 +34,19 @@ const ScrumboardPage = () => {
           <ButtonWithIcon
             sx={{ mr: 2 }}
             icon='clarity:filter-grid-circle-line'
-            name={`${Translate('all')}`}
+            name={`${t('all')}`}
             onClick={() => console.log('ok')}
           />
-          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${Translate('add')}`} />
+          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${t('add')}`} />
         </Grid>
       </CustomPageHeader>
       {starData.length > 0 ? (
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, textAlign: 'start', width: '100%' }}>
           <IconButton>
-            <IconifyIcon icon='pepicons-pop:star' fontSize={18} />
+            <IconifyIcon icon='pepicons-pop:star' fontSize={28} />
           </IconButton>
-          <Typography variant='h3' fontSize={16}>
-            {Translate('star_scrumboard')}
+          <Typography variant='h2'>
+            {t('star_scrumboard')}
           </Typography>
         </Box>
       ) : null}
@@ -59,7 +60,7 @@ const ScrumboardPage = () => {
         >
           {data.length == 0 ? (
             <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-              {`${Translate('scrumboard_no_data')}`}
+              {`${t('scrumboard_no_data')}`}
             </Typography>
           ) : (
             starData.map(data => <ScrumboardCard key={data.id} data={data} />)
@@ -69,10 +70,10 @@ const ScrumboardPage = () => {
 
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 6, textAlign: 'start', width: '100%' }}>
         <IconButton>
-          <IconifyIcon icon='mingcute:trello-board-line' fontSize={18} />
+          <IconifyIcon icon='mingcute:trello-board-line' fontSize={28} />
         </IconButton>
-        <Typography variant='h3' fontSize={16}>
-          {Translate('all_scrumboard')}
+        <Typography variant='h2'>
+          {t('all_scrumboard')}
         </Typography>
       </Box>
       <Box
@@ -84,7 +85,7 @@ const ScrumboardPage = () => {
       >
         {data.length == 0 ? (
           <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-            {`${Translate('scrumboard_no_data')}`}
+            {`${t('scrumboard_no_data')}`}
           </Typography>
         ) : (
           data.map(data => <ScrumboardCard key={data.id} data={data} />)

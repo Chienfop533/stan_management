@@ -27,7 +27,7 @@ const HeaderTitle = (props: HeaderTitleProps) => {
   return (
     <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
       <IconButton onClick={type == 'subPage' ? redirectToBack : undefined}>
-        <IconifyIcon icon={type == 'subPage' ? 'ic:round-keyboard-backspace' : icon} />
+        <IconifyIcon icon={type == 'subPage' ? 'ic:round-keyboard-backspace' : icon} fontSize={24} />
       </IconButton>
       <Typography variant='h3'>{pageTitle}</Typography>
     </Grid>
