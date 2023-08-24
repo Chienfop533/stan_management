@@ -2,15 +2,22 @@ import ButtonWithIcon from '@/core/components/button-with-icon'
 import IconifyIcon from '@/core/components/icon'
 import Search from '@/core/components/search'
 import { scrumboardData } from '@/data/ScrumboardData'
+import { ScrumboardType } from '@/types/ScrumboardType'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { v4 as uuidv4 } from 'uuid'
 
 const ScrumboardPage = () => {
   const data = scrumboardData
   const starData = scrumboardData.filter(item => item.star == true)
-  const {t} = useTranslation()
+  const { t } = useTranslation()
+  const date = new Date()
+  console.log(date)
+
+  console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0))
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('dashboard')}`} type='mainPage'>
@@ -45,9 +52,7 @@ const ScrumboardPage = () => {
           <IconButton>
             <IconifyIcon icon='pepicons-pop:star' fontSize={28} />
           </IconButton>
-          <Typography variant='h2'>
-            {t('star_scrumboard')}
-          </Typography>
+          <Typography variant='h2'>{t('star_scrumboard')}</Typography>
         </Box>
       ) : null}
       {starData.length > 0 ? (
@@ -63,7 +68,7 @@ const ScrumboardPage = () => {
               {`${t('scrumboard_no_data')}`}
             </Typography>
           ) : (
-            starData.map(data => <ScrumboardCard key={data.id} data={data} />)
+            starData.map((data: ScrumboardType) => <ScrumboardCard key={data.id} data={data} />)
           )}
         </Box>
       ) : null}
@@ -72,9 +77,7 @@ const ScrumboardPage = () => {
         <IconButton>
           <IconifyIcon icon='mingcute:trello-board-line' fontSize={28} />
         </IconButton>
-        <Typography variant='h2'>
-          {t('all_scrumboard')}
-        </Typography>
+        <Typography variant='h2'>{t('all_scrumboard')}</Typography>
       </Box>
       <Box
         sx={theme => ({
@@ -88,7 +91,7 @@ const ScrumboardPage = () => {
             {`${t('scrumboard_no_data')}`}
           </Typography>
         ) : (
-          data.map(data => <ScrumboardCard key={data.id} data={data} />)
+          data.map((data: ScrumboardType) => <ScrumboardCard key={data.id} data={data} />)
         )}
       </Box>
     </Box>

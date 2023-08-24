@@ -1,53 +1,65 @@
-export const scrumboardData = [
+import { ScrumboardType } from '@/types/ScrumboardType'
+const date = new Date()
+const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
+
+const nextMonth =
+  date.getMonth() === 11 ? new Date(date.getFullYear() + 1, 0, 1) : new Date(date.getFullYear(), date.getMonth() + 1, 1)
+
+const prevMonth =
+  date.getMonth() === 11 ? new Date(date.getFullYear() - 1, 0, 1) : new Date(date.getFullYear(), date.getMonth() - 1, 1)
+
+export const scrumboardData: ScrumboardType[] = [
   {
-    id: 1,
-    img: '/images/scrumboard/1.jpg',
+    id: '8fb1a4d1-16f9-410d-9006-60a401c86e12',
+    image: '/images/scrumboard/1.jpg',
     title: 'Xây dựng github profile',
     description: 'Xậy dựng trang github profile',
-    begin_time: '10/05/2023',
-    end_time: '5/5/2023',
+    begin_time: prevDate,
+    end_time: date,
     progress: 100,
     status: 'complete',
     star: true
   },
   {
-    id: 2,
-    img: '/images/scrumboard/2.jpg',
+    id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    image: '/images/scrumboard/2.jpg',
     title: 'Xây dựng website stan management',
     description: 'Xậy dựng website quản lý công việc, quản lý lịch trình và quản lý ghi chú',
-    begin_time: '10/05/2023',
-    end_time: '10/10/2023',
+    begin_time: prevDate,
+    end_time: nextMonth,
     progress: 20,
     status: 'active',
     star: true
   },
   {
-    id: 3,
-    img: '/images/scrumboard/3.jpg',
-    title: 'Luyện tiếng anh',
-    description: 'Luyện tiếng anh',
-    begin_time: '10/05/2023',
+    id: 'b09fc765-16f9-4dc6-9d36-0bf284553e9e',
+    image: '/images/scrumboard/3.jpg',
+    title: 'Xây dựng website KOL ecommerce',
+    description: 'Xây dựng website KOL ecommerce tiếp thị sản phẩm trên sàn thương mại điện tử',
+    begin_time: prevMonth,
     progress: 25,
     status: 'pause',
     star: false
   },
   {
-    id: 4,
-    img: '/images/scrumboard/4.jpg',
-    title: 'Học code frontend Vuejs',
-    description: 'Học framework javascript mới vuejs với vuetify',
-    begin_time: '10/9/2023',
-    end_time: '10/10/2023',
+    id: 'b09fc765-c2fc-4dc6-9006-0bf284553e9e',
+    image: '/images/scrumboard/4.jpg',
+    title: 'Xây dưng trang admin dashboard',
+    description: 'Xây dựng website quản lý sản phẩm cho admin ',
+    begin_time: nextDay,
+    end_time: nextMonth,
     progress: 0,
     status: 'init',
     star: false
   },
   {
-    id: 5,
-    img: '/images/scrumboard/5.jpg',
-    title: 'Xây dưng website thương mại điện tử',
-    description: 'Xậy dựng website thương mại điện tử ',
-    begin_time: '10/05/2023',
+    id: '8fb1a4d1-c2fc-410d-9006-60a401c86e12',
+    image: '/images/scrumboard/5.jpg',
+    title: 'Xây dựng trang profile với vuejs',
+    description: 'Xây dựng trang profile với vuejs ',
+    begin_time: prevMonth,
+    end_time: prevDate,
     progress: 80,
     status: 'late',
     star: false

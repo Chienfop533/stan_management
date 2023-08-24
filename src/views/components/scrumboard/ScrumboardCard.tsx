@@ -4,6 +4,7 @@ import Image from 'next/image'
 import ScrumboardCardContent from './ScrumboardCardContent'
 import StatusColor from '@/services/common/statusColor'
 import { useRouter } from 'next/router'
+import { ScrumboardType } from '@/types/ScrumboardType'
 const CustomCard = styled(Card)(({ theme }) => ({
   width: 275,
   height: 325,
@@ -22,17 +23,20 @@ const TypographyStyled = styled(Typography)({
   WebkitLineClamp: '2',
   WebkitBoxOrient: 'vertical'
 })
-
-const ScrumboardCard = ({ data }: any) => {
+interface ScrumboardCardType {
+  data: ScrumboardType
+}
+const ScrumboardCard = ({ data }: ScrumboardCardType) => {
   const color = StatusColor(data.status)
   const router = useRouter()
+
   return (
     <CustomCard
       sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}
       onClick={() => router.push(`/manage/scrumboard/${data.id}`)}
     >
       <Image
-        src={data.img}
+        src={data.image}
         alt='project_name'
         width={250}
         height={60}

@@ -2,13 +2,17 @@ import IconifyIcon from '@/core/components/icon'
 import OptionsMenu from '@/core/components/option-menu'
 import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
+import { formatDate } from '@/core/utils/convert-date'
 import StatusColor from '@/services/common/statusColor'
+import { ScrumboardType } from '@/types/ScrumboardType'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-const ScrumboardCardContent = ({ data }: any) => {
+interface ScrumboardCardContentType {
+  data: ScrumboardType
+}
+const ScrumboardCardContent = ({ data }: ScrumboardCardContentType) => {
   const theme = useTheme()
   const { t } = useTranslation()
   const router = useRouter()
@@ -70,8 +74,8 @@ const ScrumboardCardContent = ({ data }: any) => {
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
         <IconifyIcon icon='ic:round-date-range' fontSize={24} color={color} />
-        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${data.begin_time} - ${
-          data.end_time ? data.end_time : t('unknown')
+        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${formatDate(data.begin_time)} - ${
+          data.end_time ? formatDate(data.end_time) : t('unknown')
         }`}</Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
