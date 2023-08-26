@@ -21,7 +21,7 @@ const navigation: NavigationType[] = [
         title: 'notification',
         type: 'item',
         path: '/personal/notification',
-        icon: 'tabler:bell'
+        icon: 'mi:notification'
       },
       {
         title: 'event',

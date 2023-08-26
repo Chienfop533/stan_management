@@ -34,7 +34,7 @@ const defaultValues: FormData = {
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   const {
     control,
@@ -107,9 +107,7 @@ const LoginPage = () => {
         <IconifyIcon icon='devicon:github' />
         <Typography sx={{ fontSize: 16, padding: '0 1rem' }}>{t('login_with') + ' Github'}</Typography>
       </Box>
-      <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>
-        {t('or_with') + ' Email'}
-      </Divider>
+      <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>{t('or_with') + ' Email'}</Divider>
       <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
@@ -120,8 +118,8 @@ const LoginPage = () => {
               name='email'
               control={control}
               rules={{
-                required: { value: true, message: 'Vui lòng nhập email' },
-                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: 'Vui lòng nhập đúng định dạng email' }
+                required: { value: true, message: t('require_email') },
+                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: t('validate_email') }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -145,8 +143,8 @@ const LoginPage = () => {
               name='password'
               control={control}
               rules={{
-                required: { value: true, message: 'Vui lòng nhập password' },
-                minLength: { value: 8, message: 'Tối thiểu 8 ký tự' }
+                required: { value: true, message: t('require_password') },
+                minLength: { value: 8, message: t('validate_password') }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -154,7 +152,7 @@ const LoginPage = () => {
                   onBlur={onBlur}
                   onChange={onChange}
                   id='password'
-                  label='Mật khẩu'
+                  label={t('password')}
                   type={showPassword ? 'text' : 'password'}
                   error={Boolean(errors.password)}
                   endAdornment={

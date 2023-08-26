@@ -6,7 +6,7 @@ const NotificationDropdown = () => {
     <>
       <IconButton color='inherit'>
         <Badge color='error' badgeContent={2}>
-          <IconifyIcon icon='tabler:bell' />
+          <IconifyIcon icon='mi:notification' />
         </Badge>
       </IconButton>
     </>

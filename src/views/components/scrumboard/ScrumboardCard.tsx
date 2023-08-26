@@ -4,7 +4,8 @@ import Image from 'next/image'
 import ScrumboardCardContent from './ScrumboardCardContent'
 import StatusColor from '@/services/common/statusColor'
 import { useRouter } from 'next/router'
-import { ScrumboardType } from '@/types/ScrumboardType'
+import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
+import { ScrumboardMember } from '@/data/ScrumboardData'
 const CustomCard = styled(Card)(({ theme }) => ({
   width: 275,
   height: 325,
@@ -29,7 +30,7 @@ interface ScrumboardCardType {
 const ScrumboardCard = ({ data }: ScrumboardCardType) => {
   const color = StatusColor(data.status)
   const router = useRouter()
-
+  const member: ScrumboardMemberType[] = ScrumboardMember.filter(item => item.scrumboard_id == data.id)
   return (
     <CustomCard
       sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}
@@ -59,7 +60,7 @@ const ScrumboardCard = ({ data }: ScrumboardCardType) => {
           {data.description}
         </TypographyStyled>
         <Divider />
-        <ScrumboardCardContent data={data} />
+        <ScrumboardCardContent data={data} member={member} />
       </CardContent>
     </CustomCard>
   )

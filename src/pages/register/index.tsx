@@ -35,7 +35,7 @@ const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showPassword2, setShowPassword2] = useState<boolean>(false)
   const [countProgress, setCountProgress] = useState<number>(0)
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   const {
     control,
@@ -75,8 +75,8 @@ const RegisterPage = () => {
               name='email'
               control={control}
               rules={{
-                required: { value: true, message: 'Vui lòng nhập email' },
-                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: 'Vui lòng nhập đúng định dạng email' }
+                required: { value: true, message: t('require_email') },
+                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: t('validate_email') }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -100,7 +100,7 @@ const RegisterPage = () => {
               name='password'
               control={control}
               rules={{
-                required: { value: true, message: 'Vui lòng nhập password' },
+                required: { value: true, message: t('require_password') },
                 pattern: { value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, message: '' }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
@@ -109,7 +109,7 @@ const RegisterPage = () => {
                   onBlur={onBlur}
                   onChange={onChange}
                   id='password'
-                  label='Mật khẩu'
+                  label={t('password')}
                   type={showPassword ? 'text' : 'password'}
                   error={Boolean(errors.password)}
                   endAdornment={
@@ -159,9 +159,9 @@ const RegisterPage = () => {
               name='verifyPassword'
               control={control}
               rules={{
-                required: { value: true, message: 'Vui lòng nhập password' },
-                minLength: { value: 8, message: 'Tối thiểu 8 ký tự' },
-                validate: value => value === watch('password') || 'Xác nhận mật khẩu sai'
+                required: { value: true, message: t('require_password') },
+                minLength: { value: 8, message: t('validate_password') },
+                validate: value => value === watch('password') || t('validate_password_2')
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input

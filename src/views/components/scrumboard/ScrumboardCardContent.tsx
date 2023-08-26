@@ -4,15 +4,16 @@ import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import { formatDate } from '@/core/utils/convert-date'
 import StatusColor from '@/services/common/statusColor'
-import { ScrumboardType } from '@/types/ScrumboardType'
+import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 interface ScrumboardCardContentType {
   data: ScrumboardType
+  member: ScrumboardMemberType[]
 }
-const ScrumboardCardContent = ({ data }: ScrumboardCardContentType) => {
+const ScrumboardCardContent = ({ data, member }: ScrumboardCardContentType) => {
   const theme = useTheme()
   const { t } = useTranslation()
   const router = useRouter()
@@ -106,13 +107,14 @@ const ScrumboardCardContent = ({ data }: ScrumboardCardContentType) => {
           height: 36
         }}
       >
-        <AvatarGroup max={4} sx={{ '.MuiAvatar-root': { width: 36, height: 36 } }}>
-          <Avatar alt='avatar_1' src='/images/default_avatar.png' />
-          <Avatar alt='avatar_2' src='/images/default_avatar.png' />
-          <Avatar alt='avatar_3' src='/images/default_avatar.png' />
-          <Avatar alt='avatar_4' src='/images/default_avatar.png' />
-          <Avatar alt='avatar_5' src='/images/default_avatar.png' />
-        </AvatarGroup>
+        {member.length > 1 ? (
+          <AvatarGroup max={4} sx={{ '.MuiAvatar-root': { width: 36, height: 36 } }}>
+            {member.map(item => (
+              <Avatar alt={item.full_name} src={item.avatar} key={item.id} />
+            ))}
+          </AvatarGroup>
+        ) : null}
+
         {data.star && (
           <IconifyIcon
             icon='solar:star-bold-duotone'

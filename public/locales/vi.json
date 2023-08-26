@@ -47,7 +47,19 @@
   "setting": "Cài đặt",
   "unknown": "Chưa xác định",
   "star_scrumboard": "Bảng đánh dấu sao",
-  "all_scrumboard": "Tất cả bảng dự án",
+  "all_scrumboard": "Tất cả bảng công việc",
   "pin": "Ghim",
-  "delete": "Xóa"
+  "delete": "Xóa",
+  "cancel": "Hủy",
+  "require_email": "Vui lòng nhập email",
+  "validate_email": "Vui lòng nhập đúng định dạng email",
+  "require_password": "Vui lòng nhập password",
+  "validate_password": "Tối thiểu 8 ký tự",
+  "validate_password_2": "Xác nhận mật khẩu sai",
+  "scrumboard_title": "Tiêu đề bảng",
+  "require_scrumboard_title": "Vui lòng nhập tiêu đề",
+  "min_characters": "Tối thiểu {{number}} ký tự",
+  "description": "Mô tả",
+  "begin_time": "Ngày bắt đầu",
+  "end_time": "Ngày kết thúc"
 }

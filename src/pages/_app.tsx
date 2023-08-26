@@ -8,6 +8,8 @@ import { ReactElement } from 'react'
 import '@/configs/i18n'
 import dynamic from 'next/dynamic'
 import Spinner from '@/core/components/spinner'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -28,7 +30,11 @@ export default function App(props: ExtendedAppProps) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <ModeThemeProvider>
-        <ThemeComponent>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+        <ThemeComponent>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {getLayout(<Component {...pageProps} />)}
+          </LocalizationProvider>
+        </ThemeComponent>
       </ModeThemeProvider>
     </>
   )

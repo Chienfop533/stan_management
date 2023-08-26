@@ -49,5 +49,17 @@
   "star_scrumboard": "Starred boards",
   "all_scrumboard": "All boards",
   "pin": "Pin",
-  "delete": "Delete"
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "require_email": "Please enter email",
+  "validate_email": "Please enter correct email format",
+  "require_password": "Please enter password",
+  "validate_password": "Minimum of 8 characters",
+  "validate_password_2": "Confirm password not match",
+  "scrumboard_title": "Scrumboard title",
+  "require_scrumboard_title": "Please enter title",
+  "min_characters": "Minimum of {{number}} characters",
+  "description": "Description",
+  "begin_time": "Begin time",
+  "end_time": "End time"
 }

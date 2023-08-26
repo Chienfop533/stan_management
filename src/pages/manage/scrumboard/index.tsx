@@ -4,23 +4,21 @@ import Search from '@/core/components/search'
 import { scrumboardData } from '@/data/ScrumboardData'
 import { ScrumboardType } from '@/types/ScrumboardType'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
+import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { v4 as uuidv4 } from 'uuid'
 
 const ScrumboardPage = () => {
   const data = scrumboardData
   const starData = scrumboardData.filter(item => item.star == true)
   const { t } = useTranslation()
-  const date = new Date()
-  console.log(date)
-
-  console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0))
-
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('dashboard')}`} type='mainPage'>
+      <ScrumboardForm open={open} setOpen={setOpen} />
+      <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('scrumboard')}`} type='mainPage'>
         <Grid
           item
           xs={12}
@@ -44,7 +42,7 @@ const ScrumboardPage = () => {
             name={`${t('all')}`}
             onClick={() => console.log('ok')}
           />
-          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${t('add')}`} />
+          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${t('add')}`} onClick={() => setOpen(true)} />
         </Grid>
       </CustomPageHeader>
       {starData.length > 0 ? (

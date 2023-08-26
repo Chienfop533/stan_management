@@ -11,3 +11,12 @@ export interface ScrumboardType {
   status: string
   star: boolean
 }
+export interface ScrumboardMemberType {
+  id: string
+  user_id: string
+  scrumboard_id: string
+  avatar: string
+  full_name: string
+  email: string
+  role: 'member' | 'admin'
+}
