@@ -1,7 +1,7 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
 import IconifyIcon from '@/core/components/icon'
 import Search from '@/core/components/search'
-import { scrumboardData } from '@/data/ScrumboardData'
+import { useAppSelector } from '@/hooks/redux'
 import { ScrumboardType } from '@/types/ScrumboardType'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
@@ -11,8 +11,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ScrumboardPage = () => {
-  const data = scrumboardData
-  const starData = scrumboardData.filter(item => item.star == true)
+  const data = useAppSelector(state => state.scrumboard.data)
+  const starData = data.filter(item => item.star == true)
   const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   return (

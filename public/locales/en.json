@@ -61,5 +61,6 @@
   "min_characters": "Minimum of {{number}} characters",
   "description": "Description",
   "begin_time": "Begin time",
-  "end_time": "End time"
+  "end_time": "End time",
+  "unpin": "Unpin"
 }

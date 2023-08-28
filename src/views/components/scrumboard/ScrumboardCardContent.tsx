@@ -20,7 +20,7 @@ const ScrumboardCardContent = ({ data, member }: ScrumboardCardContentType) => {
   const color = StatusColor(data.status)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const listItem = [
-    { icon: 'solar:star-bold-duotone', iconColor: 'yellow', text: `${t('pin')}` },
+    { icon: 'solar:star-bold-duotone', iconColor: 'yellow', text: !data.star ? `${t('pin')}` : `${t('unpin')}` },
     { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('delete')}` }
   ]
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

@@ -10,6 +10,8 @@ import dynamic from 'next/dynamic'
 import Spinner from '@/core/components/spinner'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Provider } from 'react-redux'
+import { store } from '@/store'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -31,9 +33,11 @@ export default function App(props: ExtendedAppProps) {
       </Head>
       <ModeThemeProvider>
         <ThemeComponent>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {getLayout(<Component {...pageProps} />)}
-          </LocalizationProvider>
+          <Provider store={store}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {getLayout(<Component {...pageProps} />)}
+            </LocalizationProvider>
+          </Provider>
         </ThemeComponent>
       </ModeThemeProvider>
     </>

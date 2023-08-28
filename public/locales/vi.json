@@ -61,5 +61,6 @@
   "min_characters": "Tối thiểu {{number}} ký tự",
   "description": "Mô tả",
   "begin_time": "Ngày bắt đầu",
-  "end_time": "Ngày kết thúc"
+  "end_time": "Ngày kết thúc",
+  "unpin": "Bỏ ghim"
 }
