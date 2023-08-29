@@ -3,25 +3,40 @@ import OptionsMenu from '@/core/components/option-menu'
 import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import { formatDate } from '@/core/utils/convert-date'
+import { useAppDispatch } from '@/hooks/redux'
 import StatusColor from '@/services/common/statusColor'
+import { deleteScrumboard } from '@/store/scrumboardSlice'
 import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 interface ScrumboardCardContentType {
   data: ScrumboardType
   member: ScrumboardMemberType[]
+  setOpen: Dispatch<SetStateAction<boolean>>
+  setScrumboardEdit: Dispatch<SetStateAction<ScrumboardType | undefined>>
 }
-const ScrumboardCardContent = ({ data, member }: ScrumboardCardContentType) => {
+const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: ScrumboardCardContentType) => {
   const theme = useTheme()
   const { t } = useTranslation()
   const router = useRouter()
   const color = StatusColor(data.status)
+  const dispatch = useAppDispatch()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const handleDelete = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+    dispatch(deleteScrumboard(data.id))
+    setAnchorEl(null)
+  }
+
   const listItem = [
-    { icon: 'solar:star-bold-duotone', iconColor: 'yellow', text: !data.star ? `${t('pin')}` : `${t('unpin')}` },
-    { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('delete')}` }
+    {
+      icon: 'solar:star-bold-duotone',
+      iconColor: 'yellow',
+      text: !data.star ? `${t('pin')}` : `${t('unpin')}`
+    },
+    { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('delete')}`, handleItem: handleDelete }
   ]
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
@@ -69,7 +84,11 @@ const ScrumboardCardContent = ({ data, member }: ScrumboardCardContentType) => {
             title={`${t('edit')}`}
             icon='mdi:edit'
             statusColor={data.status}
-            onClick={e => e.stopPropagation()}
+            onClick={e => {
+              e.stopPropagation()
+              setOpen(true)
+              setScrumboardEdit(data)
+            }}
           />
         </Box>
       </Box>

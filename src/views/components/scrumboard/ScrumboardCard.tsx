@@ -6,6 +6,8 @@ import StatusColor from '@/services/common/statusColor'
 import { useRouter } from 'next/router'
 import { ScrumboardType } from '@/types/ScrumboardType'
 import { useAppSelector } from '@/hooks/redux'
+import { Dispatch, SetStateAction, useEffect } from 'react'
+import ScrumboardForm from './ScrumboardForm'
 const CustomCard = styled(Card)(({ theme }) => ({
   width: 275,
   height: 325,
@@ -26,8 +28,10 @@ const TypographyStyled = styled(Typography)({
 })
 interface ScrumboardCardType {
   data: ScrumboardType
+  setOpen: Dispatch<SetStateAction<boolean>>
+  setScrumboardEdit: Dispatch<SetStateAction<ScrumboardType | undefined>>
 }
-const ScrumboardCard = ({ data }: ScrumboardCardType) => {
+const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType) => {
   const color = StatusColor(data.status)
   const router = useRouter()
   const member = useAppSelector(state => state.scrumboard.member).filter(item => item.scrumboard_id == data.id)
@@ -60,7 +64,7 @@ const ScrumboardCard = ({ data }: ScrumboardCardType) => {
           {data.description}
         </TypographyStyled>
         <Divider />
-        <ScrumboardCardContent data={data} member={member} />
+        <ScrumboardCardContent data={data} member={member} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
       </CardContent>
     </CustomCard>
   )

@@ -1,12 +1,16 @@
 import CustomDialog from '@/core/components/dialog'
 import Input from '@/core/components/input'
 import { convertDate } from '@/core/utils/convert-date'
+import { useAppDispatch } from '@/hooks/redux'
+import { addScrumboard, updateScrumboard } from '@/store/scrumboardSlice'
+import { ScrumboardType } from '@/types/ScrumboardType'
 import { FormControl, FormControlLabel, FormHelperText, Grid, InputLabel, Switch } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { v4 as uuidv4 } from 'uuid'
 
 interface FormData {
   title: string
@@ -15,41 +19,82 @@ interface FormData {
   end_time?: Date
   star: boolean
 }
-const defaultValues: FormData = {
-  title: '',
-  description: '',
-  begin_time: new Date(),
-  star: false
-}
 
 interface ScrumboardFormProps {
   open: boolean
+  data?: ScrumboardType
   setOpen: Dispatch<SetStateAction<boolean>>
 }
 const ScrumboardForm = (props: ScrumboardFormProps) => {
-  const { open, setOpen } = props
+  const { open, setOpen, data } = props
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
 
   const handleClose = () => {
     setOpen(false)
   }
-  const handleSave = (data: FormData) => {
-    console.log(data)
+  const defaultValues: FormData = useMemo(() => {
+    return {
+      title: data ? data.title : '',
+      description: data ? data.description : '',
+      begin_time: data ? data.begin_time : new Date(),
+      end_time: data ? data.end_time : undefined,
+      star: data ? data.star : false
+    }
+  }, [data])
+
+  const handleSave = (dataForm: FormData) => {
+    if (data) {
+      const scrumboardEdit: ScrumboardType = {
+        id: data.id,
+        image: data.image,
+        title: dataForm.title,
+        description: dataForm.description,
+        begin_time: dataForm.begin_time,
+        end_time: dataForm?.end_time,
+        progress: data.progress,
+        status: dayjs(new Date()).isAfter(dataForm.begin_time) ? 'active' : 'init',
+        star: dataForm.star
+      }
+      dispatch(updateScrumboard(scrumboardEdit))
+    } else {
+      const newScrumboard: ScrumboardType = {
+        id: uuidv4(),
+        image: `/images/scrumboard/${Math.floor(Math.random() * 5) + 1}.jpg`,
+        title: dataForm.title,
+        description: dataForm.description,
+        begin_time: dataForm.begin_time,
+        end_time: dataForm?.end_time,
+        progress: 0,
+        status: dayjs(new Date()).isAfter(dataForm.begin_time) ? 'active' : 'init',
+        star: dataForm.star
+      }
+      dispatch(addScrumboard(newScrumboard))
+    }
+    reset()
     setOpen(false)
   }
+  useEffect(() => {
+    reset(defaultValues)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues])
   const {
     control,
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors }
-  } = useForm({ defaultValues, mode: 'onChange' })
+  } = useForm({
+    defaultValues,
+    mode: 'onChange'
+  })
   return (
     <CustomDialog
       open={open}
-      title={t('add') + ' ' + t('scrumboard')}
+      title={data ? t('edit') : t('add') + ' ' + t('scrumboard')}
       closeName={t('cancel')}
-      saveName={t('add')}
+      saveName={data ? t('edit') : t('add')}
       handleClose={handleClose}
       handleSave={handleSubmit(handleSave)}
       sx={{ '.MuiPaper-root': { width: '100%' } }}

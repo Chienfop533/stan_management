@@ -5,7 +5,12 @@ type OptionsMenuProp = {
   id: string
   anchorEl: null | HTMLElement
   setAnchorEl: Dispatch<SetStateAction<HTMLElement | null>>
-  listItem: { icon: string; iconColor?: string; text: string }[]
+  listItem: {
+    icon: string
+    iconColor?: string
+    text: string
+    handleItem?: React.MouseEventHandler<HTMLLIElement> | undefined
+  }[]
 }
 const MenuStyled = styled(Menu)(({ theme }) => ({
   '& .MuiPaper-root': {
@@ -35,7 +40,7 @@ const OptionsMenu = (props: OptionsMenuProp) => {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {listItem.map(item => (
-        <MenuItem key={item.text}>
+        <MenuItem key={item.text} onClick={item.handleItem}>
           <IconifyIcon icon={item.icon} color={item.iconColor} fontSize={18} />
           <Typography sx={{ ml: 4 }}>{item.text}</Typography>
         </MenuItem>

@@ -7,7 +7,7 @@ import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ScrumboardPage = () => {
@@ -15,9 +15,10 @@ const ScrumboardPage = () => {
   const starData = data.filter(item => item.star == true)
   const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
+  const [scrumboardEdit, setScrumboardEdit] = useState<ScrumboardType | undefined>(undefined)
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-      <ScrumboardForm open={open} setOpen={setOpen} />
+      <ScrumboardForm open={open} setOpen={setOpen} data={scrumboardEdit} />
       <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('scrumboard')}`} type='mainPage'>
         <Grid
           item
@@ -42,7 +43,14 @@ const ScrumboardPage = () => {
             name={`${t('all')}`}
             onClick={() => console.log('ok')}
           />
-          <ButtonWithIcon sx={{ mr: 2 }} icon='gg:add' name={`${t('add')}`} onClick={() => setOpen(true)} />
+          <ButtonWithIcon
+            sx={{ mr: 2 }}
+            icon='gg:add'
+            name={`${t('add')}`}
+            onClick={() => {
+              setOpen(true)
+            }}
+          />
         </Grid>
       </CustomPageHeader>
       {starData.length > 0 ? (
@@ -66,7 +74,9 @@ const ScrumboardPage = () => {
               {`${t('scrumboard_no_data')}`}
             </Typography>
           ) : (
-            starData.map((data: ScrumboardType) => <ScrumboardCard key={data.id} data={data} />)
+            starData.map((data: ScrumboardType) => (
+              <ScrumboardCard key={data.id} data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+            ))
           )}
         </Box>
       ) : null}
@@ -89,7 +99,9 @@ const ScrumboardPage = () => {
             {`${t('scrumboard_no_data')}`}
           </Typography>
         ) : (
-          data.map((data: ScrumboardType) => <ScrumboardCard key={data.id} data={data} />)
+          data.map((data: ScrumboardType) => (
+            <ScrumboardCard key={data.id} data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+          ))
         )}
       </Box>
     </Box>
