@@ -1,3 +1,4 @@
+import CustomToastContainer from '@/core/components/toast'
 import { Box, BoxProps, styled } from '@mui/material'
 import { ReactNode } from 'react'
 
@@ -12,7 +13,12 @@ interface BlankLayoutProps {
   children: ReactNode
 }
 const BlankLayout = ({ children }: BlankLayoutProps) => {
-  return <BlankLayoutWrapper>{children}</BlankLayoutWrapper>
+  return (
+    <BlankLayoutWrapper>
+      {children}
+      <CustomToastContainer />
+    </BlankLayoutWrapper>
+  )
 }
 
 export default BlankLayout

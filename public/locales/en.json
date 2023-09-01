@@ -62,5 +62,12 @@
   "description": "Description",
   "begin_time": "Begin time",
   "end_time": "End time",
-  "unpin": "Unpin"
+  "unpin": "Unpin",
+  "full_name": "Full Name",
+  "require_field": "Please enter {{field}}",
+  "action_message_success": "{{action}} successfully!",
+  "action_message_fail": "{{action}} failed!",
+  "error_message": {
+    "register": "Email already exist, please login or register another email"
+  }
 }

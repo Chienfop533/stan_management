@@ -5,6 +5,7 @@ import DrawerLayout from './DrawerLayout'
 import ScrollToTop from '@/core/components/scroll-to-top'
 import IconifyIcon from '@/core/components/icon'
 import MediaQuery from '@/core/utils/media-query'
+import CustomToastContainer from '@/core/components/toast'
 
 interface UserLayoutProps {
   children: ReactNode
@@ -49,6 +50,7 @@ const UserLayout = ({ children }: UserLayoutProps) => {
   return (
     <UserLayoutWrapper>
       <DrawerLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+      <CustomToastContainer />
       <MainContentWrapper>
         <AppBarLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <ContentWrapper

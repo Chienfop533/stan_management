@@ -62,5 +62,12 @@
   "description": "Mô tả",
   "begin_time": "Ngày bắt đầu",
   "end_time": "Ngày kết thúc",
-  "unpin": "Bỏ ghim"
+  "unpin": "Bỏ ghim",
+  "full_name": "Họ tên",
+  "require_field": "Vui lòng nhập {{field}}",
+  "action_message_success": "{{action}} thành công!",
+  "action_message_fail": "{{action}} thất bại!",
+  "error_message": {
+    "register": "Email đã tồn tại, vui lòng đăng nhập hoặc đăng ký email mới"
+  }
 }

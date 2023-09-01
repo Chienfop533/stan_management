@@ -46,6 +46,7 @@ const LoginPage = () => {
     const { email, password } = formData
     console.log(email, password, rememberMe)
   }
+
   return (
     <AuthPage>
       <Typography variant='h1'>{t('login')}</Typography>
@@ -119,7 +120,7 @@ const LoginPage = () => {
               control={control}
               rules={{
                 required: { value: true, message: t('require_email') },
-                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: t('validate_email') }
+                pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t('validate_email') }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input

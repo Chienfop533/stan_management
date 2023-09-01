@@ -1,8 +1,10 @@
+import ImageConstant from '@/assets/images/images'
 import IconifyIcon from '@/core/components/icon'
 import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
 import { Progress } from '@/core/components/progress'
 import BlankLayout from '@/layouts/BlankLayout'
+import UserService from '@/services/api/UserService'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -16,31 +18,38 @@ import {
   Typography,
   styled
 } from '@mui/material'
+import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 interface FormData {
   email: string
+  full_name: string
   password: string
-  verifyPassword: string
+  verify_password: string
 }
 
 const defaultValues: FormData = {
   email: '',
+  full_name: '',
   password: '',
-  verifyPassword: ''
+  verify_password: ''
 }
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showPassword2, setShowPassword2] = useState<boolean>(false)
   const [countProgress, setCountProgress] = useState<number>(0)
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const { t } = useTranslation()
+  const router = useRouter()
 
   const {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors }
   } = useForm({ defaultValues, mode: 'onChange' })
 
@@ -56,9 +65,24 @@ const RegisterPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('password')])
 
-  const onSubmit = (formData: FormData) => {
-    const { email, password } = formData
-    console.log(email, password)
+  const onSubmit = async (formData: FormData) => {
+    const { email, password, full_name } = formData
+    const response: any = await UserService.register({
+      avatar: ImageConstant.defaultAvatar,
+      full_name,
+      email,
+      password
+    })
+    console.log(response)
+    if (response.success) {
+      setErrorMessage('')
+      toast.success(t('action_message_success', { action: t('sign_up') }))
+      reset()
+      router.push('/login')
+    } else {
+      setErrorMessage(t('error_message.register'))
+      toast.error(t('action_message_fail', { action: t('sign_up') }))
+    }
   }
 
   return (
@@ -67,6 +91,7 @@ const RegisterPage = () => {
       <Typography fontSize={18}>{t('your_app')}</Typography>
       <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+          <Typography sx={{ fontSize: 14, color: 'error.main' }}>{errorMessage}</Typography>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='email' error={Boolean(errors.email)}>
               Email
@@ -76,7 +101,7 @@ const RegisterPage = () => {
               control={control}
               rules={{
                 required: { value: true, message: t('require_email') },
-                pattern: { value: /^[^s@]+@[^s@]+.[^s@]+$/, message: t('validate_email') }
+                pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t('validate_email') }
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -91,6 +116,33 @@ const RegisterPage = () => {
               )}
             />
             {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
+          </FormControl>
+          <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
+            <InputLabel htmlFor='full_name' error={Boolean(errors.full_name)}>
+              {t('full_name')}
+            </InputLabel>
+            <Controller
+              name='full_name'
+              control={control}
+              rules={{
+                required: { value: true, message: t('require_field', { field: t('full_name') }) },
+                minLength: { value: 5, message: t('min_characters', { number: 5 }) }
+              }}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <Input
+                  value={value}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  id='full_name'
+                  label={t('full_name')}
+                  type='text'
+                  error={Boolean(errors.full_name)}
+                />
+              )}
+            />
+            {errors.full_name && (
+              <FormHelperText sx={{ color: 'error.main' }}>{errors.full_name.message}</FormHelperText>
+            )}
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='password' error={Boolean(errors.password)}>
@@ -152,11 +204,11 @@ const RegisterPage = () => {
           </Box>
           <Typography sx={{ mt: 4, color: 'text.disabled', fontSize: 14 }}>{t('rule_password')}</Typography>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
-            <InputLabel htmlFor='verifyPassword' error={Boolean(errors.verifyPassword)}>
+            <InputLabel htmlFor='verify_password' error={Boolean(errors.verify_password)}>
               {t('confirm_password')}
             </InputLabel>
             <Controller
-              name='verifyPassword'
+              name='verify_password'
               control={control}
               rules={{
                 required: { value: true, message: t('require_password') },
@@ -168,10 +220,10 @@ const RegisterPage = () => {
                   value={value}
                   onBlur={onBlur}
                   onChange={onChange}
-                  id='verifyPassword'
-                  label='Xác nhận mật khẩu'
+                  id='verify_password'
+                  label={t('confirm_password')}
                   type={showPassword2 ? 'text' : 'password'}
-                  error={Boolean(errors.verifyPassword)}
+                  error={Boolean(errors.verify_password)}
                   endAdornment={
                     <InputAdornment position='end'>
                       <IconButton
@@ -186,8 +238,8 @@ const RegisterPage = () => {
                 />
               )}
             />
-            {errors.verifyPassword && (
-              <FormHelperText sx={{ color: 'error.main' }}>{errors.verifyPassword.message}</FormHelperText>
+            {errors.verify_password && (
+              <FormHelperText sx={{ color: 'error.main' }}>{errors.verify_password.message}</FormHelperText>
             )}
           </FormControl>
           <Button

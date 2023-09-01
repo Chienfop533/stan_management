@@ -1,6 +1,7 @@
 import ThemeComponent from '@/core/theme/ThemeComponent'
 import UserLayout from '@/layouts/UserLayout'
 import '@/styles/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
