@@ -3,6 +3,7 @@ import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import BlankLayout from '@/layouts/BlankLayout'
+import UserService from '@/services/api/UserService'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -17,9 +18,11 @@ import {
   InputLabel,
   Typography
 } from '@mui/material'
+import { useRouter } from 'next/router'
 import { ReactNode, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 interface FormData {
   email: string
@@ -34,17 +37,34 @@ const defaultValues: FormData = {
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const { t } = useTranslation()
+  const router = useRouter()
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({ defaultValues, mode: 'onChange' })
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     const { email, password } = formData
-    console.log(email, password, rememberMe)
+    const response: any = await UserService.login({
+      email,
+      password,
+      remember_me: rememberMe
+    })
+    if (response.success) {
+      setErrorMessage('')
+      toast.success(t('action_message_success', { action: t('login') }))
+      sessionStorage.setItem('accessToken', response.accessToken)
+      reset()
+      router.push('/manage/scrumboard')
+    } else {
+      setErrorMessage(t('error_message.login'))
+      toast.error(t('action_message_fail', { action: t('login') }))
+    }
   }
 
   return (
@@ -111,6 +131,7 @@ const LoginPage = () => {
       <Divider sx={{ fontSize: 16, width: '100%', maxWidth: 450, fontWeight: 500 }}>{t('or_with') + ' Email'}</Divider>
       <Box sx={{ width: '100%', maxWidth: 400 }}>
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+          <Typography sx={{ fontSize: 14, color: 'error.main' }}>{errorMessage}</Typography>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='email' error={Boolean(errors.email)}>
               Email

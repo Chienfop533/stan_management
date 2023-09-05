@@ -1,8 +1,10 @@
 import IconifyIcon from '@/core/components/icon'
+import UserService from '@/services/api/UserService'
 import { Avatar, Box, Divider, IconButton, Menu, MenuItem, MenuItemProps, Typography, styled } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   margin: '0 0.5rem',
@@ -19,6 +21,18 @@ const UserDropdown = () => {
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+  const handleLogout = async () => {
+    const response: any = await UserService.logout()
+    console.log(response)
+
+    if (response.success) {
+      toast.success(t('action_message_success', { action: t('logout') }))
+      sessionStorage.removeItem('accessToken')
+      router.push('/login')
+    } else {
+      toast.error(t('action_message_fail', { action: t('logout') }))
+    }
   }
   return (
     <>
@@ -63,7 +77,7 @@ const UserDropdown = () => {
           <Typography sx={{ ml: 4 }}>{t('profile')}</Typography>
         </MenuItemStyled>
         <Divider />
-        <MenuItemStyled onClick={() => router.push('/login')}>
+        <MenuItemStyled onClick={handleLogout}>
           <IconifyIcon icon='ic:round-logout' color='red' />
           <Typography sx={{ ml: 4, color: 'red.dark' }}>{t('logout')}</Typography>
         </MenuItemStyled>

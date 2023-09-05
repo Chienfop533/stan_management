@@ -2,9 +2,10 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const axiosClient = axios.create({
   baseURL: 'http://localhost:4000',
-  headers: { 'Content-Type': 'application/json' }
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true
 })
-
+axios.defaults.withCredentials = true
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
     if (response && response.data) {
@@ -18,7 +19,7 @@ axiosClient.interceptors.response.use(
 )
 axiosClient.interceptors.request.use(
   function (config) {
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = sessionStorage.getItem('accessToken')
     config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : ''
     return config
   },

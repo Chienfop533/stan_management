@@ -73,7 +73,6 @@ const RegisterPage = () => {
       email,
       password
     })
-    console.log(response)
     if (response.success) {
       setErrorMessage('')
       toast.success(t('action_message_success', { action: t('sign_up') }))

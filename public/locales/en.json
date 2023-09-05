@@ -68,6 +68,7 @@
   "action_message_success": "{{action}} successfully!",
   "action_message_fail": "{{action}} failed!",
   "error_message": {
-    "register": "Email already exist, please login or register another email"
+    "register": "Email already exist, please login or register another email",
+    "login": "Email or password not correct"
   }
 }

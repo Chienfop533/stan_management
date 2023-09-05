@@ -68,6 +68,7 @@
   "action_message_success": "{{action}} thành công!",
   "action_message_fail": "{{action}} thất bại!",
   "error_message": {
-    "register": "Email đã tồn tại, vui lòng đăng nhập hoặc đăng ký email mới"
+    "register": "Email đã tồn tại, vui lòng đăng nhập hoặc đăng ký email mới",
+    "login": "Email hoặc mật khẩu không chính xác"
   }
 }
