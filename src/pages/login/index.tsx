@@ -2,6 +2,7 @@ import IconifyIcon from '@/core/components/icon'
 import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
+import { useAuth } from '@/hooks/useAuth'
 import BlankLayout from '@/layouts/BlankLayout'
 import UserService from '@/services/api/UserService'
 import AuthPage from '@/views/pages/auth/AuthPage'
@@ -40,6 +41,7 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { t } = useTranslation()
   const router = useRouter()
+  const auth = useAuth()
 
   const {
     control,
@@ -50,17 +52,12 @@ const LoginPage = () => {
 
   const onSubmit = async (formData: FormData) => {
     const { email, password } = formData
-    const response: any = await UserService.login({
-      email,
-      password,
-      remember_me: rememberMe
-    })
+    const response: any = await auth.login({ email, password, remember_me: rememberMe })
+
     if (response.success) {
       setErrorMessage('')
       toast.success(t('action_message_success', { action: t('login') }))
-      sessionStorage.setItem('accessToken', response.accessToken)
       reset()
-      router.push('/manage/scrumboard')
     } else {
       setErrorMessage(t('error_message.login'))
       toast.error(t('action_message_fail', { action: t('login') }))
@@ -230,4 +227,6 @@ const LoginPage = () => {
 }
 
 LoginPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+LoginPage.authGuard = false
+
 export default LoginPage

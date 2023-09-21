@@ -5,7 +5,6 @@ const axiosClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true
 })
-axios.defaults.withCredentials = true
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
     if (response && response.data) {
@@ -18,8 +17,32 @@ axiosClient.interceptors.response.use(
   }
 )
 axiosClient.interceptors.request.use(
-  function (config) {
-    const accessToken = sessionStorage.getItem('accessToken')
+  async function (config) {
+    let accessToken = sessionStorage.getItem('accessToken')
+    const verify = await fetch('http://localhost:4000/auth/verifyToken', {
+      headers: { Authorization: `Bearer ${accessToken}` },
+      method: 'POST',
+      credentials: 'include'
+    })
+      .then(response => response.json())
+      .catch(err => {
+        console.log(err)
+      })
+    if (!verify.success) {
+      const response = await fetch('http://localhost:4000/auth/refreshToken', {
+        method: 'POST',
+        credentials: 'include'
+      })
+        .then(response => response.json())
+        .catch(err => {
+          console.log(err)
+        })
+      if (response.success) {
+        accessToken = response.accessToken
+        sessionStorage.setItem('accessToken', accessToken as string)
+      }
+    }
+
     config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : ''
     return config
   },

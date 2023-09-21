@@ -1,4 +1,5 @@
 import IconifyIcon from '@/core/components/icon'
+import { useAuth } from '@/hooks/useAuth'
 import UserService from '@/services/api/UserService'
 import { Avatar, Box, Divider, IconButton, Menu, MenuItem, MenuItemProps, Typography, styled } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -16,6 +17,7 @@ const UserDropdown = () => {
   const open = Boolean(anchorEl)
   const router = useRouter()
   const { t } = useTranslation()
+  const auth = useAuth()
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -23,13 +25,9 @@ const UserDropdown = () => {
     setAnchorEl(null)
   }
   const handleLogout = async () => {
-    const response: any = await UserService.logout()
-    console.log(response)
-
+    const response: any = await auth.logout()
     if (response.success) {
       toast.success(t('action_message_success', { action: t('logout') }))
-      sessionStorage.removeItem('accessToken')
-      router.push('/login')
     } else {
       toast.error(t('action_message_fail', { action: t('logout') }))
     }
@@ -38,7 +36,11 @@ const UserDropdown = () => {
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', ml: 2 }}>
         <IconButton aria-haspopup='true' onClick={handleClick} aria-controls={open ? 'profile' : undefined}>
-          <Avatar sx={{ width: 40, height: 40 }} alt='Avatar' src='/images/default_avatar.png'></Avatar>
+          <Avatar
+            sx={{ width: 40, height: 40 }}
+            alt='Avatar'
+            src={auth?.user?.avatar || '/images/default_avatar.png'}
+          ></Avatar>
         </IconButton>
       </Box>
       <Menu

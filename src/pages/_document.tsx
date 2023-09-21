@@ -1,9 +1,9 @@
-import { lato, nunito } from '@/assets/fonts/fonts'
+import { bungee, lato, nunito } from '@/assets/fonts/fonts'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang='en' className={`${lato.variable} ${nunito.variable}`}>
+    <Html lang='en' className={`${lato.variable} ${nunito.variable} ${bungee.variable}`}>
       <Head>
         <link rel='icon' href='/favicon.ico' />
       </Head>

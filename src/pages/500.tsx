@@ -1,4 +1,3 @@
-import { bungee_inline } from '@/assets/fonts/fonts'
 import IconifyIcon from '@/core/components/icon'
 import BlankLayout from '@/layouts/BlankLayout'
 import AuthPage from '@/views/pages/auth/AuthPage'
@@ -9,13 +8,12 @@ import { useTranslation } from 'react-i18next'
 
 const Error500 = () => {
   const route = useRouter()
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <AuthPage>
       <Typography
         variant='h1'
-        className={bungee_inline.className}
-        sx={{ fontSize: 64, color: 'green.dark', margin: '1rem' }}
+        sx={{ fontSize: 64, color: 'green.dark', margin: '1rem', fontFamily: 'var(--font-bungee)' }}
       >
         500
       </Typography>
@@ -39,4 +37,5 @@ const Error500 = () => {
   )
 }
 Error500.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+
 export default Error500

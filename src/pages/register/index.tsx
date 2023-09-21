@@ -261,5 +261,6 @@ const RegisterPage = () => {
 }
 
 RegisterPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+RegisterPage.authGuard = false
 
 export default RegisterPage
