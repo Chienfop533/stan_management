@@ -38,7 +38,7 @@ const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const verifyAccessToken = async () => {
       const response: any = await UserService.verifyToken()
-      if (response.success) {
+      if (response?.success) {
         setLoading(false)
         const userData: UserType = {
           id: response.data._id,
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }: Props) => {
   }, [])
   const handleLogin = async (params: LoginParams) => {
     const response: any = await UserService.login(params)
-    if (response.success) {
+    if (response?.success) {
       handleDataOnAccessSuccess(response.data)
       sessionStorage.setItem('accessToken', response.accessToken)
     }
@@ -71,7 +71,7 @@ const AuthProvider = ({ children }: Props) => {
   }
   const handleLogout = async () => {
     const response: any = await UserService.logout()
-    if (response.success) {
+    if (response?.success) {
       sessionStorage.removeItem('accessToken')
       localStorage.removeItem('userData')
       setUser(null)
@@ -90,7 +90,7 @@ const AuthProvider = ({ children }: Props) => {
     setUser({ ...userData })
     window.localStorage.setItem('userData', JSON.stringify(userData))
     const returnUrl = router.query.returnUrl
-    const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+    const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/personal/dashboard'
     router.replace(redirectURL as string)
   }
 

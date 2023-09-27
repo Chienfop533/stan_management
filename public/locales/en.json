@@ -19,7 +19,7 @@
   "activity": "Activity",
   "manage": "Manage",
   "schedule_management": "Schedule Management",
-  "calendar": "Calendar",
+  "plan": "Calendar",
   "tasks": "Tasks",
   "task_management": "Task Management",
   "scrumboard": "Scrumboard",
@@ -70,5 +70,11 @@
   "error_message": {
     "register": "Email already exist, please login or register another email",
     "login": "Email or password not correct"
-  }
+  },
+  "scrumboard_detail": "Scrumboard detail",
+  "filter": "Filter",
+  "calendar": "Calendar",
+  "scrumboard_edit": "Edit scrumboard",
+  "scrumboard_delete": "Delete scrumboard",
+  "scrumboard_pause": "Pause scrumboard"
 }

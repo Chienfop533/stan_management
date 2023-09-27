@@ -1,4 +1,4 @@
-import { bungee } from '@/assets/fonts/fonts'
+import { bungee, nunito } from '@/assets/fonts/fonts'
 import IconifyIcon from '@/core/components/icon'
 import { LinkStyled } from '@/core/components/link'
 import {
@@ -156,7 +156,7 @@ const DrawerLayout = ({
             <Typography
               variant='h1'
               className={bungee.className}
-              sx={{ ml: 4, color: 'turquoise.dark', fontFamily: 'var(--font-bungee)' }}
+              sx={{ ml: 4, color: 'turquoise.dark', fontFamily: bungee.style.fontFamily }}
             >
               Stan
             </Typography>
@@ -171,7 +171,9 @@ const DrawerLayout = ({
             alt='Avatar'
             src={auth?.user?.avatar || '/images/default_avatar.png'}
           ></Avatar>
-          <Typography variant='h3'>{auth?.user?.full_name}</Typography>
+          <Typography variant='h3' sx={{ mt: 2 }}>
+            {auth?.user?.full_name}
+          </Typography>
           <Typography>{auth?.user?.email}</Typography>
         </DrawerProfile>
         <Divider sx={{ margin: '0 1rem' }}></Divider>
@@ -189,7 +191,7 @@ const DrawerLayout = ({
                   sx={{
                     position: 'static',
                     textTransform: 'uppercase',
-                    fontFamily: 'var(--font-nunito)',
+                    fontFamily: nunito.style.fontFamily,
                     lineHeight: '36px',
                     background: 'transparent'
                   }}

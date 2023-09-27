@@ -17,7 +17,7 @@ const CustomPageHeader = (props: HeaderProps) => {
     }
   }
   return (
-    <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+    <Grid container sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
       {!tablet ? headerElement() : null}
       <Grid item container xs={12} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
         {children}

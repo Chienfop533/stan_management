@@ -1,3 +1,4 @@
+import { nunito } from '@/assets/fonts/fonts'
 import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle, TextField } from '@mui/material'
 import { MouseEventHandler, ReactNode } from 'react'
 type CustomDialogProps = {
@@ -14,7 +15,7 @@ const CustomDialog = (props: CustomDialogProps) => {
   const { open, title, children, handleClose, handleSave, closeName, saveName, sx } = props
   return (
     <Dialog open={open} onClose={handleClose} disableScrollLock={true} sx={{ ...sx }}>
-      <DialogTitle sx={{ fontFamily: 'var(--font-nunito)' }}>{title}</DialogTitle>
+      <DialogTitle sx={{ fontFamily: nunito.style.fontFamily }}>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
         <Button variant='contained' color='error' sx={{ fontWeight: 600, boxShadow: 'none' }} onClick={handleClose}>

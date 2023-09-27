@@ -19,7 +19,7 @@ const HeaderTitle = (props: HeaderTitleProps) => {
   const redirectToBack = () => {
     //Xử lý khi người dùng vào từ 1 link khác
     if (window?.history?.state?.idx == 0) {
-      router.push('/dashboard')
+      router.push('/personal/dashboard')
     } else {
       router.back()
     }
@@ -29,7 +29,18 @@ const HeaderTitle = (props: HeaderTitleProps) => {
       <IconButton onClick={type == 'subPage' ? redirectToBack : undefined}>
         <IconifyIcon icon={type == 'subPage' ? 'ic:round-keyboard-backspace' : icon} fontSize={24} />
       </IconButton>
-      <Typography variant='h3'>{pageTitle}</Typography>
+      <Typography
+        variant='h3'
+        sx={{
+          maxWidth: 450,
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: '1',
+          WebkitBoxOrient: 'vertical'
+        }}
+      >
+        {pageTitle}
+      </Typography>
     </Grid>
   )
 }

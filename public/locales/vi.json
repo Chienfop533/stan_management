@@ -19,7 +19,7 @@
   "activity": "Hoạt động",
   "manage": "Quản lý",
   "schedule_management": "Quản lý lịch trình",
-  "calendar": "Lên kế hoạch",
+  "plan": "Lên kế hoạch",
   "tasks": "Đã thực hiện",
   "task_management": "Quản lý công việc",
   "scrumboard": "Bảng công việc",
@@ -70,5 +70,11 @@
   "error_message": {
     "register": "Email đã tồn tại, vui lòng đăng nhập hoặc đăng ký email mới",
     "login": "Email hoặc mật khẩu không chính xác"
-  }
+  },
+  "scrumboard_detail": "Chi tiết bảng công việc",
+  "filter": "Lọc",
+  "calendar": "Lịch",
+  "scrumboard_edit": "Chỉnh sửa",
+  "scrumboard_delete": "Xóa bảng",
+  "scrumboard_pause": "Tạm dừng"
 }

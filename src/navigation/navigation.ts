@@ -47,7 +47,7 @@ const navigation: NavigationType[] = [
         icon: 'solar:calendar-outline',
         children: [
           {
-            title: 'calender',
+            title: 'plan',
             type: 'item',
             path: '/manage/schedule',
             icon: 'grommet-icons:plan'

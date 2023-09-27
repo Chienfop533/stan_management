@@ -1,5 +1,5 @@
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
-import { Card, CardContent, Divider, Typography, styled } from '@mui/material'
+import { Box, Card, CardContent, Divider, Typography, styled } from '@mui/material'
 import Image from 'next/image'
 import ScrumboardCardContent from './ScrumboardCardContent'
 import StatusColor from '@/services/common/statusColor'
@@ -40,14 +40,17 @@ const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType
       sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}
       onClick={() => router.push(`/manage/scrumboard/${data.id}`)}
     >
-      <Image
-        src={data.image}
-        alt='project_name'
-        width={250}
-        height={60}
-        style={{ borderRadius: '10px', objectFit: 'cover', display: 'flex', margin: '0 auto' }}
-        priority={true}
-      />
+      <Box sx={{ width: '100%', height: '60px', position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
+        <Image
+          src={data.image}
+          alt='project_name'
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          fill
+          style={{ objectFit: 'cover' }}
+          priority={true}
+        />
+      </Box>
+
       <CardContent sx={{ padding: '0px !important' }}>
         <TypographyStyled
           variant='h3'
@@ -55,7 +58,8 @@ const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType
             fontSize: '16px',
             mt: 2,
             mb: 1,
-            mx: 1
+            mx: 1,
+            color: color
           }}
         >
           {data.title}

@@ -3,8 +3,16 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang='en' className={`${lato.variable} ${nunito.variable} ${bungee.variable}`}>
+    <Html lang='en'>
       <Head>
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Bungee&family=Lato:wght@400;700&family=Nunito:wght@700&display=swap'
+          rel='stylesheet'
+        />
+        <link rel='apple-touch-icon' sizes='192x192' href='/images/stan_logo_192.png' />
+        <link rel='shortcut icon' href='/images/stan_logo_32.png' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <body>

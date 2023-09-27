@@ -1,6 +1,7 @@
 import { Menu, MenuItem, Typography, styled } from '@mui/material'
 import React, { Dispatch, SetStateAction } from 'react'
 import IconifyIcon from '../icon'
+import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 type OptionsMenuProp = {
   id: string
   anchorEl: null | HTMLElement
@@ -40,9 +41,19 @@ const OptionsMenu = (props: OptionsMenuProp) => {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {listItem.map(item => (
-        <MenuItem key={item.text} onClick={item.handleItem}>
+        <MenuItem
+          key={item.text}
+          onClick={item.handleItem}
+          sx={theme => ({
+            mx: '0.5rem',
+            borderRadius: '5px',
+            ':hover': { backgroundColor: item.iconColor == 'red' ? hexToRGBA(theme.palette.red.light, 0.6) : undefined }
+          })}
+        >
           <IconifyIcon icon={item.icon} color={item.iconColor} fontSize={18} />
-          <Typography sx={{ ml: 4 }}>{item.text}</Typography>
+          <Typography sx={theme => ({ ml: 4, color: item.iconColor == 'red' ? theme.palette.red.dark : undefined })}>
+            {item.text}
+          </Typography>
         </MenuItem>
       ))}
     </MenuStyled>

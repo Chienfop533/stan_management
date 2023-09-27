@@ -1,3 +1,4 @@
+import { bungee } from '@/assets/fonts/fonts'
 import IconifyIcon from '@/core/components/icon'
 import BlankLayout from '@/layouts/BlankLayout'
 import AuthPage from '@/views/pages/auth/AuthPage'
@@ -13,7 +14,7 @@ const Error500 = () => {
     <AuthPage>
       <Typography
         variant='h1'
-        sx={{ fontSize: 64, color: 'green.dark', margin: '1rem', fontFamily: 'var(--font-bungee)' }}
+        sx={{ fontSize: 64, color: 'green.dark', margin: '1rem', fontFamily: bungee.style.fontFamily }}
       >
         500
       </Typography>
@@ -26,7 +27,7 @@ const Error500 = () => {
         size='large'
         variant='contained'
         sx={{ margin: '2rem', borderRadius: '10px', height: '45px', maxWidth: 400 }}
-        onClick={() => route.push('/')}
+        onClick={() => route.push('/personal/dashboard')}
       >
         <IconifyIcon icon='ion:arrow-back' />
         <Typography component='span' sx={{ ml: 4, fontWeight: 600, fontSize: 16 }}>
