@@ -1,4 +1,3 @@
-import { bungee } from '@/assets/fonts/fonts'
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
@@ -19,7 +18,7 @@ const AuthWrapper = () => {
   return (
     <BoxWrapper>
       <Image src='/images/stan_logo.svg' width={200} height={200} priority={true} alt='Stan logo' />
-      <Typography variant='h1' sx={{ fontFamily: `${bungee.style.fontFamily} !important`, color: 'turquoise.dark' }}>
+      <Typography variant='h1' sx={{ fontFamily: 'Bungee', color: 'turquoise.dark' }}>
         Stan Management
       </Typography>
       <Typography variant='h2' sx={{ m: 6 }}>

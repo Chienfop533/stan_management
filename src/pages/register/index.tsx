@@ -1,4 +1,4 @@
-import ImageConstant from '@/assets/images/images'
+import ImageConstant from '@/constants/images'
 import IconifyIcon from '@/core/components/icon'
 import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
@@ -14,9 +14,7 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
-  LinearProgress,
-  Typography,
-  styled
+  Typography
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'

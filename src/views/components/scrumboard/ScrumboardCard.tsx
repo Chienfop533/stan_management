@@ -40,16 +40,19 @@ const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType
       sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}
       onClick={() => router.push(`/manage/scrumboard/${data.id}`)}
     >
-      <Box sx={{ width: '100%', height: '60px', position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
-        <Image
-          src={data.image}
-          alt='project_name'
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-          fill
-          style={{ objectFit: 'cover' }}
-          priority={true}
-        />
-      </Box>
+      <Box
+        sx={{
+          width: '100%',
+          height: '60px',
+          position: 'relative',
+          borderRadius: '5px',
+          overflow: 'hidden',
+          backgroundImage: `url(${data.image})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundColor: theme => theme.palette.background.default
+        }}
+      ></Box>
 
       <CardContent sx={{ padding: '0px !important' }}>
         <TypographyStyled

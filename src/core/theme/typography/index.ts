@@ -1,26 +1,24 @@
-import { lato, nunito } from '@/assets/fonts/fonts'
-
 const typography = {
-  fontFamily: lato.style.fontFamily,
+  fontFamily: 'Lato',
   fontSize: 15,
   h1: {
-    fontFamily: nunito.style.fontFamily,
+    fontFamily: 'Nunito',
     fontSize: 32
   },
   h2: {
-    fontFamily: nunito.style.fontFamily,
+    fontFamily: 'Nunito',
     fontSize: 24
   },
   h3: {
-    fontFamily: nunito.style.fontFamily,
+    fontFamily: 'Nunito',
     fontSize: 18
   },
   body1: {
-    fontFamily: lato.style.fontFamily,
+    fontFamily: 'Lato',
     fontSize: 15
   },
   body2: {
-    fontFamily: nunito.style.fontFamily
+    fontFamily: 'Nunito'
   }
 }
 

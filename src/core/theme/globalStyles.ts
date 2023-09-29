@@ -1,18 +1,16 @@
-import { lato } from '@/assets/fonts/fonts'
-
 const GlobalStyles = () => {
   return {
     'p.MuiTypography-root': {
-      fontFamily: lato.style.fontFamily
+      fontFamily: 'Lato'
     },
     'div.MuiInputBase-root': {
-      fontFamily: lato.style.fontFamily
+      fontFamily: 'Lato'
     },
     'label.MuiFormLabel-root': {
-      fontFamily: lato.style.fontFamily
+      fontFamily: 'Lato'
     },
     'button.MuiButtonBase-root': {
-      fontFamily: lato.style.fontFamily
+      fontFamily: 'Lato'
     }
   }
 }

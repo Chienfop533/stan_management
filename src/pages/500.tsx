@@ -1,4 +1,3 @@
-import { bungee } from '@/assets/fonts/fonts'
 import IconifyIcon from '@/core/components/icon'
 import BlankLayout from '@/layouts/BlankLayout'
 import AuthPage from '@/views/pages/auth/AuthPage'
@@ -12,10 +11,7 @@ const Error500 = () => {
   const { t } = useTranslation()
   return (
     <AuthPage>
-      <Typography
-        variant='h1'
-        sx={{ fontSize: 64, color: 'green.dark', margin: '1rem', fontFamily: bungee.style.fontFamily }}
-      >
+      <Typography variant='h1' sx={{ fontSize: 64, color: 'green.dark', margin: '1rem', fontFamily: 'Bungee' }}>
         500
       </Typography>
       <Typography variant='h2' sx={{ fontSize: 32, color: 'red.dark', margin: '1rem', textAlign: 'center' }}>
