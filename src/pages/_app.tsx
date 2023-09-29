@@ -16,9 +16,15 @@ import { store } from '@/store'
 import { AuthProvider } from '@/context/AuthContext'
 import AuthGuard from '@/core/auth/AuthGuard'
 import GuestGuard from '@/core/auth/GuestGuard'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+import { createEmotionCache } from '@/core/utils/create-emotion-cache'
+import type { EmotionCache } from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
+  emotionCache: EmotionCache
 }
 type GuardProps = {
   authGuard: boolean
@@ -27,8 +33,20 @@ type GuardProps = {
 
 const ModeThemeProvider = dynamic(() => import('@/context/ModeThemeContext'), {
   ssr: false
-  // loading: () => <Spinner />
 })
+
+const clientSideEmotionCache = createEmotionCache()
+
+Router.events.on('routeChangeStart', () => {
+  NProgress.start()
+})
+Router.events.on('routeChangeError', () => {
+  NProgress.done()
+})
+Router.events.on('routeChangeComplete', () => {
+  NProgress.done()
+})
+
 const Guard = ({ children, authGuard }: GuardProps) => {
   if (authGuard) {
     return <AuthGuard fallback={<Spinner />}>{children}</AuthGuard>
@@ -37,12 +55,12 @@ const Guard = ({ children, authGuard }: GuardProps) => {
   }
 }
 export default function App(props: ExtendedAppProps) {
-  const { Component, pageProps } = props
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? ((page: ReactElement) => <UserLayout>{page}</UserLayout>)
   const authGuard = Component.authGuard ?? true
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>Stan Management</title>
         <meta name='description' content='Schedule, Task and Note Management' />
@@ -61,6 +79,6 @@ export default function App(props: ExtendedAppProps) {
           </ThemeComponent>
         </ModeThemeProvider>
       </AuthProvider>
-    </>
+    </CacheProvider>
   )
 }
