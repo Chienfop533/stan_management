@@ -105,7 +105,8 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
           value={data.progress}
           sx={{
             height: 12,
-            width: 140,
+            width: '100%',
+            maxWidth: 150,
             mx: 2,
             [`& .${linearProgressClasses.bar}`]: {
               backgroundColor: color
@@ -122,7 +123,7 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
           my: 1,
           position: 'absolute',
           bottom: '0.5rem',
-          width: 250,
+          width: 'calc(100% - 32px)',
           height: 36
         }}
       >

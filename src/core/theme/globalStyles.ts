@@ -1,16 +1,16 @@
 const GlobalStyles = () => {
   return {
     'p.MuiTypography-root': {
-      fontFamily: 'Lato'
+      fontFamily: 'Nunito'
     },
     'div.MuiInputBase-root': {
-      fontFamily: 'Lato'
+      fontFamily: 'Nunito'
     },
     'label.MuiFormLabel-root': {
-      fontFamily: 'Lato'
+      fontFamily: 'Nunito'
     },
     'button.MuiButtonBase-root': {
-      fontFamily: 'Lato'
+      fontFamily: 'Montserrat'
     }
   }
 }

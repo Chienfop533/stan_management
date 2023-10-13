@@ -7,18 +7,14 @@ import { useRouter } from 'next/router'
 import { ScrumboardType } from '@/types/ScrumboardType'
 import { useAppSelector } from '@/hooks/redux'
 import { Dispatch, SetStateAction, useEffect } from 'react'
-import ScrumboardForm from './ScrumboardForm'
 const CustomCard = styled(Card)(({ theme }) => ({
-  width: 275,
+  minWidth: 275,
+  width: '100%',
   height: 325,
   borderRadius: '10px',
   padding: '0.75rem',
   cursor: 'pointer',
-  margin: '1rem 1.5rem',
-  position: 'relative',
-  [theme.breakpoints.down('lg')]: {
-    margin: '1rem'
-  }
+  position: 'relative'
 }))
 const TypographyStyled = styled(Typography)({
   overflow: 'hidden',

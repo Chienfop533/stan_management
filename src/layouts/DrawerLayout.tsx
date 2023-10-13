@@ -185,7 +185,7 @@ const DrawerLayout = ({
                   sx={{
                     position: 'static',
                     textTransform: 'uppercase',
-                    fontFamily: 'Nunito',
+                    fontFamily: 'Montserrat',
                     lineHeight: '36px',
                     background: 'transparent'
                   }}

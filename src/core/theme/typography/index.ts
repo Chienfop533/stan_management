@@ -1,24 +1,24 @@
 const typography = {
-  fontFamily: 'Lato',
+  fontFamily: 'Nunito',
   fontSize: 15,
   h1: {
-    fontFamily: 'Nunito',
+    fontFamily: 'Montserrat',
     fontSize: 32
   },
   h2: {
-    fontFamily: 'Nunito',
+    fontFamily: 'Montserrat',
     fontSize: 24
   },
   h3: {
-    fontFamily: 'Nunito',
+    fontFamily: 'Montserrat',
     fontSize: 18
   },
   body1: {
-    fontFamily: 'Lato',
+    fontFamily: 'Nunito',
     fontSize: 15
   },
   body2: {
-    fontFamily: 'Nunito'
+    fontFamily: 'Montserrat'
   }
 }
 

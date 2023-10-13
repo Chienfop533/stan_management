@@ -62,22 +62,20 @@ const ScrumboardPage = () => {
         </Box>
       ) : null}
       {starData.length > 0 ? (
-        <Box
-          sx={theme => ({
-            display: 'flex',
-            flexWrap: 'wrap',
-            [theme.breakpoints.down('sm')]: { justifyContent: 'center' }
-          })}
-        >
-          {data.length == 0 ? (
-            <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-              {`${t('scrumboard_no_data')}`}
-            </Typography>
-          ) : (
-            starData.map((data: ScrumboardType) => (
-              <ScrumboardCard key={data.id} data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
-            ))
-          )}
+        <Box sx={{ flexGrow: 1, m: 4 }}>
+          <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={{ md: 8, sm: 6, xs: 4 }}>
+            {data.length == 0 ? (
+              <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
+                {`${t('scrumboard_no_data')}`}
+              </Typography>
+            ) : (
+              starData.map((data: ScrumboardType) => (
+                <Grid item key={data.id} md={4} sm={4} xs={4}>
+                  <ScrumboardCard data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+                </Grid>
+              ))
+            )}
+          </Grid>
         </Box>
       ) : null}
 
@@ -87,22 +85,20 @@ const ScrumboardPage = () => {
         </IconButton>
         <Typography variant='h2'>{t('all_scrumboard')}</Typography>
       </Box>
-      <Box
-        sx={theme => ({
-          display: 'flex',
-          flexWrap: 'wrap',
-          [theme.breakpoints.down('sm')]: { justifyContent: 'center' }
-        })}
-      >
-        {data.length == 0 ? (
-          <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-            {`${t('scrumboard_no_data')}`}
-          </Typography>
-        ) : (
-          data.map((data: ScrumboardType) => (
-            <ScrumboardCard key={data.id} data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
-          ))
-        )}
+      <Box sx={{ flexGrow: 1, m: 4 }}>
+        <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={{ md: 8, sm: 6, xs: 4 }}>
+          {data.length == 0 ? (
+            <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
+              {`${t('scrumboard_no_data')}`}
+            </Typography>
+          ) : (
+            data.map((data: ScrumboardType) => (
+              <Grid item key={data.id} md={4} sm={4} xs={4}>
+                <ScrumboardCard data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+              </Grid>
+            ))
+          )}
+        </Grid>
       </Box>
     </Box>
   )

@@ -3,7 +3,7 @@ import OptionsMenu from '@/core/components/option-menu'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { deleteScrumboard } from '@/store/scrumboardSlice'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -78,6 +78,7 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
           <OptionsMenu id='setting' anchorEl={anchorEl} setAnchorEl={setAnchorEl} listItem={listItem} />
         </Grid>
       </CustomPageHeader>
+      <Typography sx={{ fontSize: 24, fontWeight: 600 }}>Hủy</Typography>
     </>
   )
 }

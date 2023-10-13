@@ -11,7 +11,7 @@ class CustomDocument extends Document {
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
           <link
-            href='https://fonts.googleapis.com/css2?family=Bungee&family=Lato:wght@400;700&family=Nunito:wght@700&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@600&family=Nunito:wght@400;700&display=swap'
             rel='stylesheet'
           />
           <link rel='apple-touch-icon' sizes='192x192' href='/images/stan_logo_192.png' />
