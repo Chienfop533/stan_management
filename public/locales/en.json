@@ -76,5 +76,7 @@
   "calendar": "Calendar",
   "scrumboard_edit": "Edit scrumboard",
   "scrumboard_delete": "Delete scrumboard",
-  "scrumboard_pause": "Pause scrumboard"
+  "scrumboard_pause": "Pause scrumboard",
+  "scrumboard_activities": "Scrumboard Activities",
+  "scrumboard_labels": "Scrumboard Labels"
 }

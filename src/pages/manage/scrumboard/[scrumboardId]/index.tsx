@@ -1,12 +1,27 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
+import IconifyIcon from '@/core/components/icon'
 import OptionsMenu from '@/core/components/option-menu'
+import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { deleteScrumboard } from '@/store/scrumboardSlice'
+import ScrumboardList from '@/views/components/scrumboard/ScrumboardList'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
-import { Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography, styled } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+const ScrumboardContainer = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: 'calc(100vh - 145px)',
+  overflowY: 'hidden',
+  overflowX: 'auto',
+  display: '-webkit-inline-box',
+  marginTop: '1rem',
+  marginBottom: '-2rem',
+  borderTop: `1px solid ${hexToRGBA(theme.palette.red.light, 0.4)}`,
+  position: 'relative'
+}))
 
 const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   const { t } = useTranslation()
@@ -22,6 +37,8 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
     setAnchorEl(null)
   }
   const listItem = [
+    { icon: 'radix-icons:activity-log', text: `${t('scrumboard_activities')}` },
+    { icon: 'mingcute:tag-line', text: `${t('scrumboard_labels')}` },
     { icon: 'ic:baseline-edit', text: `${t('scrumboard_edit')}` },
     { icon: 'zondicons:pause-outline', text: `${t('scrumboard_pause')}` },
     { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('scrumboard_delete')}`, handleItem: handleDelete }
@@ -34,20 +51,6 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   return (
     <>
       <CustomPageHeader pageTitle={dataActive ? dataActive.title : t('scrumboard_detail')} type='subPage'>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          sx={theme => ({
-            display: 'flex',
-            justifyContent: 'flex-end',
-            mr: 4,
-            [theme.breakpoints.down('sm')]: {
-              justifyContent: 'center',
-              m: 2
-            }
-          })}
-        ></Grid>
         <Grid>
           <ButtonWithIcon
             sx={{ mr: 2 }}
@@ -78,7 +81,40 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
           <OptionsMenu id='setting' anchorEl={anchorEl} setAnchorEl={setAnchorEl} listItem={listItem} />
         </Grid>
       </CustomPageHeader>
-      <Typography sx={{ fontSize: 24, fontWeight: 600 }}>Hủy</Typography>
+      <ScrumboardContainer>
+        <Box sx={{ margin: '0.5rem', width: 285, position: 'relative' }}>
+          <ScrumboardList />
+        </Box>
+        <Box sx={{ margin: '0.5rem', width: 285, position: 'relative' }}>
+          <ScrumboardList />
+        </Box>
+        <Box sx={{ margin: '0.5rem', width: 285, position: 'relative' }}>
+          <ScrumboardList />
+        </Box>
+        <Box sx={{ margin: '0.5rem', width: 285, position: 'relative' }}>
+          <ScrumboardList />
+        </Box>
+        <Box sx={{ margin: '0.5rem', width: 285, position: 'relative' }}>
+          <Box
+            sx={{
+              padding: '1rem',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              cursor: 'pointer',
+              borderRadius: '10px',
+              backgroundColor: theme =>
+                theme.palette.mode == 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
+              '&:hover': {
+                backgroundColor: theme => theme.palette.grey[500]
+              }
+            }}
+          >
+            <IconifyIcon icon='gg:add' fontSize={24} />
+            <Typography sx={{ fontWeight: 600, height: 24, fontSize: 16, ml: 2 }}>Thêm danh sách mới</Typography>
+          </Box>
+        </Box>
+      </ScrumboardContainer>
     </>
   )
 }

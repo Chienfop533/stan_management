@@ -14,7 +14,7 @@ const UserLayoutWrapper = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   height: '100%'
 }))
-const MainContentWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+const MainContentWrapper = styled('main')<BoxProps>(({ theme }) => ({
   flexGrow: 1,
   minWidth: 0,
   display: 'flex',
@@ -26,7 +26,7 @@ const MainContentWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   })
 }))
 
-const ContentWrapper = styled('main')(({ theme }) => ({
+const ContentWrapper = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   padding: theme.spacing(4),
   transition: theme.transitions.create(['margin', 'width'], {
