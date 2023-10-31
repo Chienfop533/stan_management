@@ -55,6 +55,8 @@ const UserLayout = ({ children }: UserLayoutProps) => {
         <AppBarLayout openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <ContentWrapper
           sx={theme => ({
+            position: 'relative',
+            overflow: 'hidden',
             width: openDrawer ? `calc(100% - 280px)` : '100%',
             marginLeft: openDrawer ? '280px' : 0,
             [theme.breakpoints.down('lg')]: {

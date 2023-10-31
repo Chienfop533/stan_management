@@ -74,9 +74,7 @@
   "scrumboard_detail": "Chi tiết bảng công việc",
   "filter": "Lọc",
   "calendar": "Lịch",
-  "scrumboard_edit": "Chỉnh sửa",
-  "scrumboard_delete": "Xóa bảng",
-  "scrumboard_pause": "Tạm dừng",
-  "scrumboard_activities": "Hoạt động",
-  "scrumboard_labels": "Nhãn"
+  "activities": "Hoạt động",
+  "labels": "Nhãn",
+  "detail": "Chi tiết"
 }
