@@ -2,6 +2,7 @@ import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { Box, IconButton, Typography, styled } from '@mui/material'
 import ScrumboardItem from './ScrumboardItem'
+import { useTranslation } from 'react-i18next'
 
 const ScrumboardListStyled = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -18,6 +19,7 @@ const ScrumboardListStyled = styled(Box)(({ theme }) => ({
 }))
 
 const ScrumboardList = () => {
+  const { t } = useTranslation()
   return (
     <ScrumboardListStyled>
       <Box sx={{ margin: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -72,7 +74,7 @@ const ScrumboardList = () => {
         }}
       >
         <IconifyIcon icon='gg:add' fontSize={24} />
-        <Typography sx={{ fontWeight: 600, height: 24, fontSize: 16, ml: 2 }}>Thêm thẻ mới</Typography>
+        <Typography sx={{ fontWeight: 600, height: 24, fontSize: 16, ml: 2 }}>{t('add_another_card')}</Typography>
       </Box>
     </ScrumboardListStyled>
   )

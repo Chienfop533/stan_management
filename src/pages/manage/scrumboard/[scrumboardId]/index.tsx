@@ -1,6 +1,7 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
 import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
+import MediaQuery from '@/core/utils/media-query'
 import { useAppSelector } from '@/hooks/redux'
 import ScrumboardList from '@/views/components/scrumboard/ScrumboardList'
 import ScrumboardSettings from '@/views/components/scrumboard/ScrumboardSettings'
@@ -24,6 +25,7 @@ const ScrumboardContainer = styled(Box)(({ theme }) => ({
 const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   const { t } = useTranslation()
   const [openSideBar, setOpenSideBar] = useState<boolean>(false)
+  const laptop = MediaQuery().laptop
 
   const data = useAppSelector(state => state.scrumboard.data)
   const dataActive = data.find(item => item.id == scrumboardId)
@@ -37,7 +39,7 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
       <ScrumboardSettings openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} scrumboardId={scrumboardId} />
       <Box
         sx={{
-          marginRight: openSideBar ? '234px' : 0,
+          marginRight: openSideBar && !laptop ? '234px' : 0,
           transition: theme =>
             theme.transitions.create('margin', {
               easing: theme.transitions.easing.easeOut,
@@ -86,7 +88,7 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
               }}
             >
               <IconifyIcon icon='gg:add' fontSize={24} />
-              <Typography sx={{ fontWeight: 600, height: 24, fontSize: 16, ml: 2 }}>Thêm danh sách mới</Typography>
+              <Typography sx={{ fontWeight: 600, height: 24, fontSize: 16, ml: 2 }}>{t('add_another_list')}</Typography>
             </Box>
           </Box>
         </ScrumboardContainer>

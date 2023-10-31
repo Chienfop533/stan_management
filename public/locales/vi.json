@@ -76,5 +76,7 @@
   "calendar": "Lịch",
   "activities": "Hoạt động",
   "labels": "Nhãn",
-  "detail": "Chi tiết"
+  "detail": "Chi tiết",
+  "add_another_card": "Thêm thẻ mới",
+  "add_another_list": "Thêm danh sách mới"
 }

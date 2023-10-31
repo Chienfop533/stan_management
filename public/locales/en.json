@@ -76,5 +76,7 @@
   "calendar": "Calendar",
   "activities": "Activities",
   "labels": " Labels",
-  "detail": "Chi tiết"
+  "detail": "Detail",
+  "add_another_card": "Add another card",
+  "add_another_list": "Add another list"
 }
