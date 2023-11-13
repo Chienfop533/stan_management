@@ -19,7 +19,7 @@ const ScrumboardItemStyled = styled(Box)(({ theme }) => ({
 }))
 const ScrumboardItem = ({ cardData, index }: any) => {
   const member = useAppSelector(state => state.scrumboard.member).filter(
-    item => item.scrumboard_id == 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e'
+    item => item.scrumboardId == 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e'
   )
 
   return (
@@ -163,7 +163,7 @@ const ScrumboardItem = ({ cardData, index }: any) => {
                   }}
                 >
                   {member.map(item => (
-                    <Avatar alt={item.full_name} src={item.avatar} key={item.id} />
+                    <Avatar alt={item.fullName} src={item.avatar} key={item.id} />
                   ))}
                 </AvatarGroup>
               ) : null}

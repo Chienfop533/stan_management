@@ -7,7 +7,7 @@ import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ScrumboardPage = () => {

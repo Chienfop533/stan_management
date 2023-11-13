@@ -23,16 +23,16 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 interface FormData {
   email: string
-  full_name: string
+  fullName: string
   password: string
-  verify_password: string
+  verifyPassword: string
 }
 
 const defaultValues: FormData = {
   email: '',
-  full_name: '',
+  fullName: '',
   password: '',
-  verify_password: ''
+  verifyPassword: ''
 }
 
 const RegisterPage = () => {
@@ -64,10 +64,10 @@ const RegisterPage = () => {
   }, [watch('password')])
 
   const onSubmit = async (formData: FormData) => {
-    const { email, password, full_name } = formData
+    const { email, password, fullName } = formData
     const response: any = await UserService.register({
       avatar: ImageConstant.defaultAvatar,
-      full_name,
+      full_name: fullName,
       email,
       password
     })
@@ -115,11 +115,11 @@ const RegisterPage = () => {
             {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
-            <InputLabel htmlFor='full_name' error={Boolean(errors.full_name)}>
+            <InputLabel htmlFor='full_name' error={Boolean(errors.fullName)}>
               {t('full_name')}
             </InputLabel>
             <Controller
-              name='full_name'
+              name='fullName'
               control={control}
               rules={{
                 required: { value: true, message: t('require_field', { field: t('full_name') }) },
@@ -133,13 +133,11 @@ const RegisterPage = () => {
                   id='full_name'
                   label={t('full_name')}
                   type='text'
-                  error={Boolean(errors.full_name)}
+                  error={Boolean(errors.fullName)}
                 />
               )}
             />
-            {errors.full_name && (
-              <FormHelperText sx={{ color: 'error.main' }}>{errors.full_name.message}</FormHelperText>
-            )}
+            {errors.fullName && <FormHelperText sx={{ color: 'error.main' }}>{errors.fullName.message}</FormHelperText>}
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
             <InputLabel htmlFor='password' error={Boolean(errors.password)}>
@@ -201,11 +199,11 @@ const RegisterPage = () => {
           </Box>
           <Typography sx={{ mt: 4, color: 'text.disabled', fontSize: 14 }}>{t('rule_password')}</Typography>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
-            <InputLabel htmlFor='verify_password' error={Boolean(errors.verify_password)}>
+            <InputLabel htmlFor='verify_password' error={Boolean(errors.verifyPassword)}>
               {t('confirm_password')}
             </InputLabel>
             <Controller
-              name='verify_password'
+              name='verifyPassword'
               control={control}
               rules={{
                 required: { value: true, message: t('require_password') },
@@ -217,10 +215,10 @@ const RegisterPage = () => {
                   value={value}
                   onBlur={onBlur}
                   onChange={onChange}
-                  id='verify_password'
+                  id='verifyPassword'
                   label={t('confirm_password')}
                   type={showPassword2 ? 'text' : 'password'}
-                  error={Boolean(errors.verify_password)}
+                  error={Boolean(errors.verifyPassword)}
                   endAdornment={
                     <InputAdornment position='end'>
                       <IconButton
@@ -235,8 +233,8 @@ const RegisterPage = () => {
                 />
               )}
             />
-            {errors.verify_password && (
-              <FormHelperText sx={{ color: 'error.main' }}>{errors.verify_password.message}</FormHelperText>
+            {errors.verifyPassword && (
+              <FormHelperText sx={{ color: 'error.main' }}>{errors.verifyPassword.message}</FormHelperText>
             )}
           </FormControl>
           <Button

@@ -15,8 +15,8 @@ import { v4 as uuidv4 } from 'uuid'
 interface FormData {
   title: string
   description: string
-  begin_time: Date
-  end_time?: Date
+  beginTime: Date
+  endTime?: Date
   star: boolean
 }
 
@@ -37,8 +37,8 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
     return {
       title: data ? data.title : '',
       description: data ? data.description : '',
-      begin_time: data ? data.begin_time : new Date(),
-      end_time: data ? data.end_time : undefined,
+      beginTime: data ? data.beginTime : new Date(),
+      endTime: data ? data.endTime : undefined,
       star: data ? data.star : false
     }
   }, [data])
@@ -50,10 +50,10 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
         image: data.image,
         title: dataForm.title,
         description: dataForm.description,
-        begin_time: dataForm.begin_time,
-        end_time: dataForm?.end_time,
+        beginTime: dataForm.beginTime,
+        endTime: dataForm?.endTime,
         progress: data.progress,
-        status: dayjs(new Date()).isAfter(dataForm.begin_time) ? 'active' : 'init',
+        status: dayjs(new Date()).isAfter(dataForm.beginTime) ? 'active' : 'init',
         star: dataForm.star
       }
       dispatch(updateScrumboard(scrumboardEdit))
@@ -63,10 +63,10 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
         image: `/images/scrumboard/${Math.floor(Math.random() * 5) + 1}.jpg`,
         title: dataForm.title,
         description: dataForm.description,
-        begin_time: dataForm.begin_time,
-        end_time: dataForm?.end_time,
+        beginTime: dataForm.beginTime,
+        endTime: dataForm?.endTime,
         progress: 0,
-        status: dayjs(new Date()).isAfter(dataForm.begin_time) ? 'active' : 'init',
+        status: dayjs(new Date()).isAfter(dataForm.beginTime) ? 'active' : 'init',
         star: dataForm.star
       }
       dispatch(addScrumboard(newScrumboard))
@@ -135,34 +135,34 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
         </FormControl>
         <Grid container spacing={4}>
           <Grid item sx={{ width: '50%' }}>
-            <InputLabel sx={{ fontWeight: 600 }}>{t('begin_time')}</InputLabel>
+            <InputLabel sx={{ fontWeight: 600 }}>{t(' beginTime')}</InputLabel>
             <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
               <Controller
-                name='begin_time'
+                name=' beginTime'
                 control={control}
                 render={({ field: { value } }) => (
                   <DatePicker
                     format='DD/MM/YYYY'
                     value={dayjs(value)}
-                    maxDate={watch('end_time') ? dayjs(watch('end_time')) : undefined}
-                    onChange={value => setValue('begin_time', convertDate(value))}
+                    maxDate={watch('endTime') ? dayjs(watch('endTime')) : undefined}
+                    onChange={value => setValue(' beginTime', convertDate(value))}
                   />
                 )}
               />
             </FormControl>
           </Grid>
           <Grid item sx={{ width: '50%' }}>
-            <InputLabel sx={{ fontWeight: 600 }}>{t('end_time')}</InputLabel>
+            <InputLabel sx={{ fontWeight: 600 }}>{t('endTime')}</InputLabel>
             <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
               <Controller
-                name='end_time'
+                name='endTime'
                 control={control}
                 render={({ field: { value } }) => (
                   <DatePicker
                     format='DD/MM/YYYY'
                     value={value ? dayjs(value) : undefined}
-                    minDate={dayjs(watch('begin_time'))}
-                    onChange={value => setValue('end_time', convertDate(value))}
+                    minDate={dayjs(watch(' beginTime'))}
+                    onChange={value => setValue('endTime', convertDate(value))}
                   />
                 )}
               />

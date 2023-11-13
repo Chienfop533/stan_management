@@ -1,6 +1,5 @@
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { Box, Card, CardContent, Divider, Typography, styled } from '@mui/material'
-import Image from 'next/image'
 import ScrumboardCardContent from './ScrumboardCardContent'
 import StatusColor from '@/services/common/statusColor'
 import { useRouter } from 'next/router'
@@ -30,7 +29,7 @@ interface ScrumboardCardType {
 const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType) => {
   const color = StatusColor(data.status)
   const router = useRouter()
-  const member = useAppSelector(state => state.scrumboard.member).filter(item => item.scrumboard_id == data.id)
+  const member = useAppSelector(state => state.scrumboard.member).filter(item => item.scrumboardId == data.id)
   return (
     <CustomCard
       sx={{ boxShadow: `0px 0px 5px ${hexToRGBA(color, 0.1)}` }}

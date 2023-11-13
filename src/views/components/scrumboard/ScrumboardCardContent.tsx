@@ -9,7 +9,7 @@ import { deleteScrumboard } from '@/store/scrumboardSlice'
 import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 interface ScrumboardCardContentType {
   data: ScrumboardType
@@ -86,8 +86,8 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
         <IconifyIcon icon='ic:round-date-range' fontSize={24} color={color} />
-        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${formatDate(data.begin_time)} - ${
-          data.end_time ? formatDate(data.end_time) : t('unknown')
+        <Typography sx={{ fontSize: 12, ml: 2 }}>{`${formatDate(data.beginTime)} - ${
+          data.endTime ? formatDate(data.endTime) : t('unknown')
         }`}</Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
@@ -122,7 +122,7 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
         {member.length > 1 ? (
           <AvatarGroup max={4} sx={{ '.MuiAvatar-root': { width: 36, height: 36 } }}>
             {member.map(item => (
-              <Avatar alt={item.full_name} src={item.avatar} key={item.id} />
+              <Avatar alt={item.fullName} src={item.avatar} key={item.id} />
             ))}
           </AvatarGroup>
         ) : null}

@@ -43,7 +43,7 @@ const AuthProvider = ({ children }: Props) => {
         const userData: UserType = {
           id: response.data._id,
           avatar: response.data.avatar,
-          full_name: response.data.full_name,
+          fullName: response.data.full_name,
           email: response.data.email,
           password: response.data.password
         }
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }: Props) => {
     const userData: UserType = {
       id: data._id,
       avatar: data.avatar,
-      full_name: data.full_name,
+      fullName: data.full_name,
       email: data.email,
       password: data.password
     }

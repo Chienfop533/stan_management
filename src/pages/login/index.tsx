@@ -4,7 +4,6 @@ import { LinkStyled } from '@/core/components/link'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { useAuth } from '@/hooks/useAuth'
 import BlankLayout from '@/layouts/BlankLayout'
-import UserService from '@/services/api/UserService'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -19,7 +18,6 @@ import {
   InputLabel,
   Typography
 } from '@mui/material'
-import { useRouter } from 'next/router'
 import { ReactNode, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -40,7 +38,6 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { t } = useTranslation()
-  const router = useRouter()
   const auth = useAuth()
 
   const {

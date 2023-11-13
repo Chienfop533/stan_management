@@ -3,10 +3,8 @@ export interface ScrumboardType {
   image: string
   title: string
   description: string
-  create_time?: Date
-  update_time?: Date
-  begin_time: Date
-  end_time?: Date
+  beginTime: Date
+  endTime?: Date
   progress: number
   status: string
   type: 'public' | 'private'
@@ -33,10 +31,10 @@ export interface BoardCardType {
 }
 export interface ScrumboardMemberType {
   id: string
-  user_id: string
-  scrumboard_id: string
+  userId: string
+  scrumboardId: string
   avatar: string
-  full_name: string
+  fullName: string
   email: string
   role: 'member' | 'admin'
 }
