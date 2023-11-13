@@ -29,13 +29,15 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
     dispatch(deleteScrumboard(data.id))
     setAnchorEl(null)
   }
+  const handleEdit = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+    setOpen(true)
+    setScrumboardEdit(data)
+    setAnchorEl(null)
+  }
 
   const listItem = [
-    {
-      icon: 'solar:star-bold-duotone',
-      iconColor: 'yellow',
-      text: !data.star ? `${t('pin')}` : `${t('unpin')}`
-    },
+    { icon: 'mdi:edit', text: `${t('edit')}`, handleItem: handleEdit },
     { icon: 'mingcute:delete-2-fill', iconColor: 'red', text: `${t('delete')}`, handleItem: handleDelete }
   ]
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,16 +63,6 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
         </Typography>
         <Box>
           <CustomToolTip
-            title={`${t('setting')}`}
-            icon='dashicons:admin-tools'
-            statusColor={data.status}
-            sx={{ mr: 2 }}
-            onClick={handleClick}
-            aria-haspopup={true}
-            aria-controls={Boolean(anchorEl) ? 'setting' : undefined}
-          />
-          <OptionsMenu id='setting' anchorEl={anchorEl} setAnchorEl={setAnchorEl} listItem={listItem} />
-          <CustomToolTip
             title={`${t('member')}`}
             icon='fluent-mdl2:group'
             statusColor={data.status}
@@ -81,15 +73,15 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
             }}
           />
           <CustomToolTip
-            title={`${t('edit')}`}
-            icon='mdi:edit'
+            title={`${t('setting')}`}
+            icon='dashicons:admin-tools'
             statusColor={data.status}
-            onClick={e => {
-              e.stopPropagation()
-              setOpen(true)
-              setScrumboardEdit(data)
-            }}
+            sx={{ mr: 2 }}
+            onClick={handleClick}
+            aria-haspopup={true}
+            aria-controls={Boolean(anchorEl) ? 'setting' : undefined}
           />
+          <OptionsMenu id='setting' anchorEl={anchorEl} setAnchorEl={setAnchorEl} listItem={listItem} />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
@@ -134,14 +126,6 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
             ))}
           </AvatarGroup>
         ) : null}
-
-        {data.star && (
-          <IconifyIcon
-            icon='solar:star-bold-duotone'
-            color={theme.palette.yellow.dark}
-            style={{ position: 'absolute', right: 0 }}
-          />
-        )}
       </Box>
     </Box>
   )

@@ -1,4 +1,4 @@
-import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
+import { BoardCardType, ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
 const date = new Date()
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
 const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
@@ -11,7 +11,7 @@ const prevMonth =
 
 export const scrumboardData: ScrumboardType[] = [
   {
-    id: '8fb1a4d1-16f9-410d-9006-60a401c86e12',
+    id: 'board-id-1',
     image:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F1.jpg?alt=media&token=85c21ddf-c8b9-463c-9b0a-b9fde32d3d47',
     title: 'Xây dựng github profile',
@@ -20,10 +20,28 @@ export const scrumboardData: ScrumboardType[] = [
     end_time: date,
     progress: 100,
     status: 'complete',
-    star: true
+    type: 'public',
+    listOrderIds: ['list-id-1', 'list-id-2', 'list-id-3'],
+    list: [
+      {
+        id: 'list-id-1',
+        title: 'To do',
+        cardOrderIds: ['card-id-1', 'card-id-2', 'card-id-3']
+      },
+      {
+        id: 'list-id-2',
+        title: 'Progress',
+        cardOrderIds: ['card-id-4', 'card-id-5', 'card-id-6']
+      },
+      {
+        id: 'list-id-3',
+        title: 'Done',
+        cardOrderIds: ['card-id-7', 'card-id-8']
+      }
+    ]
   },
   {
-    id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'board-id-2',
     image:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F2.jpg?alt=media&token=3e7d4a8c-34cc-45bb-94c8-5954d2ea1bb0',
     title: 'Xây dựng website stan management',
@@ -32,10 +50,12 @@ export const scrumboardData: ScrumboardType[] = [
     end_time: nextMonth,
     progress: 20,
     status: 'active',
-    star: true
+    type: 'private',
+    listOrderIds: [],
+    list: []
   },
   {
-    id: 'b09fc765-16f9-4dc6-9d36-0bf284553e9e',
+    id: 'board-id-3',
     image:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F3.jpg?alt=media&token=f868e48e-2dea-4b26-b05d-11647aa7f8fe',
     title: 'Xây dựng website KOL ecommerce',
@@ -43,10 +63,12 @@ export const scrumboardData: ScrumboardType[] = [
     begin_time: prevMonth,
     progress: 25,
     status: 'pause',
-    star: true
+    type: 'public',
+    listOrderIds: [],
+    list: []
   },
   {
-    id: 'b09fc765-c2fc-4dc6-9006-0bf284553e9e',
+    id: 'board-id-4',
     image:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F4.jpg?alt=media&token=47e2dcad-62a7-475c-9a9f-bec3b71a46f0',
     title: 'Xây dưng trang admin dashboard',
@@ -55,10 +77,12 @@ export const scrumboardData: ScrumboardType[] = [
     end_time: nextMonth,
     progress: 0,
     status: 'init',
-    star: false
+    type: 'public',
+    listOrderIds: [],
+    list: []
   },
   {
-    id: '8fb1a4d1-c2fc-410d-9006-60a401c86e12',
+    id: 'board-id-5',
     image:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F5.jpg?alt=media&token=467f3b2f-a39e-4d92-b04f-cf2723fef313',
     title: 'Xây dựng trang profile với vuejs',
@@ -67,14 +91,109 @@ export const scrumboardData: ScrumboardType[] = [
     end_time: prevDate,
     progress: 80,
     status: 'late',
-    star: false
+    type: 'public',
+    listOrderIds: [],
+    list: []
+  }
+]
+
+export const BoardCardData: BoardCardType[] = [
+  {
+    id: 'card-id-1',
+    listId: 'list-id-1',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_image_card%2F1.jpg?alt=media&token=85c21ddf-c8b9-463c-9b0a-b9fde32d3d47',
+    title: 'Xây dựng giao diện',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-2',
+    listId: 'list-id-1',
+    title: 'Xây dựng dark mode',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-3',
+    listId: 'list-id-1',
+    title: 'Login',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-4',
+    listId: 'list-id-2',
+    title: 'Logout',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-5',
+    listId: 'list-id-2',
+    title: 'Register',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-6',
+    listId: 'list-id-2',
+    title: 'I18n',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-7',
+    listId: 'list-id-3',
+    title: 'Drawer',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
+  },
+  {
+    id: 'card-id-8',
+    listId: 'list-id-3',
+    title: 'AppBar',
+    description: '',
+    memberIds: [],
+    labels: [],
+    attachments: [],
+    todo: [],
+    comments: []
   }
 ]
 export const ScrumboardMember: ScrumboardMemberType[] = [
   {
-    id: 'b09fc765-16f9-4dc6-9d36-0bf124553e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e12',
-    scrumboard_id: '8fb1a4d1-16f9-410d-9006-60a401c86e12',
+    id: 'member-id-1',
+    user_id: 'user-id-1',
+    scrumboard_id: 'board-id-1',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_1.png?alt=media&token=ea29c8ed-87e6-4bd3-863b-86fe3ee3bf95',
     full_name: 'User test1',
@@ -82,9 +201,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'admin'
   },
   {
-    id: 'b09fc765-16d9-4dc6-9d36-0bf124553e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e12',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-2',
+    user_id: 'user-id-1',
+    scrumboard_id: 'board-id-2',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_1.png?alt=media&token=ea29c8ed-87e6-4bd3-863b-86fe3ee3bf95',
     full_name: 'User test1',
@@ -92,9 +211,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'admin'
   },
   {
-    id: 'b09fc765-16f9-4dc6-9d36-0bf122353e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e12',
-    scrumboard_id: 'b09fc765-16f9-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-3',
+    user_id: 'user-id-1',
+    scrumboard_id: 'board-id-3',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_1.png?alt=media&token=ea29c8ed-87e6-4bd3-863b-86fe3ee3bf95',
     full_name: 'User test1',
@@ -102,9 +221,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'admin'
   },
   {
-    id: 'b09fc765-16f9-4dc6-9d36-0bf114553e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e12',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9006-0bf284553e9e',
+    id: 'member-id-4',
+    user_id: 'user-id-1',
+    scrumboard_id: 'board-id-4',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_1.png?alt=media&token=ea29c8ed-87e6-4bd3-863b-86fe3ee3bf95',
     full_name: 'User test1',
@@ -112,9 +231,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'admin'
   },
   {
-    id: 'b09fc765-16f9-4dc6-9d36-0bf121253e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e12',
-    scrumboard_id: '8fb1a4d1-c2fc-410d-9006-60a401c86e12',
+    id: 'member-id-5',
+    user_id: 'user-id-1',
+    scrumboard_id: 'board-id-5',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_1.png?alt=media&token=ea29c8ed-87e6-4bd3-863b-86fe3ee3bf95',
     full_name: 'User test1',
@@ -122,9 +241,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'admin'
   },
   {
-    id: 'b09fc765-12f9-4dc6-9d36-0bf124553e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c12e12',
-    scrumboard_id: '8fb1a4d1-16f9-410d-9006-60a401c86e12',
+    id: 'member-id-6',
+    user_id: 'user-id-2',
+    scrumboard_id: 'board-id-1',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_2.png?alt=media&token=a61f534a-ace3-45e8-a1b1-44824e7ff91c',
     full_name: 'User test2',
@@ -132,9 +251,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'member'
   },
   {
-    id: 'b09fc765-16d9-4dc6-9d36-0bf124153e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c12e12',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-7',
+    user_id: 'user-id-2',
+    scrumboard_id: 'board-id-2',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_2.png?alt=media&token=a61f534a-ace3-45e8-a1b1-44824e7ff91c',
     full_name: 'User test2',
@@ -142,9 +261,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'member'
   },
   {
-    id: 'b09fc765-16d9-4dc6-9d36-0bf124111e9e',
-    user_id: '8fb1a4d1-1af9-120d-90d6-60a401c86e12',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-8',
+    user_id: 'user-id-3',
+    scrumboard_id: 'board-id-1',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_3.png?alt=media&token=4ff22ff7-3e15-4ba1-891e-739d3e327531',
     full_name: 'User test3',
@@ -152,9 +271,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'member'
   },
   {
-    id: 'b09fc765-16d9-4dc6-1d36-0bf124153e9e',
-    user_id: '8fb1a4d1-1af9-410d-55d6-60a401c86e12',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-9',
+    user_id: 'user-id-4',
+    scrumboard_id: 'board-id-1',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_4.png?alt=media&token=a3c8b1e1-2e78-49a7-af9f-9b45b177a9b9',
     full_name: 'User test4',
@@ -162,9 +281,9 @@ export const ScrumboardMember: ScrumboardMemberType[] = [
     role: 'member'
   },
   {
-    id: 'b09fc115-16d9-4dc6-9d36-0bf124153e9e',
-    user_id: '8fb1a4d1-1af9-410d-90d6-60a401c86e23',
-    scrumboard_id: 'b09fc765-c2fc-4dc6-9d36-0bf284553e9e',
+    id: 'member-id-10',
+    user_id: 'user-id-5',
+    scrumboard_id: 'board-id-1',
     avatar:
       'https://firebasestorage.googleapis.com/v0/b/stan-management.appspot.com/o/stan_avatar%2Favatar_5.png?alt=media&token=0ad9c028-ceba-4fbb-b934-fa80d1a6a5c6',
     full_name: 'User test5',

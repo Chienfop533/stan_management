@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next'
 
 const ScrumboardPage = () => {
   const data = useAppSelector(state => state.scrumboard.data)
-  const starData = data.filter(item => item.star == true)
   const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   const [scrumboardEdit, setScrumboardEdit] = useState<ScrumboardType | undefined>(undefined)
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       <ScrumboardForm open={open} setOpen={setOpen} data={scrumboardEdit} />
@@ -53,31 +53,6 @@ const ScrumboardPage = () => {
           />
         </Grid>
       </CustomPageHeader>
-      {starData.length > 0 ? (
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, textAlign: 'start', width: '100%' }}>
-          <IconButton>
-            <IconifyIcon icon='pepicons-pop:star' fontSize={28} />
-          </IconButton>
-          <Typography variant='h2'>{t('star_scrumboard')}</Typography>
-        </Box>
-      ) : null}
-      {starData.length > 0 ? (
-        <Box sx={{ flexGrow: 1, m: 4 }}>
-          <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={{ md: 8, sm: 6, xs: 4 }}>
-            {data.length == 0 ? (
-              <Typography sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', margin: '2rem' }}>
-                {`${t('scrumboard_no_data')}`}
-              </Typography>
-            ) : (
-              starData.map((data: ScrumboardType) => (
-                <Grid item key={data.id} md={4} sm={4} xs={4}>
-                  <ScrumboardCard data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
-                </Grid>
-              ))
-            )}
-          </Grid>
-        </Box>
-      ) : null}
 
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 6, textAlign: 'start', width: '100%' }}>
         <IconButton>
