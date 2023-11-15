@@ -1,8 +1,10 @@
 import ButtonWithIcon from '@/core/components/button-with-icon'
 import IconifyIcon from '@/core/components/icon'
 import Search from '@/core/components/search'
-import { useAppSelector } from '@/hooks/redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import { deleteScrumboard } from '@/store/scrumboardSlice'
 import { ScrumboardType } from '@/types/ScrumboardType'
+import DeleteDialog from '@/views/components/dialog/DeleteDialog'
 import ScrumboardCard from '@/views/components/scrumboard/ScrumboardCard'
 import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
@@ -13,12 +15,26 @@ import { useTranslation } from 'react-i18next'
 const ScrumboardPage = () => {
   const data = useAppSelector(state => state.scrumboard.data)
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
   const [open, setOpen] = useState<boolean>(false)
   const [scrumboardEdit, setScrumboardEdit] = useState<ScrumboardType | undefined>(undefined)
-
+  const [openDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false)
+  const [deleteId, setDeleteId] = useState<string | undefined>(undefined)
+  const handleDeleteScrumboard = () => {
+    if (deleteId) {
+      dispatch(deleteScrumboard(deleteId))
+    }
+    setOpenDeleteDialog(false)
+  }
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       <ScrumboardForm open={open} setOpen={setOpen} data={scrumboardEdit} />
+      <DeleteDialog
+        title={t('scrumboard')}
+        dialogOpen={openDeleteDialog}
+        setDialogOpen={setOpenDeleteDialog}
+        handleDelete={handleDeleteScrumboard}
+      />
       <CustomPageHeader icon='mingcute:trello-board-line' pageTitle={`${t('scrumboard')}`} type='mainPage'>
         <Grid
           item
@@ -49,6 +65,7 @@ const ScrumboardPage = () => {
             name={`${t('add')}`}
             onClick={() => {
               setOpen(true)
+              setScrumboardEdit(undefined)
             }}
           />
         </Grid>
@@ -69,7 +86,13 @@ const ScrumboardPage = () => {
           ) : (
             data.map((data: ScrumboardType) => (
               <Grid item key={data.id} md={4} sm={4} xs={4}>
-                <ScrumboardCard data={data} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+                <ScrumboardCard
+                  data={data}
+                  setOpen={setOpen}
+                  setScrumboardEdit={setScrumboardEdit}
+                  setOpenDeleteDialog={setOpenDeleteDialog}
+                  setDeleteId={setDeleteId}
+                />
               </Grid>
             ))
           )}

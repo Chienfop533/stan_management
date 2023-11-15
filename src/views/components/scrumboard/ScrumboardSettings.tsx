@@ -20,12 +20,16 @@ const DrawerWrapper = styled(Drawer)(({ theme }) => ({
 }))
 const ScrumboardSettings = ({
   openSideBar,
+  setOpenForm,
   setOpenSideBar,
-  scrumboardId
+  scrumboardId,
+  setOpenDeleteDialog
 }: {
   openSideBar: boolean
+  setOpenForm: Dispatch<SetStateAction<boolean>>
   setOpenSideBar: Dispatch<SetStateAction<boolean>>
   scrumboardId: string
+  setOpenDeleteDialog: Dispatch<SetStateAction<boolean>>
 }) => {
   const handleClose = () => {
     setOpenSideBar(false)
@@ -51,7 +55,12 @@ const ScrumboardSettings = ({
             }
           }}
         >
-          <SideBarList scrumboardId={scrumboardId} setOpenSideBar={setOpenSideBar} />
+          <SideBarList
+            scrumboardId={scrumboardId}
+            setOpenSideBar={setOpenSideBar}
+            setOpenForm={setOpenForm}
+            setOpenDeleteDialog={setOpenDeleteDialog}
+          />
         </SwipeableDrawer>
       </Hidden>
       <Hidden lgDown>
@@ -69,7 +78,12 @@ const ScrumboardSettings = ({
               })
           }}
         >
-          <SideBarList scrumboardId={scrumboardId} setOpenSideBar={setOpenSideBar} />
+          <SideBarList
+            scrumboardId={scrumboardId}
+            setOpenSideBar={setOpenSideBar}
+            setOpenForm={setOpenForm}
+            setOpenDeleteDialog={setOpenDeleteDialog}
+          />
         </DrawerWrapper>
       </Hidden>
     </>

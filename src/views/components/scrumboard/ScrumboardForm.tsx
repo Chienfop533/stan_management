@@ -1,10 +1,11 @@
+import ImageConstant from '@/constants/images'
 import CustomDialog from '@/core/components/dialog'
 import Input from '@/core/components/input'
 import { convertDate } from '@/core/utils/convert-date'
 import { useAppDispatch } from '@/hooks/redux'
 import { addScrumboard, updateScrumboard } from '@/store/scrumboardSlice'
 import { ScrumboardType } from '@/types/ScrumboardType'
-import { FormControl, FormControlLabel, FormHelperText, Grid, InputLabel, Switch } from '@mui/material'
+import { FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react'
@@ -17,7 +18,7 @@ interface FormData {
   description: string
   beginTime: Date
   endTime?: Date
-  star: boolean
+  type: 'public' | 'private'
 }
 
 interface ScrumboardFormProps {
@@ -39,7 +40,7 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
       description: data ? data.description : '',
       beginTime: data ? data.beginTime : new Date(),
       endTime: data ? data.endTime : undefined,
-      star: data ? data.star : false
+      type: data ? data.type : 'private'
     }
   }, [data])
 
@@ -54,20 +55,24 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
         endTime: dataForm?.endTime,
         progress: data.progress,
         status: dayjs(new Date()).isAfter(dataForm.beginTime) ? 'active' : 'init',
-        star: dataForm.star
+        type: dataForm.type,
+        listOrderIds: data.listOrderIds,
+        list: data.list
       }
       dispatch(updateScrumboard(scrumboardEdit))
     } else {
       const newScrumboard: ScrumboardType = {
         id: uuidv4(),
-        image: `/images/scrumboard/${Math.floor(Math.random() * 5) + 1}.jpg`,
+        image: ImageConstant.scrumboardImgList[Math.floor(Math.random() * 20) + 1],
         title: dataForm.title,
         description: dataForm.description,
         beginTime: dataForm.beginTime,
         endTime: dataForm?.endTime,
         progress: 0,
         status: dayjs(new Date()).isAfter(dataForm.beginTime) ? 'active' : 'init',
-        star: dataForm.star
+        type: dataForm.type,
+        listOrderIds: [],
+        list: []
       }
       dispatch(addScrumboard(newScrumboard))
     }
@@ -92,7 +97,7 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
   return (
     <CustomDialog
       open={open}
-      title={data ? t('edit') : t('add') + ' ' + t('scrumboard')}
+      title={(data ? t('edit') : t('add')) + ' ' + t('scrumboard').toLowerCase()}
       closeName={t('cancel')}
       saveName={data ? t('edit') : t('add')}
       handleClose={handleClose}
@@ -135,24 +140,24 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
         </FormControl>
         <Grid container spacing={4}>
           <Grid item sx={{ width: '50%' }}>
-            <InputLabel sx={{ fontWeight: 600 }}>{t(' beginTime')}</InputLabel>
+            <InputLabel sx={{ fontWeight: 600 }}>{t('begin_time')}</InputLabel>
             <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
               <Controller
-                name=' beginTime'
+                name='beginTime'
                 control={control}
                 render={({ field: { value } }) => (
                   <DatePicker
                     format='DD/MM/YYYY'
                     value={dayjs(value)}
                     maxDate={watch('endTime') ? dayjs(watch('endTime')) : undefined}
-                    onChange={value => setValue(' beginTime', convertDate(value))}
+                    onChange={value => setValue('beginTime', convertDate(value))}
                   />
                 )}
               />
             </FormControl>
           </Grid>
           <Grid item sx={{ width: '50%' }}>
-            <InputLabel sx={{ fontWeight: 600 }}>{t('endTime')}</InputLabel>
+            <InputLabel sx={{ fontWeight: 600 }}>{t('end_time')}</InputLabel>
             <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
               <Controller
                 name='endTime'
@@ -161,7 +166,7 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
                   <DatePicker
                     format='DD/MM/YYYY'
                     value={value ? dayjs(value) : undefined}
-                    minDate={dayjs(watch(' beginTime'))}
+                    minDate={dayjs(watch('beginTime'))}
                     onChange={value => setValue('endTime', convertDate(value))}
                   />
                 )}
@@ -169,15 +174,24 @@ const ScrumboardForm = (props: ScrumboardFormProps) => {
             </FormControl>
           </Grid>
         </Grid>
+        <InputLabel sx={{ fontWeight: 600 }}>{t('visibility')}</InputLabel>
         <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
           <Controller
-            name='star'
+            name='type'
             control={control}
             render={({ field: { value, onChange } }) => (
-              <FormControlLabel
-                control={<Switch color='primary' checked={value} onChange={onChange} />}
-                label={t('pin')}
-              />
+              <Select
+                id='demo-simple-select'
+                value={value}
+                onChange={e => onChange(e.target.value as 'public' | 'private')}
+              >
+                <MenuItem value='private'>
+                  {t('private')} ({t('private_description')})
+                </MenuItem>
+                <MenuItem value='public'>
+                  {t('public')} ({t('public_description')})
+                </MenuItem>
+              </Select>
             )}
           />
         </FormControl>

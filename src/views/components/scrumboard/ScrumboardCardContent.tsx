@@ -4,7 +4,7 @@ import { Progress } from '@/core/components/progress'
 import CustomToolTip from '@/core/components/tooltip'
 import { formatDate } from '@/core/utils/convert-date'
 import { useAppDispatch } from '@/hooks/redux'
-import StatusColor from '@/services/common/statusColor'
+import ScrumboardService from '@/services/ScrumboardService'
 import { deleteScrumboard } from '@/store/scrumboardSlice'
 import { ScrumboardMemberType, ScrumboardType } from '@/types/ScrumboardType'
 import { Avatar, AvatarGroup, Box, Typography, linearProgressClasses, useTheme } from '@mui/material'
@@ -16,17 +16,25 @@ interface ScrumboardCardContentType {
   member: ScrumboardMemberType[]
   setOpen: Dispatch<SetStateAction<boolean>>
   setScrumboardEdit: Dispatch<SetStateAction<ScrumboardType | undefined>>
+  setOpenDeleteDialog: Dispatch<SetStateAction<boolean>>
+  setDeleteId: Dispatch<SetStateAction<string | undefined>>
 }
-const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: ScrumboardCardContentType) => {
-  const theme = useTheme()
+const ScrumboardCardContent = ({
+  data,
+  member,
+  setOpen,
+  setScrumboardEdit,
+  setOpenDeleteDialog,
+  setDeleteId
+}: ScrumboardCardContentType) => {
   const { t } = useTranslation()
   const router = useRouter()
-  const color = StatusColor(data.status)
-  const dispatch = useAppDispatch()
+  const color = ScrumboardService.statusColor(data.status)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const handleDelete = (e: React.MouseEvent<HTMLElement>) => {
+    setOpenDeleteDialog(true)
+    setDeleteId(data.id)
     e.stopPropagation()
-    dispatch(deleteScrumboard(data.id))
     setAnchorEl(null)
   }
   const handleEdit = (e: React.MouseEvent<HTMLElement>) => {
@@ -69,7 +77,7 @@ const ScrumboardCardContent = ({ data, member, setOpen, setScrumboardEdit }: Scr
             sx={{ mr: 2 }}
             onClick={e => {
               e.stopPropagation()
-              router.push('/manage/scrumboard/123/member')
+              router.push(`/manage/scrumboard/${data.id}/member`)
             }}
           />
           <CustomToolTip

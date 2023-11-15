@@ -78,5 +78,11 @@
   "labels": " Labels",
   "detail": "Detail",
   "add_another_card": "Add another card",
-  "add_another_list": "Add another list"
+  "add_another_list": "Add another list",
+  "visibility": "Visibility",
+  "public": "Public",
+  "private": "Private",
+  "public_description": "Anyone on the internet can see this board. Only members can edit",
+  "private_description": "Only members can see and edit this board",
+  "delete_description": "Please confirm deletion of this card? This means this card no longer exists."
 }

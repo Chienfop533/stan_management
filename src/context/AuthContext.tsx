@@ -1,4 +1,4 @@
-import UserService from '@/services/api/UserService'
+import UserService from '@/services/UserService'
 import { UserType } from '@/types/UserType'
 import { useRouter } from 'next/router'
 import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState } from 'react'

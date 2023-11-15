@@ -1,7 +1,7 @@
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { Box, Card, CardContent, Divider, Typography, styled } from '@mui/material'
 import ScrumboardCardContent from './ScrumboardCardContent'
-import StatusColor from '@/services/common/statusColor'
+import ScrumboardService from '@/services/ScrumboardService'
 import { useRouter } from 'next/router'
 import { ScrumboardType } from '@/types/ScrumboardType'
 import { useAppSelector } from '@/hooks/redux'
@@ -25,9 +25,11 @@ interface ScrumboardCardType {
   data: ScrumboardType
   setOpen: Dispatch<SetStateAction<boolean>>
   setScrumboardEdit: Dispatch<SetStateAction<ScrumboardType | undefined>>
+  setOpenDeleteDialog: Dispatch<SetStateAction<boolean>>
+  setDeleteId: Dispatch<SetStateAction<string | undefined>>
 }
-const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType) => {
-  const color = StatusColor(data.status)
+const ScrumboardCard = ({ data, setOpen, setScrumboardEdit, setOpenDeleteDialog, setDeleteId }: ScrumboardCardType) => {
+  const color = ScrumboardService.statusColor(data.status)
   const router = useRouter()
   const member = useAppSelector(state => state.scrumboard.member).filter(item => item.scrumboardId == data.id)
   return (
@@ -66,7 +68,14 @@ const ScrumboardCard = ({ data, setOpen, setScrumboardEdit }: ScrumboardCardType
           {data.description}
         </TypographyStyled>
         <Divider />
-        <ScrumboardCardContent data={data} member={member} setOpen={setOpen} setScrumboardEdit={setScrumboardEdit} />
+        <ScrumboardCardContent
+          data={data}
+          member={member}
+          setOpen={setOpen}
+          setScrumboardEdit={setScrumboardEdit}
+          setOpenDeleteDialog={setOpenDeleteDialog}
+          setDeleteId={setDeleteId}
+        />
       </CardContent>
     </CustomCard>
   )

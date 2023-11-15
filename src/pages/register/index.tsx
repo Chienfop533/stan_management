@@ -4,7 +4,7 @@ import Input from '@/core/components/input'
 import { LinkStyled } from '@/core/components/link'
 import { Progress } from '@/core/components/progress'
 import BlankLayout from '@/layouts/BlankLayout'
-import UserService from '@/services/api/UserService'
+import UserService from '@/services/UserService'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,

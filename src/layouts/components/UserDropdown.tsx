@@ -1,6 +1,6 @@
 import IconifyIcon from '@/core/components/icon'
 import { useAuth } from '@/hooks/useAuth'
-import UserService from '@/services/api/UserService'
+import UserService from '@/services/UserService'
 import { Avatar, Box, Divider, IconButton, Menu, MenuItem, MenuItemProps, Typography, styled } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'

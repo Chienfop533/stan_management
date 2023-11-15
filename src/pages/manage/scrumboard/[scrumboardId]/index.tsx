@@ -3,7 +3,7 @@ import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import MediaQuery from '@/core/utils/media-query'
 import sortArray from '@/core/utils/sort-array'
-import { useAppSelector } from '@/hooks/redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import ScrumboardList from '@/views/components/scrumboard/ScrumboardList'
 import ScrumboardSettings from '@/views/components/scrumboard/ScrumboardSettings'
 import CustomPageHeader from '@/views/pages/home/CustomPageHeader'
@@ -11,6 +11,10 @@ import { Box, Grid, Typography, styled } from '@mui/material'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd'
+import DeleteDialog from '@/views/components/dialog/DeleteDialog'
+import { deleteScrumboard } from '@/store/scrumboardSlice'
+import { useRouter } from 'next/router'
+import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
 
 const ScrumboardContainer = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -26,7 +30,11 @@ const ScrumboardContainer = styled(Box)(({ theme }) => ({
 
 const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   const { t } = useTranslation()
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+  const [openForm, setOpenForm] = useState<boolean>(false)
   const [openSideBar, setOpenSideBar] = useState<boolean>(false)
+  const [openDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false)
   const laptop = MediaQuery().laptop
 
   const data = useAppSelector(state => state.scrumboard.data)
@@ -36,6 +44,12 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   const handleClick = () => {
     setOpenSideBar(true)
   }
+  const handleDeleteScrumboard = () => {
+    dispatch(deleteScrumboard(scrumboardId))
+    setOpenDeleteDialog(false)
+    router.push('/manage/scrumboard')
+  }
+
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result
     if (!destination) {
@@ -48,7 +62,20 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
   }
   return (
     <>
-      <ScrumboardSettings openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} scrumboardId={scrumboardId} />
+      <DeleteDialog
+        title={t('scrumboard')}
+        dialogOpen={openDeleteDialog}
+        setDialogOpen={setOpenDeleteDialog}
+        handleDelete={handleDeleteScrumboard}
+      />
+      <ScrumboardSettings
+        openSideBar={openSideBar}
+        setOpenForm={setOpenForm}
+        setOpenSideBar={setOpenSideBar}
+        scrumboardId={scrumboardId}
+        setOpenDeleteDialog={setOpenDeleteDialog}
+      />
+      <ScrumboardForm open={openForm} setOpen={setOpenForm} data={dataActive} />
       <Box
         sx={{
           marginRight: openSideBar && !laptop ? '234px' : 0,
