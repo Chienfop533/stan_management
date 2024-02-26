@@ -49,7 +49,7 @@ const LoginPage = () => {
 
   const onSubmit = async (formData: FormData) => {
     const { email, password } = formData
-    const response: any = await auth.login({ email, password, remember_me: rememberMe })
+    const response: any = await auth.login({ email, password, rememberMe: rememberMe })
 
     if (response.success) {
       setErrorMessage('')

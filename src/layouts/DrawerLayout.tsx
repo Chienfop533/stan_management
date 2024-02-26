@@ -166,7 +166,7 @@ const DrawerLayout = ({
             src={auth?.user?.avatar || '/images/default_avatar.png'}
           ></Avatar>
           <Typography variant='h3' sx={{ mt: 2 }}>
-            {auth?.user?.full_name}
+            {auth?.user?.fullName}
           </Typography>
           <Typography>{auth?.user?.email}</Typography>
         </DrawerProfile>
@@ -324,7 +324,7 @@ const DrawerLayout = ({
         </List>
         <Divider sx={{ margin: '0 1rem' }}></Divider>
         <Typography sx={{ fontSize: 12, marginTop: '0.5rem', textAlign: 'center' }}>
-          ❤️Stan Management with Chienfop533❤️
+          ❤️Stan Management by Chienfop533❤️
         </Typography>
         <Typography sx={{ fontSize: 12, marginBottom: '0.5rem', textAlign: 'center' }}>Version 0.1.0</Typography>
       </DrawerWrapper>

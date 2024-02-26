@@ -6,7 +6,7 @@ import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState
 type LoginParams = {
   email: string
   password: string
-  remember_me: boolean
+  rememberMe: boolean
 }
 interface AuthValuesType {
   user: UserType | null
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }: Props) => {
         const userData: UserType = {
           id: response.data._id,
           avatar: response.data.avatar,
-          fullName: response.data.full_name,
+          fullName: response.data.fullName,
           email: response.data.email,
           password: response.data.password
         }
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }: Props) => {
     const userData: UserType = {
       id: data._id,
       avatar: data.avatar,
-      fullName: data.full_name,
+      fullName: data.fullName,
       email: data.email,
       password: data.password
     }

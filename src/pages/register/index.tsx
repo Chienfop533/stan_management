@@ -67,7 +67,7 @@ const RegisterPage = () => {
     const { email, password, fullName } = formData
     const response: any = await UserService.register({
       avatar: ImageConstant.defaultAvatar,
-      full_name: fullName,
+      fullName: fullName,
       email,
       password
     })
@@ -115,7 +115,7 @@ const RegisterPage = () => {
             {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
           </FormControl>
           <FormControl fullWidth sx={{ mt: 4, mb: 2 }}>
-            <InputLabel htmlFor='full_name' error={Boolean(errors.fullName)}>
+            <InputLabel htmlFor='fullName' error={Boolean(errors.fullName)}>
               {t('full_name')}
             </InputLabel>
             <Controller
@@ -130,7 +130,7 @@ const RegisterPage = () => {
                   value={value}
                   onBlur={onBlur}
                   onChange={onChange}
-                  id='full_name'
+                  id='fullName'
                   label={t('full_name')}
                   type='text'
                   error={Boolean(errors.fullName)}
