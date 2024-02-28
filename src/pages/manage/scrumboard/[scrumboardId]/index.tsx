@@ -15,6 +15,7 @@ import DeleteDialog from '@/views/components/dialog/DeleteDialog'
 import { deleteScrumboard } from '@/store/scrumboardSlice'
 import { useRouter } from 'next/router'
 import ScrumboardForm from '@/views/components/scrumboard/ScrumboardForm'
+import ScrumboardItemDetail from '@/views/components/scrumboard/ScrumboardItemDetail'
 
 const ScrumboardContainer = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -76,6 +77,7 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
         setOpenDeleteDialog={setOpenDeleteDialog}
       />
       <ScrumboardForm open={openForm} setOpen={setOpenForm} data={dataActive} />
+      <ScrumboardItemDetail />
       <Box
         sx={{
           marginRight: openSideBar && !laptop ? '234px' : 0,

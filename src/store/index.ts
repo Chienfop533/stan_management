@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import scrumboardReducer from './scrumboardSlice'
+import systemReducer from './systemSlide'
 
 export const store = configureStore({
   reducer: {
-    scrumboard: scrumboardReducer
+    scrumboard: scrumboardReducer,
+    system: systemReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
