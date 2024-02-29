@@ -8,7 +8,7 @@ const DefaultPalette = (mode: Palette['mode']): Palette => {
   const lightColor = '32, 32, 32'
   const darkColor = '242, 242, 242'
   const lightPaperColor = '#fefefe'
-  const darkPaperBgColor = '#1B2430'
+  const darkPaperBgColor = '#040404'
   const mainColor = mode === 'light' ? lightColor : darkColor
 
   const defaultBgColor = () => {
