@@ -8,8 +8,9 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
-import { Box } from '@mui/material'
+import { Avatar, Box } from '@mui/material'
 import ScrumboardItemDetailSidebar from './ScrumboardItemDetailSidebar'
+import { useTranslation } from 'react-i18next'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -25,7 +26,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }))
 const TitleTag = styled(Box)(({ theme }) => ({
   display: 'flex',
-  alignItems: 'center',
   flexDirection: 'row',
   gap: '1rem'
 }))
@@ -36,7 +36,26 @@ const ItemContentStyled = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between'
 }))
 
+const LabelChip = styled(Typography)(({ theme }) => ({
+  minWidth: 48,
+  height: 32,
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '14px',
+  fontWeight: 600,
+  padding: theme.spacing(2),
+  borderRadius: '0.25rem',
+  cursor: 'pointer',
+  '&:hover': {
+    opacity: 0.85
+  },
+  '&:active': {
+    opacity: 0.7
+  }
+}))
+
 export default function ScrumboardItemDetail() {
+  const { t } = useTranslation()
   const [open, setOpen] = React.useState(true)
 
   const handleClickOpen = () => {
@@ -78,7 +97,9 @@ export default function ScrumboardItemDetail() {
             }}
           >
             <IconifyIcon icon='mingcute:bank-card-line' fontSize={18} />
-            <Typography sx={{ textTransform: 'none', fontWeight: 600, ml: 2, fontSize: '12px' }}>Ảnh bìa</Typography>
+            <Typography sx={{ textTransform: 'none', fontWeight: 600, ml: 2, fontSize: '12px' }}>
+              {t('cover_img')}
+            </Typography>
           </Button>
         </DialogTitle>
         <IconButton
@@ -100,15 +121,137 @@ export default function ScrumboardItemDetail() {
         <DialogContent dividers>
           <TitleTag>
             <IconifyIcon icon='fe:credit-card' fontSize={24} />
-            <Typography variant='h3'>Xây dựng giao diện dashboard</Typography>
+            <Box>
+              <Typography variant='h3'>Xây dựng giao diện dashboard</Typography>
+              <Typography sx={{ fontSize: '14px' }}>
+                {t('in_list')}:{' '}
+                <Typography
+                  component='span'
+                  sx={{ fontSize: '14px', color: 'error.main', fontWeight: 600, cursor: 'pointer' }}
+                >
+                  Todo
+                </Typography>
+              </Typography>
+            </Box>
           </TitleTag>
 
           <ItemContentStyled>
             <Box>
-              <TitleTag>
-                <IconifyIcon icon='fe:credit-card' fontSize={24} />
-                <Typography variant='h3'>Xây dựng giao diện dashboard</Typography>
-              </TitleTag>
+              <Box
+                sx={{
+                  marginLeft: '2.5rem',
+                  marginTop: '0.5rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: 6,
+                  flexWrap: 'wrap'
+                }}
+              >
+                <Box sx={{ marginBottom: '0.5rem' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'row', gap: 3 }}>
+                    <IconifyIcon icon='formkit:people' fontSize={20} />
+                    <Typography variant='h4'>{t('member')}</Typography>
+                  </Box>
+                  <Box
+                    sx={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}
+                  >
+                    <Avatar
+                      alt='Remy Sharp'
+                      src='/static/images/avatar/1.jpg'
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        cursor: 'pointer',
+                        '&:hover': { opacity: 0.85 },
+                        '&:active': { opacity: 0.7 }
+                      }}
+                    />
+                    <Avatar
+                      alt='Remy Sharp'
+                      src='/static/images/avatar/1.jpg'
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        cursor: 'pointer',
+                        '&:hover': { opacity: 0.85 },
+                        '&:active': { opacity: 0.7 }
+                      }}
+                    />
+                    <Avatar
+                      alt='Remy Sharp'
+                      src='/static/images/avatar/1.jpg'
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        cursor: 'pointer',
+                        '&:hover': { opacity: 0.85 },
+                        '&:active': { opacity: 0.7 }
+                      }}
+                    />
+                    <Avatar
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        cursor: 'pointer',
+                        '&:hover': { opacity: 0.85 },
+                        '&:active': { opacity: 0.7 }
+                      }}
+                    >
+                      <IconifyIcon icon='fluent:add-20-filled' fontSize={18} />
+                    </Avatar>
+                  </Box>
+                </Box>
+                <Box sx={{ marginBottom: '0.5rem' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'row', gap: 3 }}>
+                    <IconifyIcon icon='mingcute:tag-line' fontSize={20} />
+                    <Typography variant='h4'>{t('labels')}</Typography>
+                  </Box>
+                  <Box
+                    sx={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}
+                  >
+                    <LabelChip
+                      sx={{
+                        backgroundColor: 'red.dark',
+                        color: 'white'
+                      }}
+                    >
+                      Test
+                    </LabelChip>
+                    <LabelChip
+                      sx={{
+                        backgroundColor: 'green.dark',
+                        color: 'white'
+                      }}
+                    >
+                      Testtttttttrrrr
+                    </LabelChip>
+                    <LabelChip
+                      sx={{
+                        backgroundColor: 'green.dark',
+                        color: 'white'
+                      }}
+                    >
+                      Test
+                    </LabelChip>
+                    <LabelChip
+                      sx={{
+                        backgroundColor: 'green.dark',
+                        color: 'white'
+                      }}
+                    >
+                      Testrr
+                    </LabelChip>
+                    <LabelChip
+                      sx={{
+                        backgroundColor: 'yellow.light',
+                        color: 'black'
+                      }}
+                    >
+                      Test
+                    </LabelChip>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
             <ScrumboardItemDetailSidebar />
           </ItemContentStyled>

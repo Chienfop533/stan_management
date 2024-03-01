@@ -122,6 +122,9 @@ const ScrumboardDetail = ({ scrumboardId }: { scrumboardId: string }) => {
                         '&:hover': {
                           backgroundColor: theme =>
                             theme.palette.mode == 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+                        },
+                        '&:active': {
+                          backgroundColor: theme => theme.palette.grey[500]
                         }
                       }}
                     >

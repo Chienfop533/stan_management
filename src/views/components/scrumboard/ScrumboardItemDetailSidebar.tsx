@@ -2,6 +2,7 @@ import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { Box, Button, List, ListSubheader, Typography, styled } from '@mui/material'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ButtonAddToCard = styled(Button)(({ theme }) => ({
   display: 'flex',
@@ -19,17 +20,18 @@ const ButtonAddToCard = styled(Button)(({ theme }) => ({
 }))
 
 const ScrumboardItemDetailSidebar = () => {
+  const { t } = useTranslation()
   const listAddToCard = [
-    { icon: 'formkit:people', title: 'Thành viên' },
-    { icon: 'mingcute:tag-line', title: 'Nhãn' },
-    { icon: 'pajamas:clock', title: 'Ngày hết hạn' },
-    { icon: 'eva:attach-fill', title: 'Đính kèm' },
-    { icon: 'mdi:checkbox-marked-outline', title: 'Việc làm' }
+    { icon: 'formkit:people', title: 'member' },
+    { icon: 'mingcute:tag-line', title: 'labels' },
+    { icon: 'pajamas:clock', title: 'expire_date' },
+    { icon: 'eva:attach-fill', title: 'attachments' },
+    { icon: 'mdi:checkbox-marked-outline', title: 'checklist' }
   ]
   const listAction = [
-    { icon: 'grommet-icons:link-next', title: 'Di chuyển' },
-    { icon: 'solar:copy-outline', title: 'Sao chép' },
-    { icon: 'mingcute:delete-2-fill', title: 'Xóa' }
+    { icon: 'grommet-icons:link-next', title: 'move' },
+    { icon: 'solar:copy-outline', title: 'copy' },
+    { icon: 'mingcute:delete-2-fill', title: 'delete' }
   ]
   return (
     <Box>
@@ -42,32 +44,32 @@ const ScrumboardItemDetailSidebar = () => {
       >
         <li key={`add-to-card`}>
           <ul>
-            <ListSubheader sx={{ backgroundColor: 'transparent', padding: 0 }}>Thêm vào thẻ</ListSubheader>
+            <ListSubheader sx={{ backgroundColor: 'transparent', padding: 0 }}>{t('add_to_card')}</ListSubheader>
             {listAddToCard.map(item => (
               <ButtonAddToCard key={item.title}>
                 <IconifyIcon icon={item.icon} fontSize={20} />
-                <Typography variant='h3' sx={{ textTransform: 'none', fontSize: '16px' }}>
-                  {item.title}
+                <Typography variant='h4' sx={{ textTransform: 'none' }}>
+                  {t(item.title)}
                 </Typography>
               </ButtonAddToCard>
             ))}
           </ul>
           <ul>
-            <ListSubheader sx={{ backgroundColor: 'transparent', padding: 0 }}>Thao tác</ListSubheader>
+            <ListSubheader sx={{ backgroundColor: 'transparent', padding: 0 }}>{t('actions')}</ListSubheader>
             {listAction.map(item => (
               <ButtonAddToCard
                 key={item.title}
                 sx={theme => ({
-                  color: item.title == 'Xóa' ? theme.palette.error.main : '',
-                  backgroundColor: item.title == 'Xóa' ? hexToRGBA(theme.palette.error.light, 0.1) : '',
+                  color: item.title == 'delete' ? theme.palette.error.main : '',
+                  backgroundColor: item.title == 'delete' ? hexToRGBA(theme.palette.error.light, 0.1) : '',
                   '&:hover': {
-                    backgroundColor: item.title == 'Xóa' ? hexToRGBA(theme.palette.error.light, 0.2) : ''
+                    backgroundColor: item.title == 'delete' ? hexToRGBA(theme.palette.error.light, 0.2) : ''
                   }
                 })}
               >
                 <IconifyIcon icon={item.icon} fontSize={20} />
-                <Typography variant='h3' sx={{ textTransform: 'none', fontSize: '16px' }}>
-                  {item.title}
+                <Typography variant='h4' sx={{ textTransform: 'none' }}>
+                  {t(item.title)}
                 </Typography>
               </ButtonAddToCard>
             ))}

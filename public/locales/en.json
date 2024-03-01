@@ -84,5 +84,14 @@
   "private": "Private",
   "public_description": "Anyone on the internet can see this board. Only members can edit",
   "private_description": "Only members can see and edit this board",
-  "delete_description": "Please confirm deletion of this card? This means this card no longer exists."
+  "delete_description": "Please confirm deletion of this card? This means this card no longer exists.",
+  "cover_img": "Cover",
+  "add_to_card": "Add to card",
+  "expire_date": "Dates",
+  "attachments": "Attachments",
+  "checklist": "Checklist",
+  "actions": "Actions",
+  "move": "Move",
+  "copy": "Copy",
+  "in_list": "In list"
 }

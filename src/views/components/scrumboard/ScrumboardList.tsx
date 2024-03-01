@@ -95,6 +95,10 @@ const ScrumboardList = ({ listData, index }: any) => {
                 '&:hover': {
                   backgroundColor: theme =>
                     theme.palette.mode == 'light' ? theme.palette.grey[300] : theme.palette.grey[700]
+                },
+                '&:active': {
+                  backgroundColor: theme =>
+                    theme.palette.mode == 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
                 }
               }}
             >

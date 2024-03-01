@@ -84,5 +84,14 @@
   "private": "Riêng tư",
   "public_description": "Tất cả mọi người có thể xem bảng này. Chỉ thành viên mới có thể sửa",
   "private_description": "Chỉ thành viên mới có thể xem và sửa bảng này",
-  "delete_description": "Vui lòng xác nhận xóa thẻ này? Điều này có nghĩa là thẻ này không còn tồn tại nữa."
+  "delete_description": "Vui lòng xác nhận xóa thẻ này? Điều này có nghĩa là thẻ này không còn tồn tại nữa.",
+  "cover_img": "Ảnh bìa",
+  "add_to_card": "Thêm vào thẻ",
+  "expire_date": "Ngày hết hạn",
+  "attachments": "Đính kèm",
+  "checklist": "Việc làm",
+  "actions": "Thao tác",
+  "move": "Di chuyển",
+  "copy": "Sao chép",
+  "in_list": "Trong danh sách"
 }

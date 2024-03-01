@@ -13,6 +13,10 @@ const typography = {
     fontFamily: 'Montserrat',
     fontSize: 18
   },
+  h4: {
+    fontFamily: 'Montserrat',
+    fontSize: 15
+  },
   body1: {
     fontFamily: 'Nunito',
     fontSize: 15
