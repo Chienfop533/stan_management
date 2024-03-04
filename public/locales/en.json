@@ -87,11 +87,12 @@
   "delete_description": "Please confirm deletion of this card? This means this card no longer exists.",
   "cover_img": "Cover",
   "add_to_card": "Add to card",
-  "expire_date": "Dates",
+  "dates": "Dates",
   "attachments": "Attachments",
   "checklist": "Checklist",
   "actions": "Actions",
   "move": "Move",
   "copy": "Copy",
-  "in_list": "In list"
+  "in_list": "In list",
+  "due_date": "Due date"
 }
