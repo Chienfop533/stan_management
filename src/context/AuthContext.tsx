@@ -65,14 +65,14 @@ const AuthProvider = ({ children }: Props) => {
     const response: any = await UserService.login(params)
     if (response?.success) {
       handleDataOnAccessSuccess(response.data)
-      sessionStorage.setItem('accessToken', response.accessToken)
+      sessionStorage.setItem('access_token', response.accessToken)
     }
     return response
   }
   const handleLogout = async () => {
     const response: any = await UserService.logout()
     if (response?.success) {
-      sessionStorage.removeItem('accessToken')
+      sessionStorage.removeItem('access_token')
       localStorage.removeItem('userData')
       setUser(null)
       router.push('/login')

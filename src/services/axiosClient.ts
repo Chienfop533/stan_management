@@ -18,8 +18,8 @@ axiosClient.interceptors.response.use(
 )
 axiosClient.interceptors.request.use(
   async function (config) {
-    let accessToken = sessionStorage.getItem('accessToken')
-    const verify = await fetch('http://localhost:4000/auth/verifyToken', {
+    let accessToken = sessionStorage.getItem('access_token')
+    const verify = await fetch('http://localhost:4000/auth/verify-token', {
       headers: { Authorization: `Bearer ${accessToken}` },
       method: 'POST',
       credentials: 'include'
@@ -29,7 +29,7 @@ axiosClient.interceptors.request.use(
         console.log(err)
       })
     if (!verify.success) {
-      const response = await fetch('http://localhost:4000/auth/refreshToken', {
+      const response = await fetch('http://localhost:4000/auth/refresh-token', {
         method: 'POST',
         credentials: 'include'
       })
@@ -39,7 +39,7 @@ axiosClient.interceptors.request.use(
         })
       if (response.success) {
         accessToken = response.accessToken
-        sessionStorage.setItem('accessToken', accessToken as string)
+        sessionStorage.setItem('access_token', accessToken as string)
       }
     }
 
