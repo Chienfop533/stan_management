@@ -14,6 +14,7 @@ interface AuthValuesType {
   setUser: Dispatch<SetStateAction<UserType | null>>
   setLoading: Dispatch<SetStateAction<boolean>>
   login: (params: LoginParams) => void
+  loginWithGoogle: () => void
   logout: () => void
 }
 const defaultProvider: AuthValuesType = {
@@ -22,6 +23,7 @@ const defaultProvider: AuthValuesType = {
   setUser: () => null,
   setLoading: () => Boolean,
   login: () => Promise.resolve(),
+  loginWithGoogle: () => Promise.resolve,
   logout: () => Promise.resolve()
 }
 type Props = {
@@ -69,6 +71,10 @@ const AuthProvider = ({ children }: Props) => {
     }
     return response
   }
+  const handleLoginWithGoogle = async () => {
+    const response: any = await UserService.loginWithGoogle()
+    return response
+  }
   const handleLogout = async () => {
     const response: any = await UserService.logout()
     if (response?.success) {
@@ -100,6 +106,7 @@ const AuthProvider = ({ children }: Props) => {
     setUser,
     setLoading,
     login: handleLogin,
+    loginWithGoogle: handleLoginWithGoogle,
     logout: handleLogout
   }
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

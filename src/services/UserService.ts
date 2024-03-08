@@ -16,4 +16,7 @@ export default class UserService {
   static verifyToken = async () => {
     return await axiosClient.post('auth/verify-token')
   }
+  static loginWithGoogle = async () => {
+    return await axiosClient.get('/auth/google')
+  }
 }

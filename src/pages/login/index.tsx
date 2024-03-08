@@ -60,12 +60,16 @@ const LoginPage = () => {
       toast.error(t('action_message_fail', { action: t('login') }))
     }
   }
+  const onLoginWithGoogle = async () => {
+    window.open('http://localhost:4000/auth/google', '_self')
+  }
 
   return (
     <AuthPage>
       <Typography variant='h1'>{t('login')}</Typography>
       <Typography fontSize={18}>{t('your_app')}</Typography>
       <Box
+        onClick={onLoginWithGoogle}
         sx={{
           display: 'flex',
           alignItems: 'center',
