@@ -21,7 +21,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     borderRadius: '24px',
     maxWidth: '768px',
     width: '100%',
-    margin: theme.spacing(4)
+    margin: theme.spacing(8, 4)
   }
 }))
 const TitleTag = styled(Box)(({ theme }) => ({
@@ -67,7 +67,7 @@ export default function ScrumboardItemDetail() {
 
   return (
     <React.Fragment>
-      <BootstrapDialog onClose={handleClose} aria-labelledby='customized-dialog-title' open={open}>
+      <BootstrapDialog onClose={handleClose} aria-labelledby='customized-dialog-title' open={open} scroll='body'>
         <DialogTitle
           sx={theme => ({
             width: '100%',
