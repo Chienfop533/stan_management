@@ -24,6 +24,7 @@ axiosClient.interceptors.response.use(
         })
       if (response.success) {
         const accessToken = response.accessToken
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
         sessionStorage.setItem('access_token', accessToken as string)
       } else {
         sessionStorage.removeItem('access_token')

@@ -38,31 +38,48 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter()
 
   useEffect(() => {
-    const verifyAccessToken = async () => {
-      const response: any = await UserService.verifyToken()
-      if (response?.success) {
-        setLoading(false)
-        const userData: UserType = {
-          id: response.data._id,
-          avatar: response.data.avatar,
-          fullName: response.data.fullName,
-          email: response.data.email,
-          password: response.data.password
-        }
-        setUser({ ...userData })
-        window.localStorage.setItem('userData', JSON.stringify(userData))
-      } else {
-        clearUserDataAndRedirectToLogin()
-      }
-    }
-    const clearUserDataAndRedirectToLogin = () => {
-      localStorage.removeItem('userData')
-      setUser(null)
-      setLoading(false)
-    }
     verifyAccessToken()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const verifyAccessToken = async () => {
+    const response: any = await UserService.verifyToken()
+    if (response?.success) {
+      setLoading(false)
+      const userData: UserType = {
+        id: response.data._id,
+        avatar: response.data.avatar,
+        fullName: response.data.fullName,
+        email: response.data.email,
+        password: response.data.password
+      }
+      setUser({ ...userData })
+      window.localStorage.setItem('userData', JSON.stringify(userData))
+    } else {
+      await refreshAccessToken()
+    }
+  }
+  const refreshAccessToken = async () => {
+    const response: any = await UserService.refreshToken()
+    if (response?.success) {
+      setLoading(false)
+      // setUser({
+      //   id: 'response.data._id',
+      //   avatar: 'response.data._id',
+      //   fullName: 'response.data._id',
+      //   email: 'response.data._id',
+      //   password: 'response.data._id'
+      // })
+      sessionStorage.setItem('access_token', response.accessToken)
+    } else {
+      clearUserDataAndRedirectToLogin()
+    }
+  }
+  const clearUserDataAndRedirectToLogin = () => {
+    localStorage.removeItem('userData')
+    setUser(null)
+    setLoading(false)
+  }
   const handleLogin = async (params: LoginParams) => {
     const response: any = await UserService.login(params)
     if (response?.success) {
