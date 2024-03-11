@@ -8,9 +8,10 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import IconifyIcon from '@/core/components/icon'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
-import { Avatar, Box } from '@mui/material'
+import { Avatar, Box, Checkbox } from '@mui/material'
 import ScrumboardItemDetailSidebar from './ScrumboardItemDetailSidebar'
 import { useTranslation } from 'react-i18next'
+import { ActionButtonStyled } from '@/core/components/action-button'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -139,11 +140,11 @@ export default function ScrumboardItemDetail() {
             <Box>
               <Box
                 sx={{
-                  marginLeft: '2.5rem',
-                  marginTop: '0.5rem',
+                  margin: '0.75rem 0 0.75rem 2.5rem',
                   display: 'flex',
                   flexDirection: 'row',
-                  gap: 6,
+                  rowGap: 2,
+                  columnGap: 6,
                   flexWrap: 'wrap'
                 }}
               >
@@ -250,6 +251,41 @@ export default function ScrumboardItemDetail() {
                       Test
                     </LabelChip>
                   </Box>
+                </Box>
+                <Box sx={{ marginBottom: '0.5rem' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'row', gap: 3 }}>
+                    <IconifyIcon icon='pajamas:clock' fontSize={20} />
+                    <Typography variant='h4'>{t('due_date')}</Typography>
+                  </Box>
+                  <Box
+                    sx={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}
+                  >
+                    <Checkbox sx={{ padding: 0 }} defaultChecked />
+                    <Box
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        backgroundColor: theme =>
+                          theme.palette.mode == 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
+                        cursor: 'pointer',
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: '0.25rem',
+                        '&:hover': { opacity: 0.85 },
+                        '&:active': { opacity: 0.7 }
+                      }}
+                    >
+                      20/06/2023 lúc 14:00
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'row', gap: 3 }}>
+                    <IconifyIcon icon='fluent:list-24-filled' fontSize={24} />
+                    <Typography variant='h3'>{t('description')}</Typography>
+                  </Box>
+                  <ActionButtonStyled sx={{ padding: '0.25rem' }}>{t('edit')}</ActionButtonStyled>
                 </Box>
               </Box>
             </Box>

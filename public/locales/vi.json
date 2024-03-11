@@ -87,11 +87,12 @@
   "delete_description": "Vui lòng xác nhận xóa thẻ này? Điều này có nghĩa là thẻ này không còn tồn tại nữa.",
   "cover_img": "Ảnh bìa",
   "add_to_card": "Thêm vào thẻ",
-  "expire_date": "Ngày hết hạn",
+  "dates": "Ngày",
   "attachments": "Đính kèm",
   "checklist": "Việc làm",
   "actions": "Thao tác",
   "move": "Di chuyển",
   "copy": "Sao chép",
-  "in_list": "Trong danh sách"
+  "in_list": "Trong danh sách",
+  "due_date": "Ngày hết hạn"
 }
