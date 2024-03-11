@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-
+import { apiUrl } from './commonService'
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: `${apiUrl}`,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true
 })
@@ -14,7 +14,7 @@ axiosClient.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response?.status == 401) {
-      const response = await fetch('http://localhost:4000/auth/refresh-token', {
+      const response = await fetch(`${apiUrl}/auth/refresh-token`, {
         method: 'POST',
         credentials: 'include'
       })
@@ -25,15 +25,8 @@ axiosClient.interceptors.response.use(
       if (response.success) {
         const accessToken = response.accessToken
         sessionStorage.setItem('access_token', accessToken as string)
-        await fetch('http://localhost:4000/auth/verify-token', {
-          headers: { Authorization: `Bearer ${accessToken}` },
-          method: 'POST',
-          credentials: 'include'
-        })
-          .then(response => response.json())
-          .catch(err => {
-            console.log(err)
-          })
+      } else {
+        sessionStorage.removeItem('access_token')
       }
     }
     return error.response?.data
@@ -42,7 +35,7 @@ axiosClient.interceptors.response.use(
 axiosClient.interceptors.request.use(
   function (config) {
     const accessToken = sessionStorage.getItem('access_token')
-    // const verify = await fetch('http://localhost:4000/auth/verify-token', {
+    // const verify = await fetch(`${apiUrl}/auth/verify-token`, {
     //   headers: { Authorization: `Bearer ${accessToken}` },
     //   method: 'POST',
     //   credentials: 'include'
@@ -52,7 +45,7 @@ axiosClient.interceptors.request.use(
     //     console.log(err)
     //   })
     // if (!verify.success) {
-    //   const response = await fetch('http://localhost:4000/auth/refresh-token', {
+    //   const response = await fetch(`${apiUrl}/auth/refresh-token`, {
     //     method: 'POST',
     //     credentials: 'include'
     //   })

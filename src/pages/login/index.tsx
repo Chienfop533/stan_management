@@ -4,6 +4,7 @@ import { LinkStyled } from '@/core/components/link'
 import { hexToRGBA } from '@/core/utils/hex-to-rgba'
 import { useAuth } from '@/hooks/useAuth'
 import BlankLayout from '@/layouts/BlankLayout'
+import { apiUrl } from '@/services/commonService'
 import AuthPage from '@/views/pages/auth/AuthPage'
 import {
   Box,
@@ -61,7 +62,7 @@ const LoginPage = () => {
     }
   }
   const onLoginWithGoogle = async () => {
-    window.open('http://localhost:4000/auth/google', '_self')
+    window.open(`${apiUrl}/auth/google`, '_self')
   }
 
   return (
