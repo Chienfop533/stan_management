@@ -63,13 +63,7 @@ const AuthProvider = ({ children }: Props) => {
     const response: any = await UserService.refreshToken()
     if (response?.success) {
       setLoading(false)
-      // setUser({
-      //   id: 'response.data._id',
-      //   avatar: 'response.data._id',
-      //   fullName: 'response.data._id',
-      //   email: 'response.data._id',
-      //   password: 'response.data._id'
-      // })
+      verifyAccessToken()
       sessionStorage.setItem('access_token', response.accessToken)
     } else {
       clearUserDataAndRedirectToLogin()
@@ -79,6 +73,9 @@ const AuthProvider = ({ children }: Props) => {
     localStorage.removeItem('userData')
     setUser(null)
     setLoading(false)
+    if (!router.pathname.includes('login')) {
+      router.replace('/login')
+    }
   }
   const handleLogin = async (params: LoginParams) => {
     const response: any = await UserService.login(params)
